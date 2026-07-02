@@ -59,6 +59,7 @@ app.post("/register", async (req, res) => {
       message: "User Registered Successfully!",
       data: user,
     });
+
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -66,7 +67,24 @@ app.post("/register", async (req, res) => {
     });
   }
 });
+app.get("/users", async (req, res) => {
+  try {
+    const users = await User.find();
 
+    res.status(200).json({
+      success: true,
+      totalUsers: users.length,
+      data: users,
+    });
+  } catch (err) {
+    console.error(err);
+
+    res.status(500).json({
+      success: false,
+      message: err.message,
+    });
+  }
+});
 // Start Server
 const PORT = process.env.PORT || 3000;
 
