@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Verify Email</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body class="bg-slate-900 text-white flex items-center justify-center h-screen">
+
+<div class="bg-slate-800 p-10 rounded-xl text-center w-[500px]">
+
+<h1 class="text-3xl font-bold mb-6">
+Verify Your Email
+</h1>
+
+<p class="mb-8 text-gray-300">
+We have sent a verification email to your inbox.
+Please verify your account before login.
+</p>
+
+<input
+id="email"
+type="email"
+placeholder="Enter your email"
+class="w-full p-3 rounded text-black mb-4">
+
+<button
+id="resendBtn"
+class="bg-blue-600 px-6 py-3 rounded w-full">
+
+Resend Verification Email
+
+</button>
+
+<p id="msg" class="mt-5 text-green-400"></p>
+
+<a href="/login" class="block mt-6 underline">
+Back to Login
+</a>
+
+</div>
+
+<script>
+
+document.getElementById("resendBtn").onclick = async ()=>{
+
+const email=document.getElementById("email").value;
+
+const res=await fetch("/resend-verification",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({email})
+
+});
+
+const data=await res.json();
+
+document.getElementById("msg").innerText=data.message;
+
+}
+
+</script>
+
+</body>
+</html>

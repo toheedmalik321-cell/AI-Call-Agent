@@ -1,0 +1,79 @@
+/* Responsive CSS */
+/* ===========================
+   AI CallHub - responsive.css
+   =========================== */
+
+/* Laptop */
+@media (max-width:1200px){
+
+    .hero-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+/* Tablet */
+
+@media (max-width:992px){
+
+    h1{
+        font-size:3rem;
+    }
+
+    h2{
+        font-size:2.2rem;
+    }
+
+    section{
+        padding-top:70px;
+        padding-bottom:70px;
+    }
+
+}
+
+/* Mobile */
+
+@media (max-width:768px){
+
+    h1{
+        font-size:2.4rem;
+        line-height:1.2;
+    }
+
+    h2{
+        font-size:1.8rem;
+    }
+
+    p{
+        font-size:15px;
+    }
+
+    .btn-primary,
+    .btn-ghost{
+        width:100%;
+        justify-content:center;
+    }
+
+    .glass{
+        border-radius:18px;
+    }
+
+}
+
+/* Small Mobile */
+
+@media (max-width:480px){
+
+    h1{
+        font-size:2rem;
+    }
+
+    h2{
+        font-size:1.5rem;
+    }
+
+    body{
+        font-size:14px;
+    }
+
+}

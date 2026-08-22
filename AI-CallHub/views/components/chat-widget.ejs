@@ -1,0 +1,36 @@
+<!-- Chat Widget -->
+<button id="chatBtn" aria-label="Open chat" class="fixed bottom-6 right-6 z-40 chat-bubble w-14 h-14 rounded-full grid place-items-center text-white hover:scale-110 transition">
+  <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+</button>
+
+<div id="chatPanel" class="fixed bottom-24 right-6 z-40 hidden glass w-[340px] rounded-2xl overflow-hidden shadow-2xl" style="box-shadow: 0 30px 80px -20px rgba(0,0,0,0.6)">
+  <div class="p-4 flex items-center gap-3" style="background:linear-gradient(135deg,#5b8cff,#a855f7)">
+    <div class="w-9 h-9 rounded-full bg-white/20 grid place-items-center">
+      <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/></svg>
+    </div>
+    <div class="text-white">
+      <div class="font-semibold text-sm">Aria — AI Assistant</div>
+      <div class="text-xs opacity-80 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-300 call-dot"></span> Online now</div>
+    </div>
+  </div>
+  <div class="p-4 space-y-3 h-[320px] overflow-y-auto text-sm">
+    <div class="flex gap-2">
+      <div class="w-7 h-7 rounded-full grid place-items-center flex-none" style="background:linear-gradient(135deg,#5b8cff,#a855f7)"><span class="text-[10px] text-white font-bold">A</span></div>
+      <div class="glass rounded-2xl rounded-tl-sm px-3 py-2 text-slate-200">Hi there! 👋 I'm Aria, your AI assistant. How can I help? You can ask about pricing, features, integrations, or book a demo.</div>
+    </div>
+    <div id="chatLog"></div>
+    <div class="flex gap-2 items-center">
+      <div class="w-7 h-7 rounded-full grid place-items-center flex-none" style="background:linear-gradient(135deg,#5b8cff,#a855f7)"><span class="text-[10px] text-white font-bold">A</span></div>
+      <div class="glass rounded-2xl rounded-tl-sm px-3 py-2 typing"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+  <form id="chatForm" class="border-t border-white/10 p-3 flex gap-2">
+    <input id="chatInput" type="text" placeholder="Ask me anything..." class="flex-1 bg-white/5 rounded-lg px-3 py-2 text-sm focus:outline-none border border-white/10 focus:border-purple-400/60"/>
+    <button class="btn-primary rounded-lg px-3 py-2 text-white text-sm font-semibold">Send</button>
+  </form>
+</div>
+
+
+
+
+  

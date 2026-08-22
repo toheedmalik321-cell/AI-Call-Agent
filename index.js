@@ -1,93 +1,180 @@
+
 require("dotenv").config();
 
 const express = require("express");
-const mongoose = require("mongoose");
+const path = require("path");
+const morgan = require("morgan");
+
+const connectDB = require("./config/db");
+
+const userRoutes = require("./routes/userRoutes");
+const callRoutes = require("./routes/callRoutes");
+const aiRoutes = require("./routes/aiRoutes");
+const agentRoutes = require("./routes/agentRoutes");
+const dashboardRoutes = require("./routes/dashboardRoutes");
+const knowledgeRoutes = require("./routes/knowledgeRoutes");
+const twilioRoutes = require("./routes/twilioRoutes");
+const chatRoutes = require("./routes/chatRoutes");
+const realtimeRoutes = require("./routes/realtimeRoutes");
+const profileRoutes = require("./routes/profileRoutes");
+
 const User = require("./models/user");
+const auth = require("./middlewares/auth");
+const errorHandler = require("./middlewares/errorHandler");
+
 const app = express();
 
-// Middleware
-app.use(express.json());
+// ==============================
+// Connect Database
+// ==============================
 
-// Check if MONGO_URI exists
 if (!process.env.MONGO_URI) {
-  console.error("❌ MONGO_URI is not defined in .env file");
-  process.exit(1);
+    console.log("❌ MONGO_URI Missing");
+    process.exit(1);
 }
 
+connectDB();
 
-// Connect to MongoDB
-mongoose
-  .connect(process.env.MONGO_URI, {
-    serverSelectionTimeoutMS: 10000,
-  })
-  .then(() => {
-    console.log("✅ MongoDB Connected Successfully!");
-  })
-  .catch((err) => {
-    console.log("❌ MongoDB Connection Failed!");
-    console.log("Error Name:", err.name);
-    console.log("Error Message:", err.message);
-  });
+// ==============================
+// View Engine
+// ==============================
 
-// Home Route
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "AI-CallHub", "views"));
+
+// ==============================
+// Static Files
+// ==============================
+
+app.use("/css", express.static(path.join(__dirname, "AI-CallHub/css")));
+app.use("/js", express.static(path.join(__dirname, "AI-CallHub/js")));
+app.use("/assets", express.static(path.join(__dirname, "AI-CallHub/assets")));
+app.use("/libs", express.static(path.join(__dirname, "AI-CallHub/libs")));
+
+// ==============================
+// Middleware
+// ==============================
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(morgan("dev"));
+
+// ==============================
+// EJS Pages
+// ==============================
+
 app.get("/", (req, res) => {
-  res.send("Welcome to AI Call Agent");
+    res.render("index");
 });
 
-// About Route
+app.get("/login", (req, res) => {
+    res.render("login");
+});
+
+app.get("/register", (req, res) => {
+    res.render("register");
+});
+
+app.get("/dashboard", (req, res) => {
+    res.render("dashboard");
+});
+
+// ---------- Agents ----------
+
+app.get("/agents", (req, res) => {
+    res.render("agents");
+});
+
+app.get("/add-agent", (req, res) => {
+    res.render("addAgent");
+});
+
+app.get("/edit-agent", (req, res) => {
+    res.render("editAgent");
+});
+
+// ---------- Knowledge ----------
+
+app.get("/knowledge", (req, res) => {
+    res.render("knowledge");
+});
+
+app.get("/add-knowledge", (req, res) => {
+    res.render("addKnowledge");
+});
+
+app.get("/view-knowledge", (req, res) => {
+    res.render("viewKnowledge");
+});
+// ---------- Calls ----------
+
+app.get("/calls", (req, res) => {
+    res.render("calls");
+});
+
+app.get("/call-details", (req, res) => {
+    res.render("call-details");
+});
+app.get("/add-call", (req, res) => {
+    res.render("addCall");
+});
+
+// ==============================
+// Other Routes
+// ==============================
+
 app.get("/about", (req, res) => {
-  res.send("This backend is developed by YOU");
+    res.send("This backend is developed by YOU");
 });
 
-// Contact Route
 app.get("/contact", (req, res) => {
-  res.send("Contact: support@aicallagent.com");
+    res.send("Contact: support@aicallagent.com");
 });
 
-// Hello Route
 app.get("/hello", (req, res) => {
-  res.send("Hello, Welcome to My Backend Course!");
+    res.send("Hello, Welcome to My Backend Course!");
 });
-
-// Register Route
-app.post("/register", async (req, res) => {
-  try {
-    const user = await User.create(req.body);
-
-    res.status(201).json({
-      success: true,
-      message: "User Registered Successfully!",
-      data: user,
-    });
-
-  } catch (err) {
-    res.status(500).json({
-      success: false,
-      message: err.message,
-    });
-  }
+app.get("/profile", (req, res) => {
+    res.render("profile");
 });
-app.get("/users", async (req, res) => {
-  try {
-    const users = await User.find();
+// ==============================
+// API Routes
+// ==============================
 
-    res.status(200).json({
-      success: true,
-      totalUsers: users.length,
-      data: users,
-    });
-  } catch (err) {
-    console.error(err);
+app.use("/", userRoutes);
+app.use("/", callRoutes);
+app.use("/", aiRoutes);
+app.use("/", agentRoutes);
+app.use("/", dashboardRoutes);
+app.use("/", knowledgeRoutes);
+app.use("/", twilioRoutes);
+app.use("/", chatRoutes);
+app.use("/", realtimeRoutes);
+app.use("/", profileRoutes);
+// ==============================
+// Error Handler
+// ==============================
 
-    res.status(500).json({
-      success: false,
-      message: err.message,
-    });
-  }
-});
+app.use(errorHandler);
+
+// ==============================
 // Start Server
-const PORT = process.env.PORT || 3000;
+// ==============================
 
-app.listen(PORT, () => {
-  console.log("Server running on http://localhost:" + PORT);
+const PORT = process.env.PORT || 3000;
+// Chat Page
+app.get("/chat", (req, res) => {
+    res.render("chat");
+});
+app.get("/voice", (req, res) => {
+    res.render("voice");
+});
+   app.get("/verify-pending",(req,res)=>{
+    res.render("verify-pending");
+});
+app.listen(PORT, "0.0.0.0", () => {
+
+    console.log(`🚀 Server running at http://localhost:${PORT}`);
+
 });

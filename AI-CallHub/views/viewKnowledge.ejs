@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>View Knowledge</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="stylesheet" href="/css/main.css">
+
+</head>
+
+<body class="bg-[#070B17] text-white">
+
+<div class="max-w-5xl mx-auto py-10">
+
+<h1 class="text-4xl font-bold mb-8">
+Knowledge Details
+</h1>
+
+<div class="glass rounded-2xl p-8">
+
+<h2
+id="title"
+class="text-3xl font-bold">
+
+Loading...
+
+</h2>
+
+<pre
+id="content"
+class="mt-6 whitespace-pre-wrap text-gray-300">
+
+</pre>
+
+</div>
+
+</div>
+
+<script>
+
+const token = localStorage.getItem("token");
+
+if (!token) {
+    window.location = "/login";
+}
+
+const id = new URLSearchParams(window.location.search).get("id");
+
+fetch("/api/knowledge", {
+
+    headers: {
+        Authorization: "Bearer " + token
+    }
+
+})
+
+.then(res => res.json())
+
+.then(data => {
+
+    const file = data.data.find(x => x._id === id);
+
+    if (!file) {
+
+        alert("File not found");
+
+        window.location = "/knowledge";
+
+        return;
+    }
+
+    document.getElementById("title").innerText = file.title;
+
+    document.getElementById("content").innerText = file.content;
+
+})
+
+.catch(err => {
+
+    console.log(err);
+
+    alert("Error loading knowledge.");
+
+});
+
+</script>
+
+</body>
+
+</html>

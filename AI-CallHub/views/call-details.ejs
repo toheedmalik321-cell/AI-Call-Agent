@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Call Details</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="/css/main.css">
+
+</head>
+
+<body class="bg-[#070B17] text-white">
+
+<div class="max-w-5xl mx-auto py-10">
+
+    <div class="flex justify-between items-center mb-8">
+
+        <h1 class="text-4xl font-bold">
+            Call Details
+        </h1>
+
+        <a
+            href="/calls"
+            class="bg-blue-600 hover:bg-blue-700 px-5 py-3 rounded-xl">
+
+            ← Back
+
+        </a>
+
+    </div>
+
+    <div class="glass rounded-2xl p-8 space-y-8">
+
+        <div>
+
+            <h2 class="text-xl font-bold mb-2">
+                Customer Name
+            </h2>
+
+            <p id="customerName" class="text-gray-300"></p>
+
+        </div>
+
+        <div>
+
+            <h2 class="text-xl font-bold mb-2">
+                Phone Number
+            </h2>
+
+            <p id="phoneNumber" class="text-gray-300"></p>
+
+        </div>
+
+        <div>
+
+            <h2 class="text-xl font-bold mb-2">
+                AI Agent
+            </h2>
+
+            <p id="agentName" class="text-gray-300"></p>
+
+        </div>
+
+        <div>
+
+            <h2 class="text-xl font-bold mb-2">
+                Agent Role
+            </h2>
+
+            <p id="agentRole" class="text-gray-300"></p>
+
+        </div>
+
+        <div>
+
+            <h2 class="text-xl font-bold mb-2">
+                Status
+            </h2>
+
+            <p id="status" class="text-gray-300"></p>
+
+        </div>
+
+        <div>
+
+            <h2 class="text-xl font-bold mb-2">
+                Duration
+            </h2>
+
+            <p id="duration" class="text-gray-300"></p>
+
+        </div>
+
+        <div>
+
+            <h2 class="text-xl font-bold mb-2">
+                Customer Message
+            </h2>
+
+            <div class="bg-[#111827] rounded-xl p-4">
+                <p id="customerMessage"></p>
+            </div>
+
+        </div>
+
+        <div>
+
+            <h2 class="text-xl font-bold mb-2">
+                AI Reply
+            </h2>
+
+            <div class="bg-[#111827] rounded-xl p-4">
+                <p id="aiReply"></p>
+            </div>
+
+        </div>
+
+        <div>
+
+            <h2 class="text-xl font-bold mb-2">
+                Call Summary
+            </h2>
+
+            <div class="bg-[#111827] rounded-xl p-4">
+                <p id="summary"></p>
+            </div>
+
+        </div>
+
+        <div>
+
+            <h2 class="text-xl font-bold mb-2">
+                Transcript
+            </h2>
+
+            <div class="bg-[#111827] rounded-xl p-4">
+                <p id="transcript"></p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="/js/call-details.js"></script>
+
+</body>
+
+</html>

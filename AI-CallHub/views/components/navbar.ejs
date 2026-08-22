@@ -1,0 +1,88 @@
+<!-- NAV -->
+<header class="sticky top-0 z-50 transition-all">
+  <div class="mx-auto max-w-7xl px-4 lg:px-8">
+
+    <nav id="nav" class="mt-4 glass rounded-2xl px-4 lg:px-6 py-3 flex items-center justify-between">
+
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-2">
+        <div class="relative w-9 h-9 rounded-xl grid place-items-center"
+          style="background:linear-gradient(135deg,#5b8cff,#a855f7)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" class="w-5 h-5">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+        </div>
+
+        <span class="font-display font-bold text-lg">
+          AI CallHub
+        </span>
+      </a>
+
+      <!-- Desktop Menu -->
+      <div class="hidden lg:flex items-center gap-8 text-sm">
+
+        <a href="/#features" class="nav-link">Features</a>
+        <a href="/#dashboard" class="nav-link">Dashboard</a>
+        <a href="/#integrations" class="nav-link">Integrations</a>
+        <a href="/#pricing" class="nav-link">Pricing</a>
+        <a href="/#faq" class="nav-link">FAQ</a>
+        <a href="/#contact" class="nav-link">Contact</a>
+
+      </div>
+
+      <!-- Right Side -->
+      <div class="flex items-center gap-2">
+
+        <!-- Guest Menu -->
+        <div id="guestMenu" class="flex items-center gap-2">
+
+          <a href="/login"
+            class="hidden sm:inline text-sm px-3 py-2 text-slate-300 hover:text-white transition">
+            Log In
+          </a>
+
+          <a href="/register"
+            class="btn-primary text-sm font-semibold px-4 py-2 rounded-xl text-white">
+            Sign Up
+          </a>
+
+        </div>
+
+        <!-- Logged In Menu -->
+        <div id="userMenu" class="hidden items-center gap-2">
+
+          <a href="/dashboard"
+            class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium">
+            Dashboard
+          </a>
+
+          <button id="logoutBtn"
+            class="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white text-sm font-medium">
+            Logout
+          </button>
+
+        </div>
+
+        <!-- Mobile Menu -->
+        <button id="menuBtn"
+          class="lg:hidden glass rounded-lg p-2"
+          aria-label="Menu">
+
+          <svg class="w-5 h-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2">
+
+            <path d="M3 6h18M3 12h18M3 18h18"/>
+
+          </svg>
+
+        </button>
+
+      </div>
+
+    </nav>
+
+  </div>
+</header>

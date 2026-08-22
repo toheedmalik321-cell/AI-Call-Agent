@@ -1,0 +1,60 @@
+/* ===========================
+   AI CallHub - components.css
+   =========================== */
+
+/* Buttons */
+.btn-primary{
+    background:linear-gradient(135deg,#5b8cff,#a855f7);
+    color:#fff;
+    transition:.35s;
+}
+
+.btn-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 15px 40px rgba(91,140,255,.35);
+}
+
+.btn-ghost{
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+    transition:.35s;
+}
+
+.btn-ghost:hover{
+    background:rgba(255,255,255,.08);
+}
+
+/* Navigation */
+
+.nav-link{
+    position:relative;
+    transition:.3s;
+}
+
+.nav-link:hover{
+    color:#fff;
+}
+
+.nav-link::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-4px;
+    width:0;
+    height:2px;
+    background:linear-gradient(90deg,#5b8cff,#a855f7);
+    transition:.3s;
+}
+
+.nav-link:hover::after{
+    width:100%;
+}
+
+/* Cards */
+
+.icon-wrap{
+    background:linear-gradient(135deg,
+    rgba(91,140,255,.15),
+    rgba(168,85,247,.15));
+    border:1px solid rgba(255,255,255,.08);
+}

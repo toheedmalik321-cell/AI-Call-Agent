@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>AI Agents | AI CallHub</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="/css/main.css">
+<link rel="icon" href="/assets/favicon.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet">
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: "Inter", sans-serif;
+        background:
+            radial-gradient(circle at 15% 10%, rgba(37,99,235,.12), transparent 28%),
+            radial-gradient(circle at 85% 85%, rgba(124,58,237,.10), transparent 30%),
+            #070b17;
+    }
+
+    .glass {
+        background: rgba(15,23,42,.62);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255,255,255,.07);
+        box-shadow: 0 12px 40px rgba(0,0,0,.14);
+    }
+
+    .glass:hover {
+        border-color: rgba(255,255,255,.12);
+    }
+
+    .sidebar-link {
+        color: #94a3b8;
+        border: 1px solid transparent;
+        transition: all .25s ease;
+    }
+
+    .sidebar-link:hover {
+        background: rgba(59,130,246,.08);
+        color: #bfdbfe;
+        transform: translateX(4px);
+    }
+
+    .sidebar-link.active {
+        background: linear-gradient(
+            135deg,
+            rgba(59,130,246,.18),
+            rgba(59,130,246,.06)
+        );
+        color: #60a5fa;
+        border-color: rgba(59,130,246,.20);
+        box-shadow: 0 8px 25px rgba(37,99,235,.10);
+    }
+
+    .stat-card {
+        transition: all .3s ease;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(96,165,250,.25);
+        box-shadow: 0 20px 45px rgba(0,0,0,.20);
+    }
+
+    .agent-card {
+        transition: all .3s ease;
+    }
+
+    .agent-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(96,165,250,.25);
+        box-shadow: 0 20px 45px rgba(0,0,0,.22);
+    }
+
+    .create-btn {
+        box-shadow:
+            0 10px 30px rgba(37,99,235,.20),
+            inset 0 1px 0 rgba(255,255,255,.12);
+    }
+
+    input {
+        transition: all .25s ease;
+    }
+
+    input:focus {
+        box-shadow: 0 0 0 3px rgba(59,130,246,.10);
+    }
+
+    ::-webkit-scrollbar {
+        width: 7px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: rgba(148,163,184,.22);
+        border-radius: 999px;
+    }
+
+    @media(max-width:768px) {
+        aside {
+            width: 100%;
+        }
+    }
+</style>
+```
+
+</head>
+
+<body class="text-white min-h-screen">
+
+```
+<!-- Background -->
+<div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+    <div class="absolute top-0 left-1/4 w-96 h-96
+                bg-blue-600/10 rounded-full blur-3xl"></div>
+
+    <div class="absolute bottom-0 right-1/4 w-96 h-96
+                bg-purple-600/10 rounded-full blur-3xl"></div>
+</div>
+
+<div class="flex min-h-screen">
+
+    <!-- SIDEBAR -->
+    <aside class="w-64 shrink-0 bg-[#0b1220]/80
+                  border-r border-white/10 p-5
+                  flex flex-col backdrop-blur-xl">
+
+        <a href="/dashboard"
+           class="text-2xl font-extrabold mb-10 px-2 tracking-tight">
+            <span class="text-blue-400">AI</span> CallHub
+        </a>
+
+        <nav class="space-y-2 flex-1">
+
+            <a href="/dashboard"
+               class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl">
+                <span>📊</span>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="/agents"
+               class="sidebar-link active flex items-center justify-between px-4 py-3 rounded-xl">
+                <div class="flex items-center gap-3">
+                    <span>🤖</span>
+                    <span class="font-medium">AI Agents</span>
+                </div>
+
+                <span class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></span>
+            </a>
+
+            <a href="/knowledge"
+               class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl">
+                <span>📚</span>
+                <span>Knowledge Base</span>
+            </a>
+
+            <a href="/chat"
+               class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl">
+                <span>💬</span>
+                <span>AI Chat</span>
+            </a>
+
+            <a href="/calls"
+               class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl">
+                <span>📞</span>
+                <span>Calls</span>
+            </a>
+
+            <a href="/profile"
+               class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl">
+                <span>👤</span>
+                <span>Profile</span>
+            </a>
+
+        </nav>
+
+        <button id="logoutBtn"
+                class="mt-6 w-full bg-red-500/10
+                       hover:bg-red-500/20
+                       text-red-400 border border-red-500/20
+                       px-5 py-3 rounded-xl font-medium transition">
+            🚪 Logout
+        </button>
+
+    </aside>
+
+    <!-- MAIN -->
+    <main class="flex-1 p-6 md:p-8 overflow-y-auto">
+
+        <!-- HEADER -->
+        <div class="flex flex-col md:flex-row
+                    md:items-center md:justify-between
+                    gap-5 mb-8">
+
+            <div>
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-2xl
+                                bg-blue-500/10
+                                flex items-center justify-center text-2xl">
+                        🤖
+                    </div>
+
+                    <div>
+                        <h1 class="text-3xl md:text-4xl font-extrabold">
+                            AI Agents
+                        </h1>
+
+                        <p class="text-slate-400 mt-1">
+                            Create and manage your AI voice agents.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <a href="/add-agent"
+               class="create-btn bg-gradient-to-r
+                      from-blue-600 to-blue-500
+                      hover:from-blue-500 hover:to-blue-400
+                      px-6 py-3 rounded-xl font-semibold
+                      transition hover:scale-[1.03]
+                      active:scale-95 inline-flex
+                      items-center justify-center gap-2">
+                ➕ Create AI Agent
+            </a>
+
+        </div>
+
+        <!-- SEARCH -->
+        <div class="glass rounded-2xl p-4 mb-7">
+
+            <div class="relative">
+
+                <span class="absolute left-4 top-1/2
+                             -translate-y-1/2 text-slate-500">
+                    🔍
+                </span>
+
+                <input
+                    type="text"
+                    id="searchAgent"
+                    placeholder="Search agents..."
+                    class="w-full bg-[#0b1220]/80
+                           border border-white/10
+                           rounded-xl pl-11 pr-5 py-3.5
+                           outline-none
+                           focus:border-blue-500
+                           text-white placeholder-slate-500">
+
+            </div>
+
+        </div>
+
+        <!-- STATS -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+
+            <div class="glass stat-card rounded-2xl p-5">
+                <p class="text-slate-400 text-sm">
+                    Total Agents
+                </p>
+
+                <h2 id="totalAgents"
+                    class="text-3xl font-bold mt-2">
+                    0
+                </h2>
+            </div>
+
+            <div class="glass stat-card rounded-2xl p-5">
+                <p class="text-slate-400 text-sm">
+                    Active
+                </p>
+
+                <h2 id="activeAgents"
+                    class="text-3xl font-bold text-green-400 mt-2">
+                    0
+                </h2>
+            </div>
+
+            <div class="glass stat-card rounded-2xl p-5">
+                <p class="text-slate-400 text-sm">
+                    Inactive
+                </p>
+
+                <h2 id="inactiveAgents"
+                    class="text-3xl font-bold text-red-400 mt-2">
+                    0
+                </h2>
+            </div>
+
+            <div class="glass stat-card rounded-2xl p-5">
+                <p class="text-slate-400 text-sm">
+                    Today's Calls
+                </p>
+
+                <h2 id="todayCalls"
+                    class="text-3xl font-bold text-cyan-400 mt-2">
+                    0
+                </h2>
+            </div>
+
+        </div>
+
+        <!-- AGENTS SECTION -->
+        <div class="glass rounded-2xl p-6">
+
+            <div class="flex items-center justify-between mb-6">
+
+                <div>
+                    <h2 class="text-xl font-bold">
+                        Your AI Agents
+                    </h2>
+
+                    <p class="text-sm text-slate-500 mt-1">
+                        Manage your voice assistants
+                    </p>
+                </div>
+
+                <a href="/add-agent"
+                   class="text-sm text-blue-400
+                          hover:text-blue-300">
+                    + New Agent
+                </a>
+
+            </div>
+
+            <!-- IMPORTANT:
+                 Keep the container ID your existing
+                 agents.js expects here.
+                 If your current file already has an
+                 agent container, keep that exact ID.
+            -->
+
+            <div id="agentsList"
+     class="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
+
+                <div class="agent-card bg-white/[.025]
+                            border border-white/[.06]
+                            rounded-2xl p-5">
+
+                    <div class="flex items-center justify-center
+                                h-32 text-slate-600">
+                        Loading agents...
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script src="/js/agents.js"></script>
+```
+
+</body>
+</html>

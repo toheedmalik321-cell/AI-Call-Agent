@@ -1,0 +1,407 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Upload Knowledge | AI CallHub</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="icon" href="/assets/favicon.png">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .glass-card {
+            background: rgba(11, 18, 32, 0.78);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow:
+                0 25px 80px rgba(0, 0, 0, 0.35),
+                inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        }
+
+        .field {
+            transition:
+                border-color 0.25s ease,
+                background 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .field:focus {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(59, 130, 246, 0.8);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.10);
+        }
+
+        .upload-btn {
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease,
+                filter 0.25s ease;
+        }
+
+        .upload-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 35px rgba(37, 99, 235, 0.30);
+            filter: brightness(1.06);
+        }
+
+        .upload-btn:active {
+            transform: scale(0.98);
+        }
+
+        .file-box {
+            transition:
+                border-color 0.25s ease,
+                background 0.25s ease;
+        }
+
+        .file-box:hover {
+            border-color: rgba(96, 165, 250, 0.35);
+            background: rgba(255, 255, 255, 0.035);
+        }
+
+    </style>
+
+</head>
+
+<body class="bg-[#070B17] text-white min-h-screen overflow-x-hidden">
+
+    <!-- Background -->
+    <div class="fixed inset-0 -z-10 overflow-hidden">
+
+        <div class="absolute inset-0 bg-gradient-to-br
+                    from-[#070B17]
+                    via-[#0B1120]
+                    to-[#080B18]">
+        </div>
+
+        <div class="absolute top-0 left-1/4
+                    w-96 h-96
+                    bg-blue-600/10
+                    rounded-full
+                    blur-[120px]">
+        </div>
+
+        <div class="absolute bottom-0 right-1/4
+                    w-96 h-96
+                    bg-purple-600/10
+                    rounded-full
+                    blur-[120px]">
+        </div>
+
+    </div>
+
+    <!-- Main -->
+    <main class="relative z-10 min-h-screen
+                 flex items-center justify-center
+                 px-5 py-10">
+
+        <div class="w-full max-w-xl">
+
+            <!-- Brand -->
+            <div class="text-center mb-7">
+
+                <a
+                    href="/dashboard"
+                    class="text-2xl font-extrabold tracking-tight">
+
+                    <span class="text-blue-400">AI</span> CallHub
+
+                </a>
+
+                <div class="flex items-center justify-center gap-2
+                            mt-3 text-xs text-slate-500">
+
+                    <span class="w-1.5 h-1.5
+                                 rounded-full
+                                 bg-green-400">
+                    </span>
+
+                    Knowledge Management
+
+                </div>
+
+            </div>
+
+            <!-- Card -->
+            <form
+                id="form"
+                class="glass-card
+                       rounded-3xl
+                       p-7 sm:p-9
+                       space-y-6">
+
+                <!-- Header -->
+                <div class="text-center mb-2">
+
+                    <div
+                        class="mx-auto mb-5
+                               w-14 h-14
+                               rounded-2xl
+                               bg-blue-500/10
+                               border border-blue-500/20
+                               flex items-center justify-center
+                               text-2xl
+                               shadow-lg shadow-blue-500/10">
+
+                        📚
+
+                    </div>
+
+                    <h1 class="text-3xl sm:text-4xl font-bold tracking-tight">
+                        Upload Knowledge
+                    </h1>
+
+                    <p class="text-slate-400 mt-2">
+                        Add documents that your AI agents can learn from.
+                    </p>
+
+                </div>
+
+                <!-- Title -->
+                <div>
+
+                    <label
+                        for="title"
+                        class="block mb-2
+                               text-sm
+                               font-semibold
+                               text-slate-300">
+
+                        📌 Knowledge Title
+
+                    </label>
+
+                    <input
+                        id="title"
+                        type="text"
+                        placeholder="e.g. Company FAQs"
+                        class="field
+                               w-full
+                               px-4 py-3.5
+                               rounded-xl
+                               bg-[#111827]
+                               border border-white/10
+                               text-white
+                               placeholder:text-slate-600
+                               outline-none"
+                        required>
+
+                </div>
+
+                <!-- File -->
+                <div>
+
+                    <label
+                        for="pdf"
+                        class="block mb-2
+                               text-sm
+                               font-semibold
+                               text-slate-300">
+
+                        📄 Select Document
+
+                    </label>
+
+                    <div
+                        class="file-box
+                               rounded-2xl
+                               border border-dashed
+                               border-white/15
+                               bg-white/[0.02]
+                               p-5">
+
+                        <input
+                            id="pdf"
+                            type="file"
+                            accept=".pdf,.docx,.txt"
+                            class="w-full
+                                   text-sm
+                                   text-slate-400
+                                   file:mr-4
+                                   file:rounded-lg
+                                   file:border-0
+                                   file:bg-blue-600
+                                   file:px-4
+                                   file:py-2
+                                   file:text-white
+                                   file:font-medium
+                                   hover:file:bg-blue-500
+                                   file:cursor-pointer"
+                            required>
+
+                        <p class="text-xs text-slate-600 mt-3">
+                            Supported formats: PDF, DOCX, TXT
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <!-- Info -->
+                <div
+                    class="flex gap-3
+                           rounded-xl
+                           bg-blue-500/5
+                           border border-blue-500/10
+                           p-4">
+
+                    <span class="text-blue-400">
+                        💡
+                    </span>
+
+                    <p class="text-xs
+                              leading-5
+                              text-slate-400">
+
+                        Uploaded documents can be used as knowledge
+                        for your AI agents when answering customer
+                        questions.
+
+                    </p>
+
+                </div>
+
+                <!-- Button -->
+                <button
+                    type="submit"
+                    class="upload-btn
+                           w-full
+                           bg-gradient-to-r
+                           from-blue-600
+                           to-blue-500
+                           hover:from-blue-500
+                           hover:to-blue-400
+                           py-3.5
+                           rounded-xl
+                           font-semibold
+                           shadow-lg
+                           shadow-blue-500/20
+                           flex items-center
+                           justify-center
+                           gap-2">
+
+                    <span>📤</span>
+                    <span>Upload Document</span>
+
+                </button>
+
+                <!-- Back -->
+                <div class="text-center pt-1">
+
+                    <a
+                        href="/knowledge"
+                        class="text-sm
+                               text-slate-500
+                               hover:text-blue-400
+                               transition">
+
+                        ← Back to Knowledge Base
+
+                    </a>
+
+                </div>
+
+            </form>
+
+            <p class="text-center text-xs text-slate-600 mt-6">
+                AI CallHub · Secure knowledge management
+            </p>
+
+        </div>
+
+    </main>
+
+    <script>
+
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+            window.location = "/login";
+        }
+
+        const form = document.getElementById("form");
+
+        form.addEventListener("submit", async (e) => {
+
+            e.preventDefault();
+
+            try {
+
+                const titleInput = document.getElementById("title");
+                const fileInput = document.getElementById("pdf");
+
+                if (titleInput.value.trim() === "") {
+                    alert("Please enter a title.");
+                    return;
+                }
+
+                if (fileInput.files.length === 0) {
+                    alert("Please select a file.");
+                    return;
+                }
+
+                const formData = new FormData();
+
+                formData.append(
+                    "title",
+                    titleInput.value.trim()
+                );
+
+                formData.append(
+                    "file",
+                    fileInput.files[0]
+                );
+
+                const res = await fetch("/api/knowledge", {
+
+                    method: "POST",
+
+                    headers: {
+                        Authorization: "Bearer " + token
+                    },
+
+                    body: formData
+
+                });
+
+                const data = await res.json();
+
+                alert(data.message);
+
+                if (data.success) {
+                    window.location = "/knowledge";
+                }
+
+            } catch (err) {
+
+                console.log(err);
+
+                alert("Unable to upload document.");
+
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>
+

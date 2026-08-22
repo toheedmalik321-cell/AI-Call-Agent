@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register | AI CallHub</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="/css/main.css">
+
+    <link rel="icon" href="/assets/favicon.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+
+<body class="bg-[#070B17] text-white min-h-screen flex items-center justify-center overflow-hidden">
+
+    <!-- Background -->
+    <div class="absolute inset-0">
+        <div class="absolute top-20 left-20 w-72 h-72 rounded-full bg-blue-600/20 blur-3xl"></div>
+        <div class="absolute bottom-10 right-20 w-80 h-80 rounded-full bg-purple-600/20 blur-3xl"></div>
+    </div>
+
+    <!-- Register Card -->
+    <div class="relative z-10 w-full max-w-md">
+
+        <div class="glass rounded-3xl p-8 border border-white/10">
+
+            <div class="text-center mb-8">
+
+                <h1 class="text-3xl font-bold mb-2">
+                    Create Account
+                </h1>
+
+                <p class="text-slate-400">
+                    Join AI CallHub Today
+                </p>
+
+            </div>
+
+            <form id="registerForm" class="space-y-5">
+
+                <div>
+
+                    <label class="block mb-2 text-sm">Full Name</label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        class="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 focus:outline-none focus:border-blue-500"
+                        placeholder="Enter full name">
+
+                </div>
+
+                <div>
+
+                    <label class="block mb-2 text-sm">Email</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        class="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 focus:outline-none focus:border-blue-500"
+                        placeholder="Enter email">
+
+                </div>
+
+               <div>
+
+
+
+<div>
+
+    <label class="block mb-2 text-sm">
+        Password
+    </label>
+
+    <div class="relative">
+
+        <input
+            type="password"
+            id="password"
+            class="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 pr-12 focus:outline-none focus:border-blue-500"
+            placeholder="Create password">
+
+        <button
+            type="button"
+            id="togglePassword"
+            class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white">
+
+            👁️
+
+        </button>
+
+    </div>
+
+</div>
+
+<div>
+
+    <label class="block mb-2 text-sm">
+        Confirm Password
+    </label>
+
+    <div class="relative">
+
+        <input
+            type="password"
+            id="confirmPassword"
+            class="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 pr-12 focus:outline-none focus:border-blue-500"
+            placeholder="Confirm password">
+
+        <button
+            type="button"
+            id="toggleConfirmPassword"
+            class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white">
+
+            👁️
+
+        </button>
+
+    </div>
+
+</div>
+                <button
+    id="registerBtn"
+    type="submit"
+    class="w-full btn-primary rounded-xl py-3 font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed">
+
+                    <span id="btnText" class="flex items-center justify-center gap-2">
+
+    <svg
+        id="loadingIcon"
+        class="hidden w-5 h-5 animate-spin"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24">
+
+        <circle
+            class="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            stroke-width="4">
+        </circle>
+
+        <path
+            class="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z">
+        </path>
+
+    </svg>
+
+    <span id="btnLabel">
+        Create Account
+    </span>
+
+</span>
+
+                </button>
+
+            </form>
+
+            <div class="mt-6 text-center text-slate-400">
+
+                Already have an account?
+
+                <a href="/login"
+                   class="text-blue-400 hover:text-blue-300">
+
+                    Login
+
+                </a>
+
+            </div>
+
+           <div
+    id="msg"
+    class="mt-5 text-center text-sm font-medium transition-all duration-300">
+</div>
+
+        </div>
+
+    </div>
+
+<script>
+document.getElementById("registerForm").addEventListener("submit", async (e) => {
+
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+    const msg = document.getElementById("msg");
+    const btn = document.getElementById("registerBtn");
+    const btnText = document.getElementById("btnText");
+
+    msg.innerHTML = "";
+
+    if (!name || !email || !password || !confirmPassword) {
+        msg.className = "text-red-400 mt-5";
+        msg.innerText = "Please fill all fields.";
+        return;
+    }
+
+    if (password !== confirmPassword) {
+        msg.className = "text-red-400 mt-5";
+        msg.innerText = "Passwords do not match.";
+        return;
+    }
+
+    if (password.length < 6) {
+        msg.className = "text-red-400 mt-5";
+        msg.innerText = "Password must be at least 6 characters.";
+        return;
+    }
+
+    btn.disabled = true;
+
+document.getElementById("loadingIcon").classList.remove("hidden");
+document.getElementById("btnLabel").innerText = "Creating Account...";
+
+    try {
+
+        const res = await fetch("/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name,
+                email,
+                password
+            })
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+
+            msg.className = "text-green-400 mt-5";
+
+            msg.innerHTML = `
+                Registration Successful.<br>
+                Please verify your email before login.<br><br>
+
+                <a href="/verify-pending"
+                class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg inline-block">
+
+                Continue
+
+                </a>
+            `;
+
+        } else {
+
+            msg.className = "text-red-400 mt-5";
+            msg.innerText = data.message;
+
+        }
+
+    } catch (err) {
+
+        msg.className = "text-red-400 mt-5";
+        msg.innerText = "Server Error";
+
+    }
+
+   btn.disabled = false;
+
+document.getElementById("loadingIcon").classList.add("hidden");
+document.getElementById("btnLabel").innerText = "Create Account";
+
+});
+</script>
+
+</body>
+</html>
+

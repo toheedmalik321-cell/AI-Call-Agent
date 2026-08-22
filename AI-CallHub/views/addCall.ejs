@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Call | AI CallHub</title>
+
+   <link rel="stylesheet" href="/css/main.css">
+
+<style>
+    .call-form-card {
+        background: rgba(15, 23, 42, 0.72);
+        backdrop-filter: blur(22px);
+        -webkit-backdrop-filter: blur(22px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow:
+            0 25px 70px rgba(0, 0, 0, 0.28),
+            inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    .call-input {
+        transition:
+            border-color 0.25s ease,
+            background 0.25s ease,
+            box-shadow 0.25s ease;
+    }
+
+    .call-input:focus {
+        background: rgba(255, 255, 255, 0.055);
+        border-color: rgba(59, 130, 246, 0.8);
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.10);
+    }
+
+    .create-call-btn {
+        transition:
+            transform 0.25s ease,
+            box-shadow 0.25s ease,
+            filter 0.25s ease;
+    }
+
+    .create-call-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 35px rgba(37, 99, 235, 0.30);
+        filter: brightness(1.08);
+    }
+
+    .create-call-btn:active {
+        transform: scale(0.98);
+    }
+</style>
+
+<div class="max-w-3xl mx-auto px-5 py-10">
+
+
+<!-- Header -->
+
+<div class="flex flex-col md:flex-row md:items-center md:justify-between gap-5 mb-8">
+
+    <div>
+
+        <div class="flex items-center gap-3">
+
+            <div class="w-12 h-12 rounded-2xl
+                        bg-blue-500/10
+                        border border-blue-500/20
+                        flex items-center justify-center
+                        text-2xl">
+                📞
+            </div>
+
+            <div>
+
+                <h1 class="text-3xl md:text-4xl font-bold tracking-tight">
+                    Create New Call
+                </h1>
+
+                <p class="text-slate-400 mt-1">
+                    Create a new AI voice call for your customer.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <a
+        href="/calls"
+        class="px-5 py-3 rounded-xl
+               bg-[#0b1220]
+               border border-white/10
+               text-slate-300
+               hover:text-white
+               hover:border-blue-500/40
+               transition">
+
+        ← Back to Calls
+
+    </a>
+
+</div>
+
+
+<!-- Form Card -->
+    <form 
+    id="callForm" autocomplete="off" class="call-form-card rounded-3xl p-6 md:p-8 space-y-6">
+
+    <!-- Customer Name -->
+
+    <div>
+
+        <label
+            for="customerName"
+            class="block mb-2 text-sm font-semibold text-slate-300">
+
+            👤 Customer Name
+
+        </label>
+
+        <input
+            id="customerName"
+            type="text"
+            placeholder="Enter customer name"
+            class="call-input w-full rounded-xl
+                   bg-white/[0.035]
+                   border border-white/10
+                   px-4 py-3.5
+                   text-white
+                   placeholder:text-slate-600
+                   outline-none"
+        >
+
+    </div>
+
+
+    <!-- Phone -->
+
+    <div>
+
+        <label
+            for="phoneNumber"
+            class="block mb-2 text-sm font-semibold text-slate-300">
+
+            📱 Phone Number
+
+        </label>
+
+        <input
+            id="phoneNumber"
+            type="text"
+            placeholder="+92 300 1234567"
+            class="call-input w-full rounded-xl
+                   bg-white/[0.035]
+                   border border-white/10
+                   px-4 py-3.5
+                   text-white
+                   placeholder:text-slate-600
+                   outline-none"
+        >
+
+    </div>
+
+
+    <!-- Customer Message -->
+
+    <div>
+
+        <label
+            for="customerMessage"
+            class="block mb-2 text-sm font-semibold text-slate-300">
+
+            💬 Customer Message
+
+        </label>
+
+        <textarea
+            id="customerMessage"
+            rows="7"
+            placeholder="Enter the customer's message or reason for the call..."
+            class="call-input w-full rounded-xl
+                   bg-white/[0.035]
+                   border border-white/10
+                   px-4 py-3.5
+                   text-white
+                   placeholder:text-slate-600
+                   outline-none
+                   resize-none"
+        ></textarea>
+
+    </div>
+
+
+    <!-- Info -->
+
+    <div class="rounded-2xl
+                bg-blue-500/[0.06]
+                border border-blue-500/10
+                p-4">
+
+        <div class="flex gap-3">
+
+            <span class="text-xl">
+                🤖
+            </span>
+
+            <div>
+
+                <p class="text-sm font-medium text-blue-300">
+                    AI Call Assistant
+                </p>
+
+                <p class="text-xs text-slate-500 mt-1">
+                    The active AI agent will handle this call using its configured instructions.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Buttons -->
+
+    <div class="flex flex-col sm:flex-row gap-3 pt-2">
+
+        <button
+            type="submit"
+            class="create-call-btn flex-1
+                   bg-gradient-to-r
+                   from-blue-600 to-blue-500
+                   hover:from-blue-500 hover:to-blue-400
+                   py-3.5
+                   rounded-xl
+                   font-semibold
+                   shadow-lg shadow-blue-500/20
+                   flex items-center justify-center gap-2">
+
+            <span>📞</span>
+            <span>Create Call</span>
+
+        </button>
+
+        <a
+            href="/calls"
+            class="flex items-center justify-center
+                   px-7 py-3.5
+                   rounded-xl
+                   bg-[#111827]
+                   border border-white/10
+                   text-slate-300
+                   hover:text-white
+                   hover:border-red-500/40
+                   transition">
+
+            Cancel
+
+        </a>
+
+    </div>
+
+</form>
+
+
+</div>
+
+
+<script src="/js/addCall.js"></script>
+
+</body>
+</html>

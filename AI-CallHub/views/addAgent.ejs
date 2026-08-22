@@ -1,0 +1,451 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Create AI Agent | AI CallHub</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="stylesheet" href="/css/main.css">
+
+<style>
+    body {
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+    }
+
+    .glass-card {
+        background: rgba(11, 18, 32, 0.82);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow:
+            0 25px 80px rgba(0, 0, 0, 0.35),
+            0 0 50px rgba(59, 130, 246, 0.07);
+    }
+
+    .form-input {
+        transition:
+            border-color 0.25s ease,
+            box-shadow 0.25s ease,
+            background-color 0.25s ease,
+            transform 0.2s ease;
+    }
+
+    .form-input:hover {
+        border-color: rgba(148, 163, 184, 0.22);
+    }
+
+    .form-input:focus {
+        border-color: rgba(59, 130, 246, 0.75);
+        background-color: rgba(17, 24, 39, 0.95);
+        box-shadow:
+            0 0 0 4px rgba(59, 130, 246, 0.10),
+            0 8px 30px rgba(37, 99, 235, 0.08);
+    }
+
+    .back-btn {
+        transition:
+            transform 0.25s ease,
+            border-color 0.25s ease,
+            background-color 0.25s ease;
+    }
+
+    .back-btn:hover {
+        transform: translateX(-3px);
+    }
+
+    .create-btn {
+        transition:
+            transform 0.25s ease,
+            box-shadow 0.25s ease,
+            filter 0.25s ease;
+    }
+
+    .create-btn:hover {
+        transform: translateY(-2px);
+        box-shadow:
+            0 18px 40px rgba(37, 99, 235, 0.28),
+            0 0 25px rgba(124, 58, 237, 0.12);
+        filter: brightness(1.06);
+    }
+
+    .create-btn:active {
+        transform: translateY(0) scale(0.98);
+    }
+
+    .field-label {
+        letter-spacing: -0.01em;
+    }
+
+    .section-line {
+        height: 1px;
+        background: linear-gradient(
+            90deg,
+            rgba(59, 130, 246, 0.35),
+            rgba(255, 255, 255, 0.05),
+            transparent
+        );
+    }
+</style>
+
+</head>
+
+<body class="bg-[#070B17] text-white min-h-screen overflow-x-hidden">
+
+<!-- Background -->
+<div class="fixed inset-0 -z-10 overflow-hidden">
+
+    <div class="absolute top-[-120px] left-[15%]
+        w-[420px] h-[420px]
+        bg-blue-600/10
+        rounded-full
+        blur-[130px]">
+    </div>
+
+    <div class="absolute bottom-[-140px] right-[15%]
+        w-[420px] h-[420px]
+        bg-purple-600/10
+        rounded-full
+        blur-[130px]">
+    </div>
+
+</div>
+
+
+<div class="max-w-4xl mx-auto px-5 sm:px-6 py-10 md:py-14">
+
+    <!-- Header -->
+
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+
+        <div>
+
+            <div class="flex items-center gap-2 mb-3">
+
+                <span class="w-2 h-2 rounded-full bg-blue-400 shadow-lg shadow-blue-400/50"></span>
+
+                <span class="text-blue-400 font-semibold uppercase tracking-[0.2em] text-xs">
+                    AI CallHub
+                </span>
+
+            </div>
+
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight
+                bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400
+                bg-clip-text text-transparent">
+
+                Create AI Agent
+
+            </h1>
+
+            <p class="text-slate-400 mt-3 text-base md:text-lg max-w-2xl">
+
+                Configure a smart AI voice assistant for your business.
+
+            </p>
+
+        </div>
+
+
+        <a href="/agents"
+            class="back-btn mt-6 md:mt-0
+            inline-flex items-center gap-2
+            px-5 py-3
+            rounded-xl
+            bg-[#0F172A]/80
+            border border-white/10
+            text-slate-300
+            hover:text-white
+            hover:border-blue-500/40
+            hover:bg-[#131d33]
+            transition">
+
+            <span>←</span>
+            <span>Back to Agents</span>
+
+        </a>
+
+    </div>
+
+
+    <!-- Form -->
+
+    <form
+        id="agentForm"
+        autocomplete="off"
+        class="glass-card rounded-3xl p-6 md:p-9 space-y-8">
+
+
+        <!-- Form Header -->
+
+        <div>
+
+            <div class="flex items-center gap-3">
+
+                <div class="w-10 h-10 rounded-xl
+                    bg-blue-500/10
+                    border border-blue-500/20
+                    flex items-center justify-center">
+
+                    ⚙️
+
+                </div>
+
+                <div>
+
+                    <h2 class="text-xl font-bold">
+                        Agent Configuration
+                    </h2>
+
+                    <p class="text-sm text-slate-500 mt-1">
+                        Set up how your AI agent should behave.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="section-line mt-6"></div>
+
+        </div>
+
+
+        <!-- Company -->
+
+        <div>
+
+            <label
+                for="companyName"
+                class="field-label block mb-2.5 text-slate-200 font-semibold">
+
+                🏢 Company Name
+
+            </label>
+
+            <input
+                id="companyName"
+                type="text"
+                required
+                placeholder="e.g. OpenAI"
+                class="form-input w-full px-5 py-4
+                rounded-2xl
+                bg-[#111827]/80
+                border border-white/10
+                text-white
+                placeholder:text-slate-600
+                outline-none">
+
+            <p class="text-xs text-slate-500 mt-2">
+                Enter the business name this AI agent represents.
+            </p>
+
+        </div>
+
+
+        <!-- Role -->
+
+        <div>
+
+            <label
+                for="role"
+                class="field-label block mb-2.5 text-slate-200 font-semibold">
+
+                💼 Agent Role
+
+            </label>
+
+            <select
+                id="role"
+                class="form-input w-full px-5 py-4
+                rounded-2xl
+                bg-[#111827]/80
+                border border-white/10
+                text-white
+                outline-none
+                cursor-pointer">
+
+                <option value="receptionist">
+                    Receptionist
+                </option>
+
+                <option value="sales">
+                    Sales
+                </option>
+
+                <option value="support">
+                    Support
+                </option>
+
+            </select>
+
+            <p class="text-xs text-slate-500 mt-2">
+                Choose the primary responsibility of your AI agent.
+            </p>
+
+        </div>
+
+
+        <!-- Voice -->
+
+        <div>
+
+            <label
+                for="voice"
+                class="field-label block mb-2.5 text-slate-200 font-semibold">
+
+                🎙 AI Voice
+
+            </label>
+
+            <select
+                id="voice"
+                class="form-input w-full px-5 py-4
+                rounded-2xl
+                bg-[#111827]/80
+                border border-white/10
+                text-white
+                outline-none
+                cursor-pointer">
+
+                <option value="alice">
+                    Natural Female
+                </option>
+
+                <option value="man">
+                    Male Voice
+                </option>
+
+                <option value="woman">
+                    Female Voice
+                </option>
+
+            </select>
+
+            <p class="text-xs text-slate-500 mt-2">
+                Select the voice your customers will hear during calls.
+            </p>
+
+        </div>
+
+
+        <!-- Instructions -->
+
+        <div>
+
+            <div class="flex items-center justify-between mb-2.5">
+
+                <label
+                    for="instructions"
+                    class="field-label text-slate-200 font-semibold">
+
+                    🤖 AI Instructions
+
+                </label>
+
+                <span class="text-xs text-slate-600">
+                    Agent behavior
+                </span>
+
+            </div>
+
+
+            <textarea
+                id="instructions"
+                rows="9"
+                placeholder="Example:
+
+• Welcome customers politely.
+• Answer frequently asked questions.
+• Book appointments.
+• Transfer important calls.
+• Speak professionally."
+                class="form-input w-full px-5 py-4
+                rounded-2xl
+                bg-[#111827]/80
+                border border-white/10
+                text-white
+                placeholder:text-slate-600
+                outline-none
+                resize-none
+                leading-7"></textarea>
+
+            <p class="text-xs text-slate-500 mt-2">
+                Describe exactly how the AI should communicate and handle customer requests.
+            </p>
+
+        </div>
+
+
+        <!-- Buttons -->
+
+        <div class="pt-2">
+
+            <div class="section-line mb-6"></div>
+
+            <div class="flex flex-col sm:flex-row gap-4">
+
+                <button
+                    type="submit"
+                    class="create-btn flex-1
+                    bg-gradient-to-r from-blue-600 via-blue-500 to-purple-600
+                    hover:from-blue-500 hover:via-blue-500 hover:to-purple-500
+                    py-4
+                    rounded-2xl
+                    text-base md:text-lg
+                    font-bold
+                    shadow-xl shadow-blue-600/20">
+
+                    🚀 Create AI Agent
+
+                </button>
+
+
+                <a
+                    href="/agents"
+                    class="flex items-center justify-center
+                    px-8 py-4
+                    rounded-2xl
+                    bg-[#111827]/80
+                    border border-white/10
+                    text-slate-300
+                    hover:text-white
+                    hover:border-red-500/40
+                    hover:bg-red-500/5
+                    transition">
+
+                    Cancel
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </form>
+
+
+    <!-- Footer Hint -->
+
+    <div class="flex items-center justify-center gap-2 mt-6 text-xs text-slate-600">
+
+        <span>🔒</span>
+
+        <span>
+            Your agent configuration is securely stored.
+        </span>
+
+    </div>
+
+</div>
+
+
+<script src="/js/addAgent.js"></script>
+
+</body>
+</html>
+
