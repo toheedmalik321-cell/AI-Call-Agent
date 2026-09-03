@@ -1,0 +1,186 @@
+/*
+ * AI CallHub — Plans & Billing UI Polish
+ * Visual-only layer. Existing IDs, routes, and behavior stay unchanged.
+ */
+
+body:has(#plansPage) {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 8% 0%, rgba(37, 99, 235, 0.16), transparent 30%),
+        radial-gradient(circle at 96% 18%, rgba(124, 58, 237, 0.13), transparent 28%),
+        linear-gradient(135deg, #070b17 0%, #0a1020 48%, #080b17 100%);
+}
+
+body:has(#plansPage)::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(148, 163, 184, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.035) 1px, transparent 1px);
+    background-size: 54px 54px;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent 85%);
+}
+
+body:has(#plansPage) > #plansPage {
+    width: calc(100% - 2rem);
+    max-width: none;
+    padding-top: clamp(1.5rem, 4vw, 3.25rem);
+    padding-bottom: 3rem;
+}
+
+body:has(#plansPage) h1 {
+    color: #f8fafc;
+    letter-spacing: -0.055em;
+}
+
+body:has(#plansPage) h1 + p {
+    color: #94a3b8;
+}
+
+body:has(#plansPage) .glass {
+    background:
+        linear-gradient(145deg, rgba(30, 41, 59, 0.64), rgba(15, 23, 42, 0.58)),
+        rgba(15, 23, 42, 0.65);
+    border-color: rgba(148, 163, 184, 0.14);
+    box-shadow:
+        0 14px 35px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.035);
+}
+
+body:has(#plansPage) #plansGrid > .glass {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+body:has(#plansPage) #plansGrid > .glass::after {
+    content: "";
+    position: absolute;
+    right: -2.5rem;
+    bottom: -3.5rem;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 999px;
+    background: rgba(96, 165, 250, 0.08);
+    filter: blur(20px);
+    pointer-events: none;
+}
+
+body:has(#plansPage) #plansGrid > .glass:hover {
+    transform: translateY(-4px);
+    border-color: rgba(96, 165, 250, 0.38);
+    box-shadow:
+        0 22px 45px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(96, 165, 250, 0.04);
+}
+
+body:has(#plansPage) #plansGrid h2 {
+    letter-spacing: -0.04em;
+}
+
+body:has(#plansPage) #plansGrid .plan-price {
+    letter-spacing: -0.06em;
+}
+
+body:has(#plansPage) #plansGrid ul li::before {
+    content: "✔ ";
+    color: #60a5fa;
+}
+
+body:has(#plansPage) .plan-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-radius: 0.65rem;
+    padding: 0.7rem 1rem;
+    font-weight: 600;
+    border: 1px solid rgba(147, 197, 253, 0.22);
+    background: linear-gradient(135deg, #2563eb, #4f46e5 55%, #7c3aed), #2563eb;
+    box-shadow:
+        0 12px 24px rgba(37, 99, 235, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: box-shadow 0.2s ease;
+}
+
+body:has(#plansPage) .plan-cta:hover {
+    box-shadow:
+        0 18px 34px rgba(79, 70, 229, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.26);
+}
+
+body:has(#plansPage) .plan-cta.plan-current {
+    background: rgba(148, 163, 184, 0.12);
+    border-color: rgba(148, 163, 184, 0.25);
+    color: #cbd5e1;
+    box-shadow: none;
+    cursor: default;
+}
+
+body:has(#plansPage) .plan-cta.plan-free-cta {
+    background: rgba(148, 163, 184, 0.12);
+    border-color: rgba(148, 163, 184, 0.25);
+    box-shadow: none;
+}
+
+body:has(#plansPage) #manageBtn {
+    background: rgba(96, 165, 250, 0.14);
+    border: 1px solid rgba(96, 165, 250, 0.25);
+    color: #93c5fd;
+}
+
+/* Mock payment modal */
+body:has(#plansPage) #mockModal > div.relative {
+    background:
+        linear-gradient(145deg, rgba(30, 41, 59, 0.92), rgba(15, 23, 42, 0.95)),
+        rgba(15, 23, 42, 0.95);
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    animation: mockModalIn 0.25s ease;
+}
+
+@keyframes mockModalIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+body:has(#plansPage) a:focus-visible,
+body:has(#plansPage) button:focus-visible {
+    outline: 2px solid #93c5fd;
+    outline-offset: 3px;
+}
+
+@media (max-width: 768px) {
+    body:has(#plansPage) > #plansPage {
+        width: calc(100% - 1.5rem);
+        padding-top: 1.25rem;
+        padding-bottom: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body:has(#plansPage) > #plansPage {
+        width: calc(100% - 1rem);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body:has(#plansPage) *,
+    body:has(#plansPage) *::before,
+    body:has(#plansPage) *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

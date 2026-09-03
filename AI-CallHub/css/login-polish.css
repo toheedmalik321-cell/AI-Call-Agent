@@ -1,0 +1,273 @@
+/*
+ * AI CallHub — Login UI Polish
+ * Visual-only layer. Existing login.ejs IDs, login.js behavior, and routing stay unchanged.
+ */
+
+body:has(#loginForm) {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 12% 0%, rgba(37, 99, 235, 0.18), transparent 32%),
+        radial-gradient(circle at 92% 22%, rgba(124, 58, 237, 0.15), transparent 30%),
+        radial-gradient(circle at 50% 100%, rgba(6, 182, 212, 0.08), transparent 40%),
+        linear-gradient(135deg, #070b17 0%, #0a1020 48%, #080b17 100%);
+}
+
+body:has(#loginForm)::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(148, 163, 184, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.035) 1px, transparent 1px);
+    background-size: 54px 54px;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent 85%);
+}
+
+body:has(#loginForm) .glow > div:first-child {
+    background: transparent;
+}
+
+body:has(#loginForm) .glow > div:not(:first-child) {
+    opacity: 1;
+    filter: saturate(1.15);
+}
+
+body:has(#loginForm) .glow > div:nth-of-type(2) {
+    background: radial-gradient(circle at center, rgba(37, 99, 235, 0.22), transparent 62%);
+}
+
+body:has(#loginForm) .glow > div:nth-of-type(3) {
+    background: radial-gradient(circle at center, rgba(124, 58, 237, 0.2), transparent 62%);
+}
+
+body:has(#loginForm) a[href="/"] {
+    color: #f8fafc;
+    letter-spacing: -0.04em;
+}
+
+body:has(#loginForm) a[href="/"] span {
+    background: linear-gradient(135deg, #60a5fa 0%, #818cf8 55%, #c084fc 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 24px rgba(96, 165, 250, 0.45);
+}
+
+body:has(#loginForm) .flex.gap-2 {
+    gap: 0.5rem;
+}
+
+body:has(#loginForm) .flex.gap-2 span:first-child {
+    box-shadow: 0 0 10px rgba(74, 222, 128, 0.45);
+}
+
+body:has(#loginForm) .login-card {
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(145deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.52)),
+        rgba(15, 23, 42, 0.65);
+    border: 1px solid rgba(148, 163, 184, 0.14);
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+body:has(#loginForm) .login-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 15%;
+    right: 15%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.55), transparent);
+    pointer-events: none;
+}
+
+body:has(#loginForm) .login-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+body:has(#loginForm) .mx-auto.w-14.h-14 {
+    background:
+        linear-gradient(145deg, rgba(59, 130, 246, 0.22), rgba(124, 58, 237, 0.14)),
+        rgba(59, 130, 246, 0.08);
+    border-color: rgba(96, 165, 250, 0.28);
+    box-shadow:
+        0 14px 34px rgba(37, 99, 235, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+body:has(#loginForm) h1 {
+    color: #f8fafc;
+    letter-spacing: -0.06em;
+}
+
+body:has(#loginForm) .text-center.mb-8 p {
+    color: #94a3b8;
+}
+
+body:has(#loginForm) label {
+    color: #cbd5e1;
+    font-size: 0.8rem;
+}
+
+body:has(#loginForm) #email,
+body:has(#loginForm) #password {
+    color: #f8fafc;
+    border-radius: 0.8rem;
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015)),
+        rgba(7, 11, 23, 0.55);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+body:has(#loginForm) #email::placeholder,
+body:has(#loginForm) #password::placeholder {
+    color: #475569;
+}
+
+body:has(#loginForm) #email:hover,
+body:has(#loginForm) #password:hover {
+    border-color: rgba(148, 163, 184, 0.28);
+}
+
+body:has(#loginForm) #email:focus,
+body:has(#loginForm) #password:focus {
+    background:
+        linear-gradient(145deg, rgba(59, 130, 246, 0.1), rgba(15, 23, 42, 0.4)),
+        rgba(7, 11, 23, 0.5);
+    border-color: rgba(96, 165, 250, 0.7);
+    box-shadow:
+        0 0 0 4px rgba(59, 130, 246, 0.13),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+body:has(#loginForm) a[href="/forgot-password"] {
+    color: #93c5fd;
+    font-weight: 600;
+}
+
+body:has(#loginForm) a[href="/forgot-password"]:hover {
+    color: #bfdbfe;
+    text-shadow: 0 0 14px rgba(96, 165, 250, 0.35);
+}
+
+body:has(#loginForm) .login-btn {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(96, 165, 250, 0.35);
+    border-radius: 0.8rem;
+    background:
+        linear-gradient(135deg, rgba(37, 99, 235, 0.98), rgba(79, 70, 229, 0.98)),
+        #2563eb;
+    box-shadow:
+        0 16px 36px rgba(37, 99, 235, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    letter-spacing: 0.01em;
+}
+
+body:has(#loginForm) .login-btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.22) 50%, transparent 80%);
+    transform: translateX(-120%);
+    transition: transform 0.6s ease;
+    pointer-events: none;
+}
+
+body:has(#loginForm) .login-btn:hover {
+    transform: translateY(-2px);
+    border-color: rgba(147, 197, 253, 0.55);
+    box-shadow:
+        0 22px 44px rgba(79, 70, 229, 0.38),
+        inset 0 1px 0 rgba(255, 255, 255, 0.24);
+    filter: brightness(1.06);
+}
+
+body:has(#loginForm) .login-btn:hover::after {
+    transform: translateX(120%);
+}
+
+body:has(#loginForm) .login-btn:hover span:last-child {
+    transform: translateX(3px);
+}
+
+body:has(#loginForm) .login-btn span:last-child {
+    transition: transform 0.25s ease;
+}
+
+body:has(#loginForm) #msg {
+    font-size: 0.85rem;
+    animation: login-msg-in 0.3s ease;
+}
+
+@keyframes login-msg-in {
+    from {
+        opacity: 0;
+        transform: translateY(3px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body:has(#loginForm) .h-px {
+    background: linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.22), transparent);
+}
+
+body:has(#loginForm) .my-6 span {
+    color: #64748b;
+    letter-spacing: 0.18em;
+    font-size: 0.68rem;
+    font-weight: 700;
+}
+
+body:has(#loginForm) p > a[href="/register"] {
+    background: linear-gradient(135deg, #60a5fa, #818cf8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+}
+
+body:has(#loginForm) p > a[href="/register"]:hover {
+    text-shadow: 0 0 16px rgba(96, 165, 250, 0.4);
+}
+
+body:has(#loginForm) .mt-6 {
+    color: #475569;
+    letter-spacing: 0.04em;
+}
+
+body:has(#loginForm) a:focus-visible,
+body:has(#loginForm) button:focus-visible,
+body:has(#loginForm) input:focus-visible {
+    outline: 2px solid #93c5fd;
+    outline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+    body:has(#loginForm) .login-card {
+        padding: 1.6rem;
+    }
+
+    body:has(#loginForm) h1 {
+        font-size: 1.9rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body:has(#loginForm) *,
+    body:has(#loginForm) *::before,
+    body:has(#loginForm) *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}

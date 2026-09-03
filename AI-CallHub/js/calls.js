@@ -42,9 +42,13 @@ async function loadCalls() {
             </tr>
             `;
 
+            updateStats([]);
+
             return;
 
         }
+
+        updateStats(data.data);
 
         data.data.forEach(call => {
 
@@ -107,6 +111,28 @@ async function loadCalls() {
 }
 
 // ==============================
+// Update Stats
+// ==============================
+
+function updateStats(calls) {
+
+    const total = document.getElementById("totalCallCount");
+    const completed = document.getElementById("completedCount");
+    const calling = document.getElementById("callingCount");
+    const failed = document.getElementById("failedCount");
+    const pending = document.getElementById("pendingCount");
+
+    if (!total) return;
+
+    total.textContent = calls.length;
+    completed.textContent = calls.filter(c => c.status === "completed").length;
+    calling.textContent = calls.filter(c => c.status === "calling").length;
+    failed.textContent = calls.filter(c => c.status === "failed").length;
+    if (pending) pending.textContent = calls.filter(c => c.status === "pending").length;
+
+}
+
+// ==============================
 // Delete Call
 // ==============================
 
@@ -146,3 +172,9 @@ async function deleteCall(id){
 
 // ==============================
 loadCalls();
+
+// ==============================
+// Auto refresh stats & table (real-time)
+// ==============================
+
+setInterval(loadCalls, 15000);

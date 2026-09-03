@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Plans | AI CallHub</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/plans-polish.css">
+</head>
+
+<body class="bg-[#070B17] text-white">
+
+<div id="plansPage" class="max-w-7xl mx-auto py-10">
+
+    <div id="noticeBar" class="hidden mb-6 glass rounded-2xl px-5 py-4 border border-white/10"></div>
+
+    <div class="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+
+        <div>
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-xl">
+                    💳
+                </div>
+
+                <div>
+                    <h1 class="text-3xl md:text-4xl font-bold tracking-tight">
+                        Plans & Billing
+                    </h1>
+
+                    <p class="text-slate-400 mt-1">
+                        Choose a plan that fits your call volume.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Current plan status -->
+        <div id="currentPlanBox" class="glass rounded-2xl px-5 py-4 border border-white/10 flex items-center gap-3">
+
+            <span id="statusDot" class="w-2.5 h-2.5 rounded-full bg-slate-500"></span>
+
+            <div>
+                <p class="text-xs text-slate-400">Current Plan</p>
+                <p id="currentPlanLabel" class="font-semibold">Loading...</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Plan Cards -->
+    <div id="plansGrid" class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+
+        <div class="glass rounded-3xl p-6 border border-white/10 flex flex-col">
+            <h2 class="text-xl font-bold">Loading plans...</h2>
+        </div>
+
+    </div>
+
+    <!-- Manage subscription -->
+    <div class="mt-8 glass rounded-2xl p-5 border border-white/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+
+        <div>
+            <h3 class="font-semibold">Manage subscription</h3>
+            <p class="text-sm text-slate-400 mt-1">Update card, upgrade, downgrade or cancel from the secure Stripe portal.</p>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button id="manageBtn"
+                    class="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 transition font-medium">
+                Manage
+            </button>
+
+            <button id="cancelBtn"
+                    class="px-5 py-2.5 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 transition font-medium">
+                Cancel
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Mock Payment Modal (demo gateway, PAYMENT_MODE=mock) -->
+<div id="mockModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+
+    <div id="mockOverlay" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+
+    <div class="relative glass rounded-3xl border border-white/10 w-full max-w-md p-6">
+
+        <h3 class="text-lg font-bold text-slate-100">Mock Payment</h3>
+
+        <p class="text-sm text-slate-400 mt-1">Demo gateway — real paisa nahi chalta, sirf FYP demo ke liye.</p>
+
+        <div class="mt-5 p-4 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-between">
+
+            <div>
+                <p id="mockPlanLabel" class="text-sm text-slate-300">Plan</p>
+                <p id="mockAmountLabel" class="text-2xl font-extrabold text-blue-400 mt-1">$0</p>
+            </div>
+
+            <span class="text-xs px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-slate-400">
+                / month
+            </span>
+
+        </div>
+
+        <div class="mt-5 space-y-3">
+
+            <div>
+                <label class="text-xs text-slate-400">Card Number</label>
+                <input id="mockCardNumber" type="text" placeholder="4242 4242 4242 4242"
+                       class="w-full mt-1 px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 text-sm outline-none focus:border-blue-500/50">
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+
+                <div>
+                    <label class="text-xs text-slate-400">Expiry</label>
+                    <input id="mockCardExpiry" type="text" placeholder="MM/YY"
+                           class="w-full mt-1 px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 text-sm outline-none focus:border-blue-500/50">
+                </div>
+
+                <div>
+                    <label class="text-xs text-slate-400">CVC</label>
+                    <input id="mockCardCvc" type="text" placeholder="123"
+                           class="w-full mt-1 px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 text-sm outline-none focus:border-blue-500/50">
+                </div>
+
+            </div>
+
+            <div>
+                <label class="text-xs text-slate-400">Name on Card</label>
+                <input id="mockCardName" type="text" placeholder="Your Name"
+                       class="w-full mt-1 px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 text-sm outline-none focus:border-blue-500/50">
+            </div>
+
+        </div>
+
+        <p id="mockError" class="hidden mt-3 text-sm text-red-400"></p>
+
+        <div class="mt-6 flex items-center gap-3">
+
+            <button id="mockPayBtn"
+                    class="flex-1 px-5 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 transition font-semibold">
+                Pay
+            </button>
+
+            <button id="mockCloseBtn"
+                    class="px-5 py-3 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 transition">
+                Close
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="/js/plans.js"></script>
+
+</body>
+</html>

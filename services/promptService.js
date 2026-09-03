@@ -1,5 +1,3 @@
-const { getSystemPrompt } = require("./promptService");
-
 const { GoogleGenAI } = require("@google/genai");
 const OpenAI = require("openai");
 

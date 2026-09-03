@@ -11,6 +11,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/call-details-polish.css">
 
 </head>
 
@@ -127,7 +128,20 @@
             </h2>
 
             <div class="bg-[#111827] rounded-xl p-4">
-                <p id="summary"></p>
+                <p id="summary" class="whitespace-pre-wrap"></p>
+            </div>
+
+        </div>
+
+        <div>
+
+            <h2 class="text-xl font-bold mb-2">
+                Call Recording
+            </h2>
+
+            <div id="recordingBox"
+                 class="bg-[#111827] rounded-xl p-4">
+                Loading recording...
             </div>
 
         </div>
@@ -139,7 +153,7 @@
             </h2>
 
             <div class="bg-[#111827] rounded-xl p-4">
-                <p id="transcript"></p>
+                <p id="transcript" class="whitespace-pre-wrap"></p>
             </div>
 
         </div>

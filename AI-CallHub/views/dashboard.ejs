@@ -11,6 +11,7 @@
 <link rel="icon" href="/assets/favicon.png">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 
 <style>
     * {
@@ -149,7 +150,7 @@
         }
     }
 </style>
-
+<link rel="stylesheet" href="/css/dashboard-polish.css">
 
 </head>
 
@@ -204,6 +205,12 @@
                class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl">
                 <span class="text-lg">📞</span>
                 <span>Calls</span>
+            </a>
+
+            <a href="/plans"
+               class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl">
+                <span class="text-lg">💳</span>
+                <span>Plans</span>
             </a>
 
             <a href="/profile"
@@ -365,52 +372,20 @@
                     <div>
                         <h3 class="font-semibold text-lg">Weekly Calls</h3>
                         <p class="text-xs text-slate-500 mt-1">
-                            Recent activity
+                            Calls per day (last 7 days)
                         </p>
                     </div>
 
                     <span class="text-blue-400 text-xs
                                  bg-blue-500/10 px-3 py-1 rounded-full">
-                        This Week
+                        Live
                     </span>
                 </div>
 
-                <div class="space-y-5">
-
-                    <div>
-                        <div class="flex justify-between text-sm mb-2">
-                            <span class="text-slate-300">Mon</span>
-                            <span class="text-slate-400">18</span>
-                        </div>
-                        <div class="w-full bg-slate-800 rounded-full h-2">
-                            <div class="bg-gradient-to-r from-blue-600 to-blue-400
-                                        h-2 rounded-full w-[30%]"></div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="flex justify-between text-sm mb-2">
-                            <span class="text-slate-300">Tue</span>
-                            <span class="text-slate-400">35</span>
-                        </div>
-                        <div class="w-full bg-slate-800 rounded-full h-2">
-                            <div class="bg-gradient-to-r from-blue-600 to-blue-400
-                                        h-2 rounded-full w-[60%]"></div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="flex justify-between text-sm mb-2">
-                            <span class="text-slate-300">Wed</span>
-                            <span class="text-slate-400">50</span>
-                        </div>
-                        <div class="w-full bg-slate-800 rounded-full h-2">
-                            <div class="bg-gradient-to-r from-blue-600 to-blue-400
-                                        h-2 rounded-full w-[90%]"></div>
-                        </div>
-                    </div>
-
+                <div class="h-52">
+                    <canvas id="weeklyChart"></canvas>
                 </div>
+
             </div>
 
             <!-- AI Usage -->
@@ -418,27 +393,19 @@
                         flex flex-col justify-center items-center text-center">
 
                 <div class="text-slate-400 text-sm">
-                    AI Usage
+                    Call Outcomes
                 </div>
 
-                <div class="relative my-4">
-                    <div class="w-32 h-32 rounded-full
-                                border-[10px] border-slate-800
-                                flex items-center justify-center">
-                        <span class="text-4xl font-extrabold text-green-400">
-                            78%
-                        </span>
-                    </div>
+                <div class="relative my-4 w-full max-w-[10rem]">
+                    <canvas id="statusChart"></canvas>
                 </div>
 
                 <p class="text-slate-400 text-sm">
-                    Overall AI Performance
+                    Completed vs Pending vs Failed
                 </p>
 
-                <span class="mt-3 text-xs text-green-400
-                             bg-green-500/10 px-3 py-1 rounded-full">
-                    ● Excellent
-                </span>
+                <span id="statusLegend" class="mt-3 text-xs text-slate-400
+                             bg-white/5 px-3 py-1 rounded-full"></span>
 
             </div>
 

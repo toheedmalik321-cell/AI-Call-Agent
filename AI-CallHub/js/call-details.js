@@ -73,6 +73,34 @@ async function loadCall() {
         document.getElementById("summary").innerText =
             call.callSummary || "No Summary";
 
+        // ===========================
+        // Call Recording Player
+        // ===========================
+
+        const recordingBox = document.getElementById("recordingBox");
+
+        if (call.recordingUrl) {
+
+            recordingBox.innerHTML = `
+                <audio controls class="w-full"
+                       src="/api/calls/${call._id}/recording?token=${encodeURIComponent(token)}">
+                    Your browser does not support the audio element.
+                </audio>
+                <p class="text-xs text-slate-500 mt-2">
+                    Play the full call recording
+                </p>
+            `;
+
+        } else {
+
+            recordingBox.innerHTML = `
+                <p class="text-slate-500 text-sm">
+                    No recording available for this call.
+                </p>
+            `;
+
+        }
+
         document.getElementById("transcript").innerText =
             call.transcript || "No Transcript";
 

@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const User = require("../models/user");
 const Call = require("../models/call");
 const Chat = require("../models/chat");
@@ -189,6 +190,62 @@ durationResult.length > 0
 : 0;
 
 
+// ===========================
+// Last 7 days call volume
+// ===========================
+
+const weekData = [];
+
+for (let i = 6; i >= 0; i--) {
+
+    const day = new Date();
+
+    day.setHours(0, 0, 0, 0);
+
+    day.setDate(day.getDate() - i);
+
+    const next = new Date(day);
+
+    next.setDate(next.getDate() + 1);
+
+    const count = await Call.countDocuments({
+
+        user: req.user.id,
+
+        createdAt: {
+            $gte: day,
+            $lt: next
+        }
+
+    });
+
+    const label = day.toLocaleDateString("en-US", { weekday: "short" });
+
+    weekData.push({ label, count });
+
+}
+
+
+// ===========================
+// Call status distribution
+// ===========================
+
+const statusDist = await Call.aggregate([
+    { $match: { user: new mongoose.Types.ObjectId(req.user.id) } },
+    {
+        $group: {
+            _id: "$status",
+            count: { $sum: 1 }
+        }
+    }
+]);
+
+const statusData = statusDist.map(s => ({
+    status: s._id,
+    count: s.count
+}));
+
+
 
       // ===========================
 // Response
@@ -215,6 +272,10 @@ res.status(200).json({
         todayChats,
 
         averageDuration,
+
+        weekData,
+
+        statusData,
 
         recentCalls,
 

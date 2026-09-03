@@ -11,7 +11,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <link rel="stylesheet" href="/css/main.css">
-
+    <link rel="stylesheet" href="/css/calls-polish.css">
 </head>
 
 <body class="bg-[#070B17] text-white">
@@ -61,7 +61,7 @@
 
 <!-- Call Stats -->
 
-<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+<div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
 
 
 <div class="glass rounded-2xl p-5 border border-white/10 hover:border-blue-500/20 transition">
@@ -70,9 +70,7 @@
         Total Calls
     </p>
 
-    <h2 class="text-3xl font-bold mt-2 text-blue-400">
-        
-    </h2>
+    <h2 id="totalCallCount" class="text-3xl font-bold mt-2 text-blue-400"></h2>
 
 </div>
 
@@ -83,9 +81,7 @@
         Completed
     </p>
 
-    <h2 class="text-3xl font-bold mt-2 text-green-400">
-        —
-    </h2>
+    <h2 id="completedCount" class="text-3xl font-bold mt-2 text-green-400"></h2>
 
 </div>
 
@@ -96,9 +92,7 @@
         Calling
     </p>
 
-    <h2 class="text-3xl font-bold mt-2 text-yellow-400">
-        
-    </h2>
+    <h2 id="callingCount" class="text-3xl font-bold mt-2 text-yellow-400"></h2>
 
 </div>
 
@@ -109,9 +103,18 @@
         Failed
     </p>
 
-    <h2 class="text-3xl font-bold mt-2 text-red-400">
-        
-    </h2>
+    <h2 id="failedCount" class="text-3xl font-bold mt-2 text-red-400"></h2>
+
+</div>
+
+
+<div class="glass rounded-2xl p-5 border border-white/10 hover:border-cyan-500/20 transition">
+
+    <p class="text-sm text-slate-400">
+        Pending
+    </p>
+
+    <h2 id="pendingCount" class="text-3xl font-bold mt-2 text-cyan-400"></h2>
 
 </div>
 

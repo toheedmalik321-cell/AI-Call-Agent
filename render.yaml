@@ -1,0 +1,58 @@
+# Render Blueprint - one-click deployment for AI CallHub
+# Docs: https://render.com/docs/blueprint-spec
+#
+# To deploy:
+#   1. Push this repo to GitHub
+#   2. In Render: New -> Blueprint (from repo) -> connect your GitHub repo
+#   3. For every env var marked  sync:false , Render will ask you to
+#      paste the value manually (in the dashboard) before creating the service.
+#      These are your secrets - never put them in a file committed to GitHub.
+
+services:
+  - type: web
+    name: ai-callhub
+    runtime: node
+    plan: free
+    region: singapore
+    rootDir: .
+    buildCommand: npm install
+    startCommand: node index.js
+    autoDeploy: true
+    healthCheckPath: /
+
+    envVars:
+      # --- Set these in the Render dashboard (sync:false = you type the value) ---
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: TWILIO_ACCOUNT_SID
+        sync: false
+      - key: TWILIO_AUTH_TOKEN
+        sync: false
+      - key: TWILIO_PHONE_NUMBER
+        sync: false
+      - key: MY_PHONE_NUMBER
+        sync: false
+      - key: EMAIL_USER
+        sync: false
+      - key: EMAIL_PASS
+        sync: false
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+      - key: STRIPE_PUBLISHABLE_KEY
+        sync: false
+
+      # --- Painless defaults (can also be overridden in dashboard) ---
+      - key: NGROK_URL
+        value: ""
+      - key: PAYMENT_MODE
+        value: mock
+      - key: PORT
+        value: 10000

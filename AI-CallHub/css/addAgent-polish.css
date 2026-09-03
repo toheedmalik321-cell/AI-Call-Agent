@@ -1,0 +1,138 @@
+/*
+ * AI CallHub — Create Agent (addAgent) UI Polish
+ * Visual-only layer. Existing addAgent.ejs IDs, inline styles, and addAgent.js behavior stay unchanged.
+ */
+
+body:has(.create-btn) {
+    background:
+        radial-gradient(circle at 12% 5%, rgba(37, 99, 235, 0.16), transparent 34%),
+        radial-gradient(circle at 90% 15%, rgba(124, 58, 237, 0.15), transparent 30%),
+        radial-gradient(circle at 50% 100%, rgba(6, 182, 212, 0.06), transparent 38%),
+        linear-gradient(135deg, #070b17 0%, #0a1020 50%, #080b17 100%);
+}
+
+body:has(.create-btn)::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(148, 163, 184, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.035) 1px, transparent 1px);
+    background-size: 54px 54px;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent 85%);
+}
+
+body:has(.create-btn) .fixed.inset-0.\-z-10 > div {
+    opacity: 1;
+    filter: saturate(1.2);
+}
+
+body:has(.create-btn) .fixed.inset-0.\-z-10 > div:nth-child(1) {
+    background: radial-gradient(circle at center, rgba(37, 99, 235, 0.24), transparent 62%);
+}
+
+body:has(.create-btn) .fixed.inset-0.\-z-10 > div:nth-child(2) {
+    background: radial-gradient(circle at center, rgba(124, 58, 237, 0.22), transparent 62%);
+}
+
+body:has(.create-btn) h1 {
+    filter: drop-shadow(0 8px 30px rgba(79, 70, 229, 0.35));
+}
+
+body:has(.create-btn) .glass-card {
+    background:
+        linear-gradient(145deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.52)),
+        rgba(11, 18, 32, 0.85);
+    border-color: rgba(148, 163, 184, 0.14);
+}
+
+body:has(.create-btn) .glass-card > div:first-child .w-10.h-10 {
+    box-shadow: 0 12px 26px rgba(37, 99, 235, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+body:has(.create-btn) .back-btn:hover {
+    border-color: rgba(96, 165, 250, 0.45);
+    box-shadow: 0 12px 28px rgba(37, 99, 235, 0.18);
+}
+
+body:has(.create-btn) .form-input {
+    border-radius: 0.9rem;
+    border-color: rgba(148, 163, 184, 0.16);
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015)),
+        rgba(17, 24, 39, 0.8);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+body:has(.create-btn) .form-input:focus {
+    border-color: rgba(96, 165, 250, 0.7);
+    background:
+        linear-gradient(145deg, rgba(59, 130, 246, 0.08), rgba(17, 24, 39, 0.95)),
+        rgba(17, 24, 39, 0.95);
+    box-shadow:
+        0 0 0 4px rgba(59, 130, 246, 0.12),
+        0 8px 30px rgba(37, 99, 235, 0.08);
+}
+
+body:has(.create-btn) .create-btn {
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 18px 42px rgba(37, 99, 235, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+body:has(.create-btn) .create-btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.22) 50%, transparent 80%);
+    transform: translateX(-120%);
+    transition: transform 0.6s ease;
+    pointer-events: none;
+}
+
+body:has(.create-btn) .create-btn:hover {
+    box-shadow:
+        0 22px 48px rgba(79, 70, 229, 0.4),
+        0 0 28px rgba(124, 58, 237, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+body:has(.create-btn) .create-btn:hover::after {
+    transform: translateX(120%);
+}
+
+body:has(.create-btn) a[href="/agents"][class*="hover:border-red-500"],
+body:has(.create-btn) form a[href="/agents"] {
+    transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+body:has(.create-btn) .field-label {
+    color: #e2e8f0;
+}
+
+body:has(.create-btn) button:focus-visible,
+body:has(.create-btn) input:focus-visible,
+body:has(.create-btn) select:focus-visible,
+body:has(.create-btn) textarea:focus-visible,
+body:has(.create-btn) a:focus-visible {
+    outline: 2px solid #93c5fd;
+    outline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+    body:has(.create-btn) h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body:has(.create-btn) *,
+    body:has(.create-btn) *::before,
+    body:has(.create-btn) *::after {
+        transition-duration: 0.01ms !important;
+    }
+}

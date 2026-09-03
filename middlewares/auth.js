@@ -5,7 +5,6 @@ const auth = (req, res, next) => {
     try {
 
         const authHeader = req.header("Authorization");
-        console.log("AUTH HEADER:", authHeader);
 
         if (!authHeader) {
             return res.status(401).json({
@@ -18,20 +17,13 @@ const auth = (req, res, next) => {
             ? authHeader.replace("Bearer ", "")
             : authHeader;
 
-        console.log("TOKEN:", token);
-        console.log("JWT_SECRET:", process.env.JWT_SECRET);
-
         const verified = jwt.verify(token, process.env.JWT_SECRET);
-
-        console.log("VERIFIED:", verified);
 
         req.user = verified;
 
         next();
 
     } catch (err) {
-
-        console.log("JWT Error:", err.message);
 
         return res.status(401).json({
             success: false,

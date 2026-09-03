@@ -81,6 +81,140 @@ const avg = Number(data.data.averageDuration || 0);
 document.getElementById("averageDuration").innerText =
     avg < 60 ? avg + " sec" : Math.floor(avg / 60) + " min";
 
+// ===========================
+// Weekly Calls Chart
+// ===========================
+
+const weekData = data.data.weekData || [];
+
+if (window.Chart && weekData.length > 0) {
+
+    const weeklyCtx = document.getElementById("weeklyChart");
+
+    if (weeklyCtx) {
+
+        new Chart(weeklyCtx, {
+            type: "line",
+            data: {
+                labels: weekData.map(d => d.label),
+                datasets: [{
+                    label: "Calls",
+                    data: weekData.map(d => d.count),
+                    borderColor: "#60a5fa",
+                    backgroundColor: "rgba(96,165,250,.18)",
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: "#60a5fa",
+                    pointBorderColor: "#0b1220",
+                    pointBorderWidth: 2,
+                    pointRadius: 4,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: "#0b1220",
+                        borderColor: "rgba(255,255,255,.12)",
+                        borderWidth: 1,
+                        titleColor: "#94a3b8",
+                        bodyColor: "#fff"
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: { color: "#64748b" },
+                        grid: { color: "rgba(148,163,184,.08)" }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: "#64748b",
+                            precision: 0,
+                            stepSize: 1
+                        },
+                        grid: { color: "rgba(148,163,184,.08)" }
+                    }
+                }
+            }
+        });
+
+    }
+
+}
+
+// ===========================
+// Call Status Donut Chart
+// ===========================
+
+const statusData = data.data.statusData || [];
+
+if (window.Chart) {
+
+    const statusCtx = document.getElementById("statusChart");
+
+    if (statusCtx) {
+
+        const colorMap = {
+            completed: "#22c55e",
+            calling: "#f59e0b",
+            pending: "#3b82f6",
+            failed: "#ef4444"
+        };
+
+        const labels = statusData.map(s => s.status) || ["No Calls"];
+        const counts = statusData.length
+            ? statusData.map(s => s.count)
+            : [1];
+
+        const colors = statusData.length
+            ? labels.map(l => colorMap[l] || "#64748b")
+            : ["#334155"];
+
+        new Chart(statusCtx, {
+            type: "doughnut",
+            data: {
+                labels,
+                datasets: [{
+                    data: counts,
+                    backgroundColor: colors,
+                    borderColor: "#0b1220",
+                    borderWidth: 3,
+                    hoverOffset: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: "#0b1220",
+                        borderColor: "rgba(255,255,255,.12)",
+                        borderWidth: 1,
+                        titleColor: "#94a3b8",
+                        bodyColor: "#fff"
+                    }
+                }
+            }
+        });
+
+        const legend = document.getElementById("statusLegend");
+
+        if (legend) {
+
+            legend.innerText = statusData.length
+                ? statusData.map(s => `${s.status} (${s.count})`).join("  •  ")
+                : "No call data yet — make your first call!";
+
+        }
+
+    }
+
+}
+
 
 // ===========================
 // Recent Calls

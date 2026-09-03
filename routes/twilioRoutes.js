@@ -15,7 +15,8 @@ const {
 
 router.post("/start-call", auth, startCall);
 
-router.post("/voice", incomingCall);
+// Incoming voice webhook — Twilio posts to /voice (callRoutes wala duplicate hata diya)
+router.route("/voice").post(incomingCall);
 
 router.post("/process-speech", processSpeech);
 

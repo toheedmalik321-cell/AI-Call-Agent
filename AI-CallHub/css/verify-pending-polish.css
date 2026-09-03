@@ -1,0 +1,139 @@
+/*
+ * AI CallHub — Verify Email (verify-pending) UI Polish
+ * Visual-only layer. Existing markup, inline script, and fetch behavior stay unchanged.
+ */
+
+body:has(#resendBtn) {
+    min-height: 100vh;
+    color: #e6e8ef;
+    font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+    background:
+        radial-gradient(circle at 16% 8%, rgba(37, 99, 235, 0.18), transparent 34%),
+        radial-gradient(circle at 86% 22%, rgba(124, 58, 237, 0.16), transparent 30%),
+        radial-gradient(circle at 50% 100%, rgba(6, 182, 212, 0.08), transparent 40%),
+        linear-gradient(135deg, #070b17 0%, #0a1020 52%, #080b17 100%);
+}
+
+body:has(#resendBtn)::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(148, 163, 184, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.035) 1px, transparent 1px);
+    background-size: 54px 54px;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent 85%);
+}
+
+body:has(#resendBtn) .bg-slate-800 {
+    background:
+        linear-gradient(145deg, rgba(30, 41, 59, 0.62), rgba(15, 23, 42, 0.54)),
+        rgba(15, 23, 42, 0.66);
+    border: 1px solid rgba(148, 163, 184, 0.14);
+    border-radius: 1.2rem;
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+body:has(#resendBtn) h1 {
+    color: #f8fafc;
+    letter-spacing: -0.04em;
+    font-weight: 800;
+}
+
+body:has(#resendBtn) p.text-gray-300 {
+    color: #94a3b8;
+}
+
+body:has(#resendBtn) #email {
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    border-radius: 0.75rem;
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015)),
+        rgba(7, 11, 23, 0.55);
+    color: #f8fafc;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+body:has(#resendBtn) #email::placeholder {
+    color: #64748b;
+}
+
+body:has(#resendBtn) #email:focus {
+    outline: none;
+    border-color: rgba(96, 165, 250, 0.7);
+    background:
+        linear-gradient(145deg, rgba(59, 130, 246, 0.1), rgba(15, 23, 42, 0.4)),
+        rgba(7, 11, 23, 0.5);
+    box-shadow:
+        0 0 0 4px rgba(59, 130, 246, 0.13),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+body:has(#resendBtn) #resendBtn {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(147, 197, 253, 0.35);
+    border-radius: 0.75rem;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    box-shadow:
+        0 16px 36px rgba(37, 99, 235, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    font-weight: 600;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+body:has(#resendBtn) #resendBtn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.22) 50%, transparent 80%);
+    transform: translateX(-120%);
+    transition: transform 0.6s ease;
+    pointer-events: none;
+}
+
+body:has(#resendBtn) #resendBtn:hover {
+    transform: translateY(-2px);
+    border-color: rgba(147, 197, 253, 0.55);
+    box-shadow:
+        0 22px 44px rgba(79, 70, 229, 0.38),
+        inset 0 1px 0 rgba(255, 255, 255, 0.24);
+    filter: brightness(1.06);
+}
+
+body:has(#resendBtn) #resendBtn:hover::after {
+    transform: translateX(120%);
+}
+
+body:has(#resendBtn) a[href="/login"] {
+    color: #93c5fd;
+    font-weight: 600;
+}
+
+body:has(#resendBtn) a[href="/login"]:hover {
+    color: #bfdbfe;
+    text-shadow: 0 0 14px rgba(96, 165, 250, 0.35);
+}
+
+body:has(#resendBtn) p#msg {
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+body:has(#resendBtn) button:focus-visible,
+body:has(#resendBtn) input:focus-visible,
+body:has(#resendBtn) a:focus-visible {
+    outline: 2px solid #93c5fd;
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body:has(#resendBtn) *,
+    body:has(#resendBtn) *::before,
+    body:has(#resendBtn) *::after {
+        transition-duration: 0.01ms !important;
+    }
+}

@@ -44,6 +44,25 @@ const callSchema = new mongoose.Schema(
         default: ""
     },
 
+    // ==========================
+    // Twilio Call Recording
+    // ==========================
+
+    twilioCallSid: {
+        type: String,
+        default: ""
+    },
+
+    recordingSid: {
+        type: String,
+        default: ""
+    },
+
+    recordingUrl: {
+        type: String,
+        default: ""
+    },
+
     status: {
         type: String,
         enum: [

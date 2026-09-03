@@ -17,6 +17,7 @@ const twilioRoutes = require("./routes/twilioRoutes");
 const chatRoutes = require("./routes/chatRoutes");
 const realtimeRoutes = require("./routes/realtimeRoutes");
 const profileRoutes = require("./routes/profileRoutes");
+const subscriptionRoutes = require("./routes/subscriptionRoutes");
 
 const User = require("./models/user");
 const auth = require("./middlewares/auth");
@@ -54,6 +55,13 @@ app.use("/libs", express.static(path.join(__dirname, "AI-CallHub/libs")));
 // ==============================
 // Middleware
 // ==============================
+
+// Stripe webhook needs the RAW body before express.json() parses it
+app.post(
+    "/api/stripe/webhook",
+    express.raw({ type: "application/json" }),
+    subscriptionRoutes.stripeWebhook
+);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -120,6 +128,20 @@ app.get("/add-call", (req, res) => {
     res.render("addCall");
 });
 
+// ---------- Chat & Voice ----------
+
+app.get("/chat", (req, res) => {
+    res.render("chat");
+});
+
+app.get("/voice", (req, res) => {
+    res.render("voice");
+});
+
+app.get("/verify-pending", (req, res) => {
+    res.render("verify-pending");
+});
+
 // ==============================
 // Other Routes
 // ==============================
@@ -138,6 +160,9 @@ app.get("/hello", (req, res) => {
 app.get("/profile", (req, res) => {
     res.render("profile");
 });
+app.get("/plans", (req, res) => {
+    res.render("plans");
+});
 // ==============================
 // API Routes
 // ==============================
@@ -152,6 +177,28 @@ app.use("/", twilioRoutes);
 app.use("/", chatRoutes);
 app.use("/", realtimeRoutes);
 app.use("/", profileRoutes);
+app.use("/", subscriptionRoutes);
+// ==============================
+// 404 - Not Found
+// ==============================
+
+app.use((req, res) => {
+
+    // API requests -> JSON error
+    if (req.path.startsWith("/api")) {
+
+        return res.status(404).json({
+            success: false,
+            message: "Route not found"
+        });
+
+    }
+
+    // Page requests -> styled 404 page
+    res.status(404).render("404");
+
+});
+
 // ==============================
 // Error Handler
 // ==============================
@@ -163,16 +210,6 @@ app.use(errorHandler);
 // ==============================
 
 const PORT = process.env.PORT || 3000;
-// Chat Page
-app.get("/chat", (req, res) => {
-    res.render("chat");
-});
-app.get("/voice", (req, res) => {
-    res.render("voice");
-});
-   app.get("/verify-pending",(req,res)=>{
-    res.render("verify-pending");
-});
 app.listen(PORT, "0.0.0.0", () => {
 
     console.log(`🚀 Server running at http://localhost:${PORT}`);

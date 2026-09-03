@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const twilio = require("twilio");
 
 const auth = require("../middlewares/auth");
 
@@ -10,41 +9,19 @@ const {
   getCallById,
   updateCall,
   deleteCall,
+  recordingCallback,
+  streamRecording,
 } = require("../controllers/callController");
 
 // ================================
-// Twilio Incoming Voice Webhook
+// Recording webhook (Twilio calls this, no auth)
 // ================================
-router.get("/voice", (req, res) => {
+router.post("/api/calls/recording-callback", recordingCallback);
 
-  const twiml = new twilio.twiml.VoiceResponse();
-
-  twiml.say(
-    {
-      voice: "alice",
-    },
-    "Hello. Welcome to AI Call Hub. Your AI assistant is now connected."
-  );
-
-  res.type("text/xml");
-  res.send(twiml.toString());
-
-});
-router.post("/voice", (req, res) => {
-
-  const twiml = new twilio.twiml.VoiceResponse();
-
-  twiml.say(
-    {
-      voice: "alice",
-    },
-    "Hello. Welcome to AI Call Hub. Your AI assistant is now connected."
-  );
-
-  res.type("text/xml");
-  res.send(twiml.toString());
-
-});
+// ================================
+// Stream recording audio (auth via ?token=)
+// ================================
+router.get("/api/calls/:id/recording", streamRecording);
 
 // ================================
 // Existing Call Routes

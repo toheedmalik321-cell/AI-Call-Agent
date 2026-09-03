@@ -29,7 +29,7 @@ async function loadCall() {
 
     try {
 
-        const res = await fetch("/calls/" + id, {
+        const res = await fetch("/api/calls/" + id, {
 
             headers: {
                 Authorization: "Bearer " + token
@@ -41,7 +41,7 @@ async function loadCall() {
 
         if (!data.success) {
 
-            alert(data.message);
+            alert(data.message || "Unable to load call");
 
             window.location = "/calls";
 
@@ -49,15 +49,21 @@ async function loadCall() {
 
         }
 
-        document.getElementById("phoneNumber").value =
-            data.data.phoneNumber;
+        const phoneInput = document.getElementById("phoneNumber");
+        const statusInput = document.getElementById("status");
 
-        document.getElementById("status").value =
-            data.data.status;
+        if (phoneInput) {
+            phoneInput.value = data.data.phoneNumber || "";
+        }
+
+        if (statusInput) {
+            statusInput.value = data.data.status || "pending";
+        }
 
     } catch (err) {
 
-        console.log(err);
+        console.error(err);
+        alert("Unable to load call.");
 
     }
 
@@ -69,52 +75,45 @@ loadCall();
 // Update Call
 // ==============================
 
-document.getElementById("editCallForm").addEventListener("submit", async (e) => {
+const editCallForm = document.getElementById("editCallForm");
 
-    e.preventDefault();
+if (editCallForm) {
 
-    const phoneNumber =
-        document.getElementById("phoneNumber").value.trim();
+    editCallForm.addEventListener("submit", async (e) => {
 
-    const status =
-        document.getElementById("status").value;
+        e.preventDefault();
 
-    try {
+        const phoneNumber = document.getElementById("phoneNumber").value.trim();
+        const status = document.getElementById("status").value;
 
-        const res = await fetch("/calls/" + id, {
+        try {
 
-            method: "PUT",
+            const res = await fetch("/api/calls/" + id, {
 
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: "Bearer " + token
-            },
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + token
+                },
+                body: JSON.stringify({ phoneNumber, status })
 
-            body: JSON.stringify({
+            });
 
-                phoneNumber,
-                status
+            const data = await res.json();
 
-            })
+            alert(data.message);
 
-        });
+            if (data.success) {
+                window.location = "/calls";
+            }
 
-        const data = await res.json();
+        } catch (err) {
 
-        alert(data.message);
-
-        if (data.success) {
-
-            window.location = "/calls";
+            console.error(err);
+            alert("Failed to update call.");
 
         }
 
-    } catch (err) {
+    });
 
-        console.log(err);
-
-        alert("Failed to update call.");
-
-    }
-    <script src="/js/editCall.js"></script>
-});
+}

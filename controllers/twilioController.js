@@ -1,7 +1,7 @@
 const VoiceResponse = require("twilio").twiml.VoiceResponse;
 const twilio = require("twilio");
 
-const { generateAIResponse } = require("../services/aiService");
+const { generateAIResponse, generateCallSummary } = require("../services/aiService");
 
 const Call = require("../models/call");
 const Agent = require("../models/agent");
@@ -38,7 +38,20 @@ const startCall = async (req, res) => {
             url:
                 process.env.NGROK_URL +
                 "/voice?userId=" +
-                req.user.id
+                req.user.id,
+
+            // Record the whole conversation + get the URL via webhook
+            record: true,
+
+            recordingStatusCallback:
+                process.env.NGROK_URL +
+                "/api/calls/recording-callback",
+
+            recordingStatusCallbackEvent:
+                ["completed"],
+
+            recordingStatusCallbackMethod:
+                "POST"
 
         });
 
@@ -169,6 +182,9 @@ const incomingCall = async (req, res) => {
 
                 phoneNumber:
                     process.env.MY_PHONE_NUMBER,
+
+                twilioCallSid:
+                    req.body.CallSid || "",
 
                 status: "calling",
 
@@ -661,6 +677,32 @@ ${goodbye}
                 );
 
 
+            // Generate AI call summary (soberimately async, won't block the goodbye)
+            const companyName = agent.companyName || "the company";
+            const agentRole = agent.role || "sales";
+
+            let aiSummary =
+                updatedTranscript.substring(
+                    0,
+                    1000
+                );
+
+            try {
+
+                aiSummary =
+                    await generateCallSummary(
+                        updatedTranscript,
+                        companyName,
+                        agentRole
+                    );
+
+            } catch (summaryErr) {
+
+                console.log("Summary fallback used:", summaryErr.message);
+
+            }
+
+
             await Call.findByIdAndUpdate(
 
                 currentCall._id,
@@ -671,10 +713,7 @@ ${goodbye}
                         updatedTranscript,
 
                     callSummary:
-                        updatedTranscript.substring(
-                            0,
-                            1000
-                        ),
+                        aiSummary,
 
                     customerMessage:
                         speech,

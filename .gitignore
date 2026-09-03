@@ -1,4 +1,11 @@
 node_modules/
 .env
+.env.local
 uploads/
 *.log
+
+# Junk / leftover files that should not be committed
+,*.zip
+*.lnk
+*.zip
+AI-CallHub.txt

@@ -1,0 +1,282 @@
+/*
+ * AI CallHub — AI Agents UI Polish
+ * Visual-only layer. Existing IDs, routes, agents.js hooks, and behavior stay unchanged.
+ */
+
+body:has(#searchAgent) {
+    background:
+        radial-gradient(circle at 8% 0%, rgba(37, 99, 235, 0.16), transparent 30%),
+        radial-gradient(circle at 96% 18%, rgba(124, 58, 237, 0.13), transparent 28%),
+        linear-gradient(135deg, #070b17 0%, #0a1020 48%, #080b17 100%);
+}
+
+body:has(#searchAgent)::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(148, 163, 184, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.035) 1px, transparent 1px);
+    background-size: 54px 54px;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent 85%);
+}
+
+body:has(#searchAgent) aside {
+    width: 17rem;
+    min-height: 100vh;
+    padding: 1.5rem 1rem;
+    background:
+        linear-gradient(180deg, rgba(15, 23, 42, 0.9), rgba(7, 11, 23, 0.82)),
+        radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.12), transparent 42%);
+    border-right-color: rgba(148, 163, 184, 0.12);
+    box-shadow: 18px 0 60px rgba(0, 0, 0, 0.22);
+}
+
+body:has(#searchAgent) aside > a:first-child {
+    display: inline-flex;
+    align-items: center;
+    margin: 0 0 2.75rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 1.35rem;
+    letter-spacing: -0.045em;
+    background: linear-gradient(100deg, #93c5fd, #60a5fa 42%, #c4b5fd);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+body:has(#searchAgent) aside > a:first-child span {
+    color: #60a5fa;
+    -webkit-text-fill-color: #60a5fa;
+}
+
+body:has(#searchAgent) nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+body:has(#searchAgent) .sidebar-link {
+    min-height: 2.9rem;
+    padding: 0.7rem 0.85rem;
+    border-radius: 0.85rem;
+    font-size: 0.9rem;
+}
+
+body:has(#searchAgent) .sidebar-link:hover {
+    background: rgba(96, 165, 250, 0.1);
+    color: #dbeafe;
+    transform: translateX(3px);
+}
+
+body:has(#searchAgent) .sidebar-link.active {
+    background:
+        linear-gradient(100deg, rgba(59, 130, 246, 0.2), rgba(124, 58, 237, 0.1)),
+        rgba(30, 41, 59, 0.58);
+    border-color: rgba(96, 165, 250, 0.25);
+    color: #dbeafe;
+    box-shadow:
+        0 10px 28px rgba(37, 99, 235, 0.12),
+        inset 3px 0 0 #60a5fa;
+}
+
+body:has(#searchAgent) aside > button {
+    min-height: 2.85rem;
+    margin-top: 1.5rem;
+    border-radius: 0.85rem;
+}
+
+body:has(#searchAgent) main {
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 2.25rem clamp(1.25rem, 3vw, 3.25rem);
+}
+
+body:has(#searchAgent) main h1 {
+    color: #f8fafc;
+    letter-spacing: -0.055em;
+}
+
+body:has(#searchAgent) main h1 + p {
+    color: #94a3b8;
+}
+
+body:has(#searchAgent) main > div:first-child > div:first-child > div:first-child {
+    border: 1px solid rgba(96, 165, 250, 0.18);
+    background:
+        linear-gradient(135deg, rgba(59, 130, 246, 0.16), rgba(124, 58, 237, 0.1)),
+        rgba(30, 41, 59, 0.55);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+body:has(#searchAgent) .create-btn {
+    min-height: 3rem;
+    border: 1px solid rgba(147, 197, 253, 0.22);
+    border-radius: 0.9rem;
+    background:
+        linear-gradient(135deg, #2563eb, #4f46e5 55%, #7c3aed),
+        #2563eb;
+    box-shadow:
+        0 16px 34px rgba(37, 99, 235, 0.24),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+body:has(#searchAgent) .create-btn:hover {
+    box-shadow:
+        0 20px 42px rgba(79, 70, 229, 0.32),
+        inset 0 1px 0 rgba(255, 255, 255, 0.26);
+}
+
+body:has(#searchAgent) .glass {
+    background:
+        linear-gradient(145deg, rgba(30, 41, 59, 0.64), rgba(15, 23, 42, 0.58)),
+        rgba(15, 23, 42, 0.65);
+    border-color: rgba(148, 163, 184, 0.14);
+    box-shadow:
+        0 14px 35px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.035);
+}
+
+body:has(#searchAgent) #searchAgent {
+    min-height: 3rem;
+    background: rgba(7, 11, 23, 0.52);
+    border-color: rgba(148, 163, 184, 0.16);
+    border-radius: 0.85rem;
+}
+
+body:has(#searchAgent) #searchAgent:focus {
+    border-color: rgba(96, 165, 250, 0.58);
+    box-shadow:
+        0 0 0 3px rgba(59, 130, 246, 0.12),
+        0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+body:has(#searchAgent) .stat-card {
+    min-height: 7.25rem;
+    border-radius: 1rem;
+    padding: 1.2rem 1.25rem;
+    overflow: hidden;
+    position: relative;
+}
+
+body:has(#searchAgent) .stat-card::after {
+    content: "";
+    position: absolute;
+    right: -2.5rem;
+    bottom: -3.5rem;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 999px;
+    background: rgba(96, 165, 250, 0.08);
+    filter: blur(20px);
+    pointer-events: none;
+}
+
+body:has(#searchAgent) .stat-card h2 {
+    letter-spacing: -0.06em;
+}
+
+body:has(#searchAgent) #agentsList {
+    align-items: stretch;
+}
+
+body:has(#searchAgent) .agent-card {
+    min-height: 12rem;
+    border-color: rgba(148, 163, 184, 0.11);
+    background:
+        linear-gradient(145deg, rgba(51, 65, 85, 0.18), rgba(15, 23, 42, 0.24)),
+        rgba(255, 255, 255, 0.018);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.025);
+}
+
+body:has(#searchAgent) .agent-card:hover {
+    border-color: rgba(96, 165, 250, 0.38);
+    background:
+        linear-gradient(145deg, rgba(59, 130, 246, 0.1), rgba(124, 58, 237, 0.07)),
+        rgba(255, 255, 255, 0.025);
+    box-shadow:
+        0 22px 45px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+body:has(#searchAgent) a:focus-visible,
+body:has(#searchAgent) button:focus-visible,
+body:has(#searchAgent) input:focus-visible {
+    outline: 2px solid #93c5fd;
+    outline-offset: 3px;
+}
+
+@media (max-width: 1024px) {
+    body:has(#searchAgent) aside {
+        width: 14.5rem;
+    }
+
+    body:has(#searchAgent) main {
+        padding: 1.75rem 1.25rem;
+    }
+}
+
+@media (max-width: 768px) {
+    body:has(#searchAgent) .flex.min-h-screen {
+        display: block;
+    }
+
+    body:has(#searchAgent) aside {
+        width: 100%;
+        min-height: auto;
+        padding: 0.8rem 1rem;
+        border-right: 0;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+    }
+
+    body:has(#searchAgent) aside > a:first-child {
+        margin-bottom: 0.8rem;
+    }
+
+    body:has(#searchAgent) nav {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    body:has(#searchAgent) .sidebar-link {
+        justify-content: center;
+        min-height: 2.7rem;
+        padding: 0.55rem 0.4rem;
+        font-size: 0.72rem;
+    }
+
+    body:has(#searchAgent) .sidebar-link.active {
+        box-shadow: inset 0 -2px 0 #60a5fa;
+    }
+
+    body:has(#searchAgent) aside > button {
+        margin-top: 0.75rem;
+    }
+
+    body:has(#searchAgent) main {
+        padding: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body:has(#searchAgent) main {
+        padding: 1rem 0.85rem;
+    }
+
+    body:has(#searchAgent) nav {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body:has(#searchAgent) *,
+    body:has(#searchAgent) *::before,
+    body:has(#searchAgent) *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

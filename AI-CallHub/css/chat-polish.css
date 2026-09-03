@@ -1,0 +1,261 @@
+/*
+ * AI CallHub — Chat UI Polish
+ * Visual-only layer. Existing chat.js IDs, session IDs, API routes, and behavior stay unchanged.
+ */
+
+body:has(#chatLog) {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 8% 0%, rgba(37, 99, 235, 0.16), transparent 30%),
+        radial-gradient(circle at 96% 18%, rgba(124, 58, 237, 0.13), transparent 28%),
+        linear-gradient(135deg, #070b17 0%, #0a1020 48%, #080b17 100%);
+}
+
+body:has(#chatLog)::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(148, 163, 184, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.035) 1px, transparent 1px);
+    background-size: 54px 54px;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent 85%);
+}
+
+body:has(#chatLog) aside {
+    width: 18rem;
+    background:
+        linear-gradient(180deg, rgba(15, 23, 42, 0.92), rgba(7, 11, 23, 0.86)),
+        radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.12), transparent 42%);
+    border-right-color: rgba(148, 163, 184, 0.13);
+    box-shadow: 18px 0 60px rgba(0, 0, 0, 0.22);
+}
+
+body:has(#chatLog) aside > div:first-child {
+    background: linear-gradient(180deg, rgba(30, 41, 59, 0.18), transparent);
+}
+
+body:has(#chatLog) aside a[href="/dashboard"] {
+    background: linear-gradient(100deg, #93c5fd, #60a5fa 42%, #c4b5fd);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+body:has(#chatLog) aside a[href="/dashboard"] span {
+    color: #60a5fa;
+    -webkit-text-fill-color: #60a5fa;
+}
+
+body:has(#chatLog) #newChatBtn {
+    min-height: 3rem;
+    border: 1px solid rgba(147, 197, 253, 0.22);
+    background:
+        linear-gradient(135deg, #2563eb, #4f46e5 55%, #7c3aed),
+        #2563eb;
+    box-shadow:
+        0 16px 34px rgba(37, 99, 235, 0.24),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+body:has(#chatLog) #newChatBtn:hover {
+    box-shadow:
+        0 20px 42px rgba(79, 70, 229, 0.32),
+        inset 0 1px 0 rgba(255, 255, 255, 0.26);
+}
+
+body:has(#chatLog) #chatSessions {
+    padding-right: 0.6rem;
+}
+
+body:has(#chatLog) .chat-item,
+body:has(#chatLog) .session-item {
+    border: 1px solid transparent;
+    color: #cbd5e1;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+body:has(#chatLog) .chat-item:hover,
+body:has(#chatLog) .session-item:hover {
+    border-color: rgba(96, 165, 250, 0.2);
+    background: rgba(96, 165, 250, 0.08);
+    transform: translateX(2px);
+}
+
+body:has(#chatLog) .chat-item.active {
+    border-color: rgba(96, 165, 250, 0.3);
+    background:
+        linear-gradient(100deg, rgba(59, 130, 246, 0.2), rgba(124, 58, 237, 0.1)),
+        rgba(30, 41, 59, 0.58);
+    box-shadow: inset 3px 0 0 #60a5fa;
+}
+
+body:has(#chatLog) header {
+    min-height: 5rem;
+    background:
+        linear-gradient(90deg, rgba(15, 23, 42, 0.86), rgba(15, 23, 42, 0.62)),
+        rgba(15, 23, 42, 0.72);
+    border-bottom-color: rgba(148, 163, 184, 0.13);
+}
+
+body:has(#chatLog) header > div > div:first-child {
+    border-color: rgba(96, 165, 250, 0.2);
+    background:
+        linear-gradient(135deg, rgba(59, 130, 246, 0.16), rgba(124, 58, 237, 0.1)),
+        rgba(30, 41, 59, 0.55);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+body:has(#chatLog) #chatLog {
+    background: radial-gradient(ellipse at 50% 18%, rgba(59, 130, 246, 0.035), transparent 58%);
+}
+
+body:has(#chatLog) #chatLog > div:first-child {
+    animation: chatFadeUp 0.5s ease both;
+}
+
+body:has(#chatLog) #chatLog > div:first-child > div:first-child {
+    border: 1px solid rgba(147, 197, 253, 0.2);
+    background:
+        radial-gradient(circle at 30% 20%, rgba(147, 197, 253, 0.2), transparent 50%),
+        linear-gradient(135deg, #2563eb, #7c3aed);
+    box-shadow:
+        0 22px 55px rgba(37, 99, 235, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+body:has(#chatLog) #chatLog > div:not(:first-child) > div {
+    border-color: rgba(148, 163, 184, 0.14);
+    box-shadow:
+        0 12px 28px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.035);
+}
+
+body:has(#chatLog) #chatLog > div:not(:first-child) > div.bg-blue-600 {
+    border: 1px solid rgba(147, 197, 253, 0.2);
+    background:
+        linear-gradient(135deg, rgba(37, 99, 235, 0.98), rgba(79, 70, 229, 0.94)),
+        #2563eb;
+}
+
+body:has(#chatLog) #chatLog > div:not(:first-child) > div.bg-\[\#111827\] {
+    background:
+        linear-gradient(145deg, rgba(30, 41, 59, 0.72), rgba(15, 23, 42, 0.66)),
+        #111827;
+}
+
+body:has(#chatLog) > div:last-child {
+    border-top-color: rgba(148, 163, 184, 0.13);
+    background:
+        linear-gradient(180deg, rgba(15, 23, 42, 0.68), rgba(7, 11, 23, 0.84)),
+        rgba(15, 23, 42, 0.8);
+}
+
+body:has(#chatLog) #chatForm {
+    border-color: rgba(148, 163, 184, 0.16);
+    background:
+        linear-gradient(145deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.64)),
+        rgba(15, 23, 42, 0.74);
+    box-shadow:
+        0 14px 35px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.045);
+}
+
+body:has(#chatLog) #micBtn,
+body:has(#chatLog) #sendBtn {
+    border-color: rgba(148, 163, 184, 0.14);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+body:has(#chatLog) #micBtn:hover {
+    background: rgba(96, 165, 250, 0.12);
+    box-shadow: 0 10px 24px rgba(37, 99, 235, 0.14);
+}
+
+body:has(#chatLog) #sendBtn {
+    border-color: rgba(147, 197, 253, 0.22);
+    background:
+        linear-gradient(135deg, #2563eb, #4f46e5 55%, #7c3aed),
+        #2563eb;
+}
+
+body:has(#chatLog) #sendBtn:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 14px 28px rgba(37, 99, 235, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+body:has(#chatLog) #chatInput {
+    color: #f8fafc;
+}
+
+body:has(#chatLog) #chatInput::placeholder {
+    color: #64748b;
+}
+
+body:has(#chatLog) #chatInput:focus {
+    background: rgba(255, 255, 255, 0.035);
+}
+
+body:has(#chatLog) a:focus-visible,
+body:has(#chatLog) button:focus-visible,
+body:has(#chatLog) textarea:focus-visible {
+    outline: 2px solid #93c5fd;
+    outline-offset: 3px;
+}
+
+@keyframes chatFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    body:has(#chatLog) aside {
+        display: none;
+    }
+
+    body:has(#chatLog) header {
+        min-height: 4.5rem;
+        padding-inline: 1rem;
+    }
+
+    body:has(#chatLog) #chatLog {
+        padding-inline: 1rem;
+        padding-top: 1.25rem;
+    }
+
+    body:has(#chatLog) #chatLog > div:not(:first-child) > div {
+        max-width: 88%;
+    }
+
+    body:has(#chatLog) > div:last-child {
+        padding-inline: 0.75rem;
+        padding-top: 0.75rem;
+        padding-bottom: 0.7rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body:has(#chatLog) *,
+    body:has(#chatLog) *::before,
+    body:has(#chatLog) *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
