@@ -164,7 +164,7 @@ document.addEventListener("input", function(e){
 
 async function deleteAgent(id) {
 
-    if (!confirm("Delete Agent?")) return;
+    if (!(await confirmDialog("Delete this agent? This cannot be undone."))) return;
 
     try {
 

@@ -399,7 +399,7 @@ document.getElementById("manageBtn").addEventListener("click", async () => {
 
 document.getElementById("cancelBtn").addEventListener("click", async () => {
 
-    if (!confirm("Cancel your subscription? You will be downgraded to Free.")) return;
+    if (!(await confirmDialog("Cancel your subscription? You will be downgraded to Free."))) return;
 
     try {
 

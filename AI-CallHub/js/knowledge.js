@@ -344,8 +344,8 @@ async function activateKnowledge(id) {
 
 async function deleteKnowledge(id) {
 
-    const confirmDelete = confirm(
-        "Are you sure you want to delete this knowledge?"
+    const confirmDelete = await confirmDialog(
+        "Delete this knowledge? This cannot be undone."
     );
 
     if (!confirmDelete) {

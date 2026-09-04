@@ -138,7 +138,7 @@ function updateStats(calls) {
 
 async function deleteCall(id){
 
-    if(!confirm("Delete this call?")) return;
+    if(!(await confirmDialog("Delete this call? This cannot be undone."))) return;
 
     try{
 
