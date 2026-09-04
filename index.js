@@ -3,6 +3,7 @@ require("dotenv").config();
 
 const express = require("express");
 const path = require("path");
+const fs = require("fs");
 const morgan = require("morgan");
 
 const connectDB = require("./config/db");
@@ -42,6 +43,15 @@ connectDB();
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "AI-CallHub", "views"));
+
+// ==============================
+// Ensure uploads directory exists (Render/cloud has no persistent filesystem)
+// ==============================
+
+const UPLOADS_DIR = path.join(__dirname, "uploads");
+if (!fs.existsSync(UPLOADS_DIR)) {
+    fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+}
 
 // ==============================
 // Static Files
