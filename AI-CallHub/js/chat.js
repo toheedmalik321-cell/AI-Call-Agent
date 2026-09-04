@@ -6,7 +6,7 @@
 const token = localStorage.getItem("token");
 
 if (!token) {
-    alert("Please login first");
+    toast("Please login first");
     window.location = "/login";
 }
 
@@ -55,7 +55,7 @@ async function createNewChat() {
 
         if (!data.success) {
 
-            alert(data.message);
+            toast(data.message);
             return;
 
         }
@@ -268,7 +268,7 @@ async function sendMessage(e){
 
     if(!currentSession){
 
-        alert("Please create a new chat first.");
+        toast("Please create a new chat first.");
 
         return;
 
@@ -369,7 +369,7 @@ chatLog.innerHTML += `
 
         if(!data.success){
 
-            alert(data.message);
+            toast(data.message);
 
             return;
 

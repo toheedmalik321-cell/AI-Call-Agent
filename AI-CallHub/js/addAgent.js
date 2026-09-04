@@ -37,7 +37,7 @@ form.addEventListener("submit", async (e) => {
 
         const data = await res.json();
 
-        alert(data.message);
+        toast(data.message);
 
         if (data.success) {
 
@@ -51,7 +51,7 @@ form.addEventListener("submit", async (e) => {
 
         console.log(err);
 
-        alert("Unable to create agent.");
+        toast("Unable to create agent.");
 
     }
 

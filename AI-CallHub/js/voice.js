@@ -5,7 +5,7 @@
 const token = localStorage.getItem("token");
 
 if (!token) {
-    alert("Please Login First");
+    toast("Please Login First");
     window.location = "/login";
 }
 
@@ -25,7 +25,7 @@ const SpeechRecognition =
     window.webkitSpeechRecognition;
 
 if (!SpeechRecognition) {
-    alert("Speech Recognition is not supported in this browser.");
+    toast("Speech Recognition is not supported in this browser.");
 }
 
 const recognition = new SpeechRecognition();

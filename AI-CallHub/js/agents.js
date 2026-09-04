@@ -144,7 +144,7 @@ async function loadAgents() {
 
         console.log(err);
 
-        alert("Failed to load agents.");
+        toast("Failed to load agents.");
 
     }
 
@@ -214,7 +214,7 @@ async function setActive(id) {
 
         const data = await res.json();
 
-        alert(data.message);
+        toast(data.message);
 
         loadAgents();
 

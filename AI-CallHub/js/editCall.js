@@ -17,7 +17,7 @@ const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
 if (!id) {
-    alert("Invalid Call ID");
+    toast("Invalid Call ID");
     window.location = "/calls";
 }
 
@@ -41,7 +41,7 @@ async function loadCall() {
 
         if (!data.success) {
 
-            alert(data.message || "Unable to load call");
+            toast(data.message || "Unable to load call");
 
             window.location = "/calls";
 
@@ -63,7 +63,7 @@ async function loadCall() {
     } catch (err) {
 
         console.error(err);
-        alert("Unable to load call.");
+        toast("Unable to load call.");
 
     }
 
@@ -101,7 +101,7 @@ if (editCallForm) {
 
             const data = await res.json();
 
-            alert(data.message);
+            toast(data.message);
 
             if (data.success) {
                 window.location = "/calls";
@@ -110,7 +110,7 @@ if (editCallForm) {
         } catch (err) {
 
             console.error(err);
-            alert("Failed to update call.");
+            toast("Failed to update call.");
 
         }
 

@@ -156,7 +156,7 @@ async function deleteCall(id){
 
         const data = await res.json();
 
-        alert(data.message);
+        toast(data.message);
 
         loadCalls();
 

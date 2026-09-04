@@ -38,7 +38,7 @@ async function loadCall() {
 
         if (!data.success) {
 
-            alert(data.message);
+            toast(data.message);
 
             return;
 
@@ -110,7 +110,7 @@ async function loadCall() {
 
         console.log(err);
 
-        alert("Unable to load call details.");
+        toast("Unable to load call details.");
 
     }
 

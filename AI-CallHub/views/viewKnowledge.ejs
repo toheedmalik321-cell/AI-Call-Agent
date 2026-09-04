@@ -42,6 +42,8 @@ class="mt-6 whitespace-pre-wrap text-gray-300">
 
 </div>
 
+<script src="/js/toast.js"></script>
+
 <script>
 
 const token = localStorage.getItem("token");
@@ -68,7 +70,7 @@ fetch("/api/knowledge", {
 
     if (!file) {
 
-        alert("File not found");
+        toast("File not found");
 
         window.location = "/knowledge";
 
@@ -85,7 +87,7 @@ fetch("/api/knowledge", {
 
     console.log(err);
 
-    alert("Error loading knowledge.");
+    toast("Error loading knowledge.");
 
 });
 

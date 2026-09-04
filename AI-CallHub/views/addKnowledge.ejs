@@ -409,12 +409,12 @@
                 const fileInput = document.getElementById("pdf");
 
                 if (titleInput.value.trim() === "") {
-                    alert("Please enter a title.");
+                    toast("Please enter a title.");
                     return;
                 }
 
                 if (fileInput.files.length === 0) {
-                    alert("Please select a file.");
+                    toast("Please select a file.");
                     return;
                 }
 
@@ -445,7 +445,7 @@
                 const data = await res.json();
 
                 if (!data.success) {
-                    alert(data.message || "Unable to upload document.");
+                    toast(data.message || "Unable to upload document.");
                     return;
                 }
 
@@ -462,7 +462,7 @@
 
                 console.log(err);
 
-                alert("Unable to upload document.");
+                toast("Unable to upload document.");
 
             }
 

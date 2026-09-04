@@ -14,7 +14,7 @@ fetch("/api/profile", {
     console.log("API Response:", data);
 
     if (!data.success) {
-        alert(data.message);
+        toast(data.message);
         return;
     }
 

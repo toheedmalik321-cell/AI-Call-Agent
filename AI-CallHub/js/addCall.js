@@ -7,7 +7,7 @@ const token = localStorage.getItem("token");
 console.log("TOKEN =", token);
 
 if (!token) {
-    alert("Please Login First");
+    toast("Please Login First");
     window.location.href = "/login";
 }
 
@@ -66,13 +66,13 @@ if (!form) {
 
             if (response.ok && data.success) {
 
-                alert(data.message);
+                toast(data.message);
 
                 window.location.href = "/calls";
 
             } else {
 
-                alert(data.message || "Failed");
+                toast(data.message || "Failed");
 
             }
 
@@ -80,7 +80,7 @@ if (!form) {
 
             console.error("ERROR =", err);
 
-            alert("Server Error");
+            toast("Server Error");
 
         }
 

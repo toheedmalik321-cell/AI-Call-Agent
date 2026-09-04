@@ -321,7 +321,7 @@ async function activateKnowledge(id) {
 
         const result = await response.json();
 
-        alert(result.message);
+        toast(result.message);
 
         if (result.success) {
             loadKnowledge();
@@ -331,7 +331,7 @@ async function activateKnowledge(id) {
 
         console.error(error);
 
-        alert("Unable to activate knowledge.");
+        toast("Unable to activate knowledge.");
 
     }
 
@@ -367,7 +367,7 @@ async function deleteKnowledge(id) {
 
         const result = await response.json();
 
-        alert(result.message);
+        toast(result.message);
 
         if (result.success) {
             loadKnowledge();
@@ -377,7 +377,7 @@ async function deleteKnowledge(id) {
 
         console.error(error);
 
-        alert("Unable to delete knowledge.");
+        toast("Unable to delete knowledge.");
 
     }
 

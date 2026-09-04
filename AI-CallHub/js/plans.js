@@ -184,7 +184,7 @@ async function subscribe(code) {
 
         }
 
-        alert(data.message || "Something went wrong");
+        toast(data.message || "Something went wrong");
         btn.textContent = original;
         btn.disabled = false;
 
@@ -192,7 +192,7 @@ async function subscribe(code) {
     catch (err) {
 
         console.log(err);
-        alert("Error connecting to server");
+        toast("Error connecting to server");
         btn.textContent = original;
         btn.disabled = false;
 
@@ -362,7 +362,7 @@ if (cvcInput) {
 document.getElementById("manageBtn").addEventListener("click", async () => {
 
     if (paymentMode === "mock") {
-        alert("Demo mode: subscription cancel ke liye 'Cancel' button use karo.");
+        toast("Demo mode: subscription cancel ke liye 'Cancel' button use karo.");
         return;
     }
 
@@ -380,14 +380,14 @@ document.getElementById("manageBtn").addEventListener("click", async () => {
         if (data.success && data.data.url) {
             window.location = data.data.url;
         } else {
-            alert(data.message || "No payment account yet");
+            toast(data.message || "No payment account yet");
         }
 
     }
     catch (err) {
 
         console.log(err);
-        alert("Error connecting to server");
+        toast("Error connecting to server");
 
     }
 
@@ -412,14 +412,14 @@ document.getElementById("cancelBtn").addEventListener("click", async () => {
 
         const data = await res.json();
 
-        alert(data.message || "Done");
+        toast(data.message || "Done");
         loadPlans();
 
     }
     catch (err) {
 
         console.log(err);
-        alert("Error connecting to server");
+        toast("Error connecting to server");
 
     }
 
