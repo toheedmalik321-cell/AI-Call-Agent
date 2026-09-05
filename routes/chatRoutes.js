@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const auth = require("../middlewares/auth");
+const validateObjectId = require("../middlewares/validateObjectId");
 
 const {
     chatWithAI,
@@ -23,9 +24,9 @@ router.post("/api/chat/session", auth, createChatSession);
 router.get("/api/chat/sessions", auth, getChatSessions);
 
 // Get One Chat History
-router.get("/api/chat/history/:sessionId", auth, getSingleChatHistory);
+router.get("/api/chat/history/:sessionId", auth, validateObjectId("sessionId"), getSingleChatHistory);
 // Delete Chat Session
-router.delete("/api/chat/session/:sessionId", auth, deleteChatSession);
+router.delete("/api/chat/session/:sessionId", auth, validateObjectId("sessionId"), deleteChatSession);
 
 // ===============================
 // AI Chat

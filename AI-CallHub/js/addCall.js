@@ -37,6 +37,11 @@ if (!form) {
         const phoneNumber = document.getElementById("phoneNumber").value.trim();
         const customerMessage = document.getElementById("customerMessage").value.trim();
 
+        if (!customerMessage) {
+            toast("Please enter a message for the AI call.", "error");
+            return;
+        }
+
         console.log({
             customerName,
             phoneNumber,

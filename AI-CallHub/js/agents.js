@@ -180,7 +180,7 @@ async function deleteAgent(id) {
 
         const data = await res.json();
 
-        showToast(data.message, "success");
+        toast(data.message);
 
         loadAgents();
 

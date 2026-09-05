@@ -18,6 +18,20 @@ const createCall = async (req, res) => {
             customerMessage
         } = req.body;
 
+        if (!customerMessage || !customerMessage.toString().trim()) {
+            return res.status(400).json({
+                success: false,
+                message: "Customer message is required"
+            });
+        }
+
+        if (!phoneNumber || !phoneNumber.toString().trim()) {
+            return res.status(400).json({
+                success: false,
+                message: "Phone number is required"
+            });
+        }
+
         // Active Agent
         const agent = await Agent.findOne({
             user: req.user.id,
