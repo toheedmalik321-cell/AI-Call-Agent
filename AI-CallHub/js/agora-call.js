@@ -120,8 +120,22 @@ speechSynthesis.onvoiceschanged = () => {
     voices = speechSynthesis.getVoices();
 };
 
-function speak(text, onDone) {
+function sleep(ms) {
+    return new Promise(r => setTimeout(r, ms));
+}
+
+function speak(text) {
     return new Promise((resolve) => {
+        let settled = false;
+        const finish = () => {
+            if (settled) return;
+            settled = true;
+            clearTimeout(fallback);
+            resolve();
+        };
+
+        try { speechSynthesis.pause(); speechSynthesis.cancel(); speechSynthesis.resume(); } catch (e) {}
+
         const utter = new SpeechSynthesisUtterance(text);
         utter.lang = "en-US";
         utter.rate = 1;
@@ -133,14 +147,16 @@ function speak(text, onDone) {
 
         if (femaleVoice) utter.voice = femaleVoice;
 
-        utter.onend = () => resolve();
-        utter.onerror = () => resolve();
-        speechSynthesis.speak(utter);
-    });
-}
+        utter.onend = finish;
+        utter.onerror = finish;
 
-function stopTts() {
-    speechSynthesis.cancel();
+        // Chrome sometimes never fires onend (known bug). Fallback covers it.
+        const fallback = setTimeout(finish, Math.max(3000, text.length * 70));
+
+        setTimeout(() => {
+            try { speechSynthesis.speak(utter); } catch (e) { finish(); }
+        }, 30);
+    });
 }
 
 // ===============================
@@ -285,12 +301,20 @@ startCallBtn.onclick = async () => {
 
         // 5. Speak the greeting + start listening
         stopTts();
-        await speak(startData.greeting);
         addMessage("user", "—");
         addMessage("ai", startData.greeting);
-
         conversationStarted = true;
-        startListening();
+
+        // speak() has a fallback promise — listening starts after it resolves
+        aiSpeaking = true;
+        setStatus("AI Speaking...", "live");
+        speak(startData.greeting).then(() => {
+            if (aiSpeaking) aiSpeaking = false;
+            if (connected) {
+                setStatus("Listening...", "live");
+                startListening();
+            }
+        });
 
     } catch (err) {
         console.error("start call error:", err);
@@ -318,13 +342,17 @@ function startListening() {
     try {
         recognition.start();
         listening = true;
+        setStatus("Listening...", "live");
     } catch (e) {
         console.log("recognition.start:", e);
+        listening = false;
+        setTimeout(() => { if (connected && !aiSpeaking) startListening(); }, 500);
     }
 }
 
 if (recognition) {
     recognition.onstart = () => {
+        listening = true;
         setStatus("Listening...", "live");
     };
 
@@ -337,7 +365,7 @@ if (recognition) {
         console.log("User said:", text);
 
         // Stop listening while AI replies
-        recognition.stop();
+        try { recognition.stop(); } catch (e) {}
         listening = false;
 
         addMessage("user", text);
@@ -392,6 +420,7 @@ if (recognition) {
 
         } catch (err) {
             console.error("turn error:", err);
+            aiSpeaking = false;
             hideTyping();
             toast("Error getting AI reply", "error");
             setStatus("In Call", "live");
@@ -402,7 +431,7 @@ if (recognition) {
     recognition.onend = () => {
         listening = false;
         if (connected && !aiSpeaking) {
-            setTimeout(() => startListening(), 400);
+            setTimeout(() => startListening(), 600);
         }
     };
 
@@ -411,12 +440,14 @@ if (recognition) {
 
         if (event.error === "not-allowed") {
             setStatus("Mic permission denied", "");
+            listening = false;
             return;
         }
 
+        // no-speech / aborted / network — restart cleanly
         listening = false;
         if (connected && !aiSpeaking) {
-            setTimeout(() => startListening(), 600);
+            setTimeout(() => startListening(), 800);
         }
     };
 }

@@ -65,7 +65,8 @@ const searchKnowledge = (query, knowledgeArray) => {
       }
 
       // Word boundaries (exact word match)
-      const wordRegex = new RegExp(`\\b${word}\\b`, 'gi');
+      const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const wordRegex = new RegExp(`\\b${escaped}\\b`, 'gi');
       const matches = searchText.match(wordRegex);
       if (matches) {
         score += matches.length * 5;

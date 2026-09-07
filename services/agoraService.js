@@ -82,7 +82,14 @@ const startAgoraCall = async (userId, { customerName, phoneNumber, channelName, 
 
     // Generate greeting from the agent's perspective
     const greeting = await generateAIResponse(
-        "Start the sales conversation naturally.",
+        `You are starting a new phone conversation with a customer. Open the call naturally and warmly.
+
+Important instructions:
+- Introduce only the company "${agent.companyName}".
+- Do NOT invent a name for yourself, and do NOT use placeholder words like [Your Name], [name], [company], or any brackets.
+- Never output placeholder text of any kind.
+
+Say a short greeting (1-2 sentences) as a helpful assistant representing "${agent.companyName}", then ask one simple opening question, like how you can help them today.`,
         agent.role,
         userId,
         null,
