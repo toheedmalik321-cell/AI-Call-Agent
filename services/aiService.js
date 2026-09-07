@@ -90,6 +90,125 @@ const searchKnowledge = (query, knowledgeArray) => {
 };
 
 // ===============================
+// Local Rule-Based Fallback Reply
+// (used when both Gemini and OpenAI are unavailable)
+// ===============================
+
+const getLocalReply = (userMessage, agent) => {
+
+  const msg = (userMessage || "").toLowerCase();
+  const company = (agent?.companyName || "our company");
+  const instructions = (agent?.instructions || "").toLowerCase();
+  const prefix = (agent?.role || "sales").toLowerCase().includes("reception") ? "Welcome to " + company + ". " : "";
+
+  // ---- System-style greeting prompt (Agora greeting fallback) ----
+  if (/(you are starting|new phone conversation|helpful assistant representing|open the call|start the sales)/i.test(msg)) {
+    return prefix + "How can I help you today?";
+  }
+
+  // ---- Greeting (only when no real need is expressed) ----
+  if (/(laptop|price|cost|installment|offer|delivery|which|recommend|want|need|buy)/i.test(msg)) {
+    // skip greeting — go to the specific branch below
+  } else if (/\b(hi|hello|hey|salam|assalam|good morning|good afternoon|good evening|namaste|how are you)\b/.test(msg)) {
+    return prefix + "How can I help you today?";
+  }
+
+  // ---- End of call ----
+  if (/(bye|goodbye|good bye|see you|that'?s all|thanks bye|thank you bye|end call|hang up|alvida|khuda hafiz)/.test(msg)) {
+    return "Thank you for calling " + company + ". Have a great day!";
+  }
+
+  // ---- Price questions ----
+  if (/(price|cost|kitne|kitna|rate|charges|expense|how much|bahrain|kima)\b/.test(msg)) {
+    const products = extractProducts(instructions || knowledgeTextOf(agent));
+    if (products.length > 0) {
+      const list = products.map(p => p.name + " is " + p.price).join(", ");
+      return prefix + "Our " + list + ". Which one suits your needs best?";
+    }
+    if (/(basic|simple|office|cheap|entry)/.test(msg)) {
+      return prefix + "The Basic Laptop is $450 (or 12,000 PKR per month) with 8GB RAM and 256GB SSD. Would you like more details?";
+    }
+    return prefix + "I recommend the Pro Laptop at $750, or the Basic Laptop at $450. Which would you like to know more about?";
+  }
+
+  // ---- Installments ----
+  if (/(installment|monthly|month|kist|qist|payment plan|finance)/.test(msg)) {
+    return prefix + "We offer easy 12-month installments at no extra cost. For example, the Basic Laptop is 12,000 PKR per month. Would you like full details?";
+  }
+
+  // ---- Offer / warranty ----
+  if (/(offer|discount|warranty|guarantee|free|deal)/.test(msg)) {
+    return prefix + "We currently offer free 1-year warranty on every laptop, free delivery within Lahore, and a 7-day return policy. Would you like more details?";
+  }
+
+  // ---- Delivery ----
+  if (/(delivery|shipping|reach|courier|location|address|lahore|karachi|islamabad)/.test(msg)) {
+    return prefix + "We offer free delivery within Lahore and nationwide delivery across Pakistan. Where would you like your laptop delivered?";
+  }
+
+  // ---- Product recommendation / which laptop ----
+  if (/(laptop|computer|recommend|suggest|best|which|konsa|kaunsa|choose|gaming|office|student)/.test(msg)) {
+    if (/(gaming|game|heavy|gpu)/.test(msg)) {
+      return prefix + "For gaming, I recommend the Gaming Laptop at $1200 with a dedicated GPU, 16GB RAM, and 1TB SSD. Would you like pricing in PKR?";
+    }
+    if (/(office|basic|simple|browse|ms office|word|internet)/.test(msg)) {
+      return prefix + "For office work, the Basic Laptop at $450 is perfect — 8GB RAM, 256GB SSD, ideal for browsing and MS Office. Can I help with anything else?";
+    }
+    if (/(student|study|programming|developer|multitask)/.test(msg)) {
+      return prefix + "For study and development, the Pro Laptop at $750 is great — 16GB RAM, 512GB SSD, and a faster processor. Would you like more details?";
+    }
+    return prefix + "For everyday use I recommend the Basic Laptop at $450, and for faster performance the Pro Laptop at $750. What do you mainly use the laptop for?";
+  }
+
+  // ---- General company question ----
+  if (/ (what|product|about|kya |kyun|who|when|where) /.test(" " + msg + " ") || /(company|techlite|aap|services|sell)\b/.test(msg)) {
+    return prefix + "We are " + company + ". We sell laptops and computer accessories with easy installments, free delivery in Lahore, and nationwide delivery. What would you like to know?";
+  }
+
+  // ---- Thank you ----
+  if (/(thank|shukriya|thanks|great|good)\b/.test(msg)) {
+    return prefix + "You're most welcome! Is there anything else I can help you with?";
+  }
+
+  // ---- Default ----
+  return prefix + "I'd love to help with that. Could you tell me a bit more about what you need today?";
+
+};
+
+// Extract product names + prices from agent instructions / knowledge text
+const extractProducts = (text) => {
+
+  const products = [];
+
+  const lines = (text || "").split(/\r?\n/);
+
+  lines.forEach(line => {
+
+    const trimmed = line.trim();
+
+    // Match patterns like: "- Basic Laptop $450", "1. Pro Laptop $750", "Basic Laptop — $450"
+    const match = trimmed.match(
+      /([A-Z][A-Za-z]+(?:\s[A-Za-z]+){0,3})\s*(\([^)]*\)\s*)?(\$\s*\d[\d,]*(?:\.\d+)?|Rs\.?\s*\d[\d,]*|PKR\s*\d[\d,]*)/i
+    );
+
+    if (match && !/(product|price|list|policy|note|offer|warranty|installment|delivery|return)/i.test(match[1])) {
+      const name = match[1].trim().replace(/\s+/g, " ");
+      const price = match[3].trim().replace(/\s+/g, " ").toUpperCase();
+      if (!products.find(p => p.name.toLowerCase() === name.toLowerCase())) {
+        products.push({ name, price });
+      }
+    }
+
+  });
+
+  return products.slice(0, 4);
+
+};
+
+// Used by getLocalReply to fall back to the agent's instruction text
+let knowledgeTextOf = (agent) => (agent?.instructions || "");
+
+// ===============================
 // Generate AI Response
 // ===============================
 
@@ -474,7 +593,7 @@ Reply with ONLY the words the AI should say, with no extra notes or explanation.
         console.log("❌ OpenAI Error:");
         console.log(openAIError);
 
-        return "Sorry, I am unable to answer right now.";
+        return getLocalReply(userMessage, agent);
 
       }
 
@@ -485,7 +604,7 @@ Reply with ONLY the words the AI should say, with no extra notes or explanation.
     console.log("❌ AI Service Error:");
     console.log(err);
 
-    return "Sorry, I am unable to answer right now.";
+    return getLocalReply(userMessage, agent);
 
   }
 
@@ -581,4 +700,5 @@ ${(transcript || "No transcript provided.").substring(0, 3000)}
 module.exports = {
   generateAIResponse,
   generateCallSummary,
+  getLocalReply,
 };
