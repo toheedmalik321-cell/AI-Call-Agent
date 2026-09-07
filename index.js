@@ -15,6 +15,7 @@ const agentRoutes = require("./routes/agentRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
 const knowledgeRoutes = require("./routes/knowledgeRoutes");
 const twilioRoutes = require("./routes/twilioRoutes");
+const agoraRoutes = require("./routes/agoraRoutes");
 const chatRoutes = require("./routes/chatRoutes");
 const realtimeRoutes = require("./routes/realtimeRoutes");
 const profileRoutes = require("./routes/profileRoutes");
@@ -148,6 +149,10 @@ app.get("/voice", (req, res) => {
     res.render("voice");
 });
 
+app.get("/agora-call", (req, res) => {
+    res.render("agora-call");
+});
+
 app.get("/verify-pending", (req, res) => {
     res.render("verify-pending");
 });
@@ -184,6 +189,7 @@ app.use("/", agentRoutes);
 app.use("/", dashboardRoutes);
 app.use("/", knowledgeRoutes);
 app.use("/", twilioRoutes);
+app.use("/", agoraRoutes);
 app.use("/", chatRoutes);
 app.use("/", realtimeRoutes);
 app.use("/", profileRoutes);

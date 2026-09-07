@@ -38,6 +38,10 @@ services:
         sync: false
       - key: MY_PHONE_NUMBER
         sync: false
+      - key: AGORA_APP_ID
+        sync: false
+      - key: AGORA_APP_CERTIFICATE
+        sync: false
       - key: EMAIL_USER
         sync: false
       - key: EMAIL_PASS
