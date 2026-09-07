@@ -441,30 +441,7 @@ if (startCallBtn) {
 
     startCallBtn.addEventListener("click", async () => {
 
-        try {
-
-            const res = await fetch("/start-call", {
-
-                method: "POST",
-
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: "Bearer " + token
-                }
-
-            });
-
-            const data = await res.json();
-
-            showToast(data.message || "AI Call Started Successfully", "success");
-
-        } catch (err) {
-
-            console.log(err);
-
-            showToast("Unable to start call.", "error");
-
-        }
+        window.location.href = "/agora-call";
 
     });
 
