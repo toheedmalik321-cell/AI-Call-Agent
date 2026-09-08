@@ -93,7 +93,8 @@ Say a short greeting (1-2 sentences) as a helpful assistant representing "${agen
         agent.role,
         userId,
         null,
-        null
+        null,
+        "call"
     );
 
     // Create the call record right away
@@ -167,7 +168,8 @@ const processAgoraTurn = async (userId, callId, speech) => {
             agent.role,
             userId,
             null,
-            previousTranscript
+            previousTranscript,
+            "call"
         );
 
         let aiSummary = "";
@@ -212,7 +214,8 @@ const processAgoraTurn = async (userId, callId, speech) => {
         agent.role,
         userId,
         null,
-        previousTranscript
+        previousTranscript,
+        "call"
     );
 
     const updatedTranscript = `${previousTranscript}\n\nCustomer:\n${text}\n\nAI:\n${aiReply}\n\n`;

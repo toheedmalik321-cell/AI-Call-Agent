@@ -54,7 +54,10 @@ const createCall = async (req, res) => {
         const aiReply = await generateAIResponse(
     customerMessage,
     agent.role,
-    req.user.id
+    req.user.id,
+    null,
+    "",
+    "call"
 );
 
         // Call End Time

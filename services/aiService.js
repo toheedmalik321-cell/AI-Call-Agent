@@ -10,13 +10,22 @@ const Chat = require("../models/chat");
 // AI Clients
 // ===============================
 
-const ai = new GoogleGenAI({
-  apiKey: process.env.GEMINI_API_KEY,
-});
+// Chat uses GEMINI_API_KEY; Calling uses GEMINI_CALL_API_KEY (fallback to GEMINI_API_KEY).
+const getGeminiClient = (usage = "chat") => {
+  const key =
+    usage === "call"
+      ? (process.env.GEMINI_CALL_API_KEY || process.env.GEMINI_API_KEY)
+      : process.env.GEMINI_API_KEY;
+  return key ? new GoogleGenAI({ apiKey: key }) : null;
+};
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+const createOpenAIClient = (usage = "chat") => {
+  const key =
+    usage === "call"
+      ? (process.env.OPENAI_CALL_API_KEY || process.env.OPENAI_API_KEY)
+      : process.env.OPENAI_API_KEY;
+  return key ? new OpenAI({ apiKey: key }) : null;
+};
 
 // ===============================
 // Knowledge Search - FIX #1
@@ -217,8 +226,12 @@ const generateAIResponse = async (
   role = "receptionist",
   userId = null,
   sessionId = null,
-  previousTranscript = null
+  previousTranscript = null,
+  usage = "chat" // "chat" → GEMINI_API_KEY, "call" → GEMINI_CALL_API_KEY
 ) => {
+
+  const ai = getGeminiClient(usage);
+  const openaiClient = createOpenAIClient(usage);
 
   let fullPrompt = "";
 
@@ -563,7 +576,7 @@ Reply with ONLY the words the AI should say, with no extra notes or explanation.
 
       try {
 
-        const openAIResponse = await openai.chat.completions.create({
+        const openAIResponse = await openaiClient.chat.completions.create({
 
           model: "gpt-4.1-mini",
 
@@ -617,8 +630,12 @@ Reply with ONLY the words the AI should say, with no extra notes or explanation.
 const generateCallSummary = async (
   transcript,
   companyName = "the company",
-  role = "sales"
+  role = "sales",
+  usage = "call"
 ) => {
+
+  const ai = getGeminiClient(usage);
+  const openaiClient = createOpenAIClient(usage);
 
   const summaryPrompt = `
 You are an analyst. Below is a phone call transcript between an AI ${role} agent of ${companyName} and a customer.
@@ -659,7 +676,7 @@ ${(transcript || "No transcript provided.").substring(0, 3000)}
 
       try {
 
-        const openAIResponse = await openai.chat.completions.create({
+        const openAIResponse = await openaiClient.chat.completions.create({
           model: "gpt-4.1-mini",
           messages: [
             { role: "system", content: "You are a concise call analyst. Write a short business summary from the transcript." },

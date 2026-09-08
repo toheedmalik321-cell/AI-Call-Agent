@@ -224,7 +224,9 @@ const incomingCall = async (req, res) => {
                 
                 null,  // No sessionId for phone calls
                 
-                ""     // Empty transcript for first message
+                "",     // Empty transcript for first message
+                
+                "call"  // Use GEMINI_CALL_API_KEY
 
             );
 
@@ -786,7 +788,9 @@ ${goodbye}
 
                 null,  // No sessionId for phone calls
 
-                previousTranscript  // ← PASS TRANSCRIPT FOR PHONE CALLS
+                previousTranscript,  // ← PASS TRANSCRIPT FOR PHONE CALLS
+
+                "call"  // Use GEMINI_CALL_API_KEY
 
             );
 
