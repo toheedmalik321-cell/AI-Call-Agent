@@ -4,6 +4,13 @@ const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const User = require("../models/user");
 
+// Public base URL: Render sets RENDER_EXTERNAL_URL automatically.
+// Fallbacks: ngrok tunnel (dev) → localhost.
+const getBaseUrl = () =>
+  process.env.RENDER_EXTERNAL_URL ||
+  process.env.NGROK_URL ||
+  `http://localhost:${process.env.PORT || 3000}`;
+
 // ===============================
 // Register User
 // ===============================
@@ -30,7 +37,7 @@ const register = async (req, res) => {
       isVerified: false,
     });
 
-    const verifyLink = `${process.env.NGROK_URL}/verify-email/${verificationToken}`;
+    const verifyLink = `${getBaseUrl()}/verify-email/${verificationToken}`;
 
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
@@ -408,7 +415,7 @@ const resendVerificationEmail = async (req, res) => {
 
     await user.save();
 
-    const verifyLink = `${process.env.NGROK_URL}/verify-email/${verificationToken}`;
+    const verifyLink = `${getBaseUrl()}/verify-email/${verificationToken}`;
 
     await transporter.sendMail({
       from: process.env.EMAIL_USER,

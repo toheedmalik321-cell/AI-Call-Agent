@@ -213,6 +213,30 @@
                     class="mt-5 text-center text-sm min-h-[20px]">
                 </div>
 
+                <!-- Resend verification (hidden, shown when email not verified) -->
+                <div id="resendSection" class="hidden mt-2">
+                    <p class="text-center text-sm text-slate-300">
+                        Did not get the email? Check spam folder or resend.
+                    </p>
+
+                    <button
+                        id="resendBtn"
+                        type="button"
+                        class="w-full mt-3
+                               bg-gradient-to-r from-slate-700 to-slate-600
+                               hover:from-slate-600 hover:to-slate-500
+                               rounded-xl py-3
+                               text-sm font-semibold
+                               transition">
+                        Resend Verification Email
+                    </button>
+
+                    <p
+                        id="resendMsg"
+                        class="mt-3 text-center text-sm min-h-[20px]">
+                    </p>
+                </div>
+
                 <!-- Divider -->
                 <div class="flex items-center gap-3 my-6">
 
