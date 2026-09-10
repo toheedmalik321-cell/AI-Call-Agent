@@ -1,5 +1,18 @@
 <!-- Mobile menu -->
     <div id="mobileMenu" class="lg:hidden hidden mt-2 glass rounded-2xl p-4 space-y-2">
+
+      <!-- Logged-in actions (shown by auth.js when a token is present) -->
+      <div id="mobileUserMenu" class="hidden space-y-2 pb-2 border-b border-white/10 mb-2">
+        <a href="/dashboard" class="flex items-center gap-2 px-3 py-2.5 rounded-lg bg-blue-600/15 text-blue-300 font-medium">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+          Dashboard
+        </a>
+        <button id="mobileLogoutBtn" class="w-full flex items-center gap-2 px-3 py-2.5 rounded-lg bg-red-500/10 text-red-400 font-medium hover:bg-red-500/20">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
+          Logout
+        </button>
+      </div>
+
       <a href="#features" class="block px-3 py-2 rounded-lg hover:bg-white/5">Features</a>
       <a href="#dashboard" class="block px-3 py-2 rounded-lg hover:bg-white/5">Dashboard</a>
       <a href="#integrations" class="block px-3 py-2 rounded-lg hover:bg-white/5">Integrations</a>

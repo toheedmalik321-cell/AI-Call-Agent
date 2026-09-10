@@ -60,6 +60,21 @@
 
 }
 
+/* Mobile < lg — hide the navbar logged-in buttons (they live in the hamburger menu) */
+@media (max-width:1023px){
+
+    #userMenu{
+        display:none !important;
+    }
+
+    #guestMenu .btn-primary{
+        padding:.45rem .75rem;
+        font-size:.85rem;
+        white-space:nowrap;
+    }
+
+}
+
 /* Small Mobile */
 
 @media (max-width:480px){

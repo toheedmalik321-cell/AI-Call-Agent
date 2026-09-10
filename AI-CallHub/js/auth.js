@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const guestMenu = document.getElementById("guestMenu");
     const userMenu = document.getElementById("userMenu");
     const logoutBtn = document.getElementById("logoutBtn");
+    const mobileUserMenu = document.getElementById("mobileUserMenu");
+    const mobileLogoutBtn = document.getElementById("mobileLogoutBtn");
 
     const token = localStorage.getItem("token");
 
@@ -55,6 +57,10 @@ document.addEventListener("DOMContentLoaded", () => {
             userMenu.classList.remove("hidden");
         }
 
+        if (mobileUserMenu) {
+            mobileUserMenu.classList.remove("hidden");
+        }
+
     } else {
 
         // Stale or invalid token -> clean it and show guest menu
@@ -69,9 +75,22 @@ document.addEventListener("DOMContentLoaded", () => {
             userMenu.classList.add("hidden");
         }
 
+        if (mobileUserMenu) {
+            mobileUserMenu.classList.add("hidden");
+        }
+
     }
 
     logoutBtn?.addEventListener("click", () => {
+
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+
+        window.location = "/";
+
+    });
+
+    mobileLogoutBtn?.addEventListener("click", () => {
 
         localStorage.removeItem("token");
         localStorage.removeItem("user");
