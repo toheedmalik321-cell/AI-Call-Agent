@@ -1,10 +1,6 @@
 const nodemailer = require("nodemailer");
 const dns = require("dns").promises;
 
-// Resolve smtp.gmail.com to an IPv4 address ourselves.
-// Nodemailer's internal DNS resolver can pick the IPv6 address, and Render's
-// free tier has no IPv6 route → "connect ENETUNREACH <ipv6>". Pinning the
-// IPv4 literal (with tls.servername for correct SNI) avoids that entirely.
 async function resolveGmailIPv4() {
   try {
     const res = await dns.lookup("smtp.gmail.com", { family: 4, all: true });
@@ -23,19 +19,20 @@ async function createTransporter() {
 
   const transporter = nodemailer.createTransport({
     host,
-    port: 465,
-    secure: true,
+    port: 587,
+    secure: false,
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS
     },
-    // Correct SNI even though we connect to an IP literal
+    // Start TLS explicitly on port 587
+    requireTLS: true,
     tls: {
       servername: "smtp.gmail.com"
     },
-    connectionTimeout: 15000,
-    greetingTimeout: 15000,
-    socketTimeout: 30000
+    connectionTimeout: 30000,
+    greetingTimeout: 30000,
+    socketTimeout: 60000
   });
 
   return transporter;
@@ -43,9 +40,6 @@ async function createTransporter() {
 
 let transporterPromise = null;
 
-// Send mail through the (async-initialized) transport.
-// Controllers call `sendMail(...)` directly; the transport promise lets us
-// wait for DNS/transport setup before the first email is actually sent.
 async function sendMail(mailOptions) {
   if (!transporterPromise) {
     transporterPromise = createTransporter();
