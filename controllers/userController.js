@@ -1,4 +1,4 @@
-﻿const transporter = require("../services/emailService");
+﻿const sendMail = require("../services/emailService");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
