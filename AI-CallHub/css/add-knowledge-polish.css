@@ -6,8 +6,8 @@
 body:has(#pdf) {
     min-height: 100vh;
     background:
-        radial-gradient(circle at 8% 0%, rgba(37, 99, 235, 0.16), transparent 30%),
-        radial-gradient(circle at 96% 18%, rgba(124, 58, 237, 0.13), transparent 28%),
+        radial-gradient(circle at 8% 0%, rgba(13, 148, 136, 0.16), transparent 30%),
+        radial-gradient(circle at 96% 18%, rgba(16, 185, 129, 0.13), transparent 28%),
         linear-gradient(135deg, #070b17 0%, #0a1020 48%, #080b17 100%);
 }
 
@@ -30,7 +30,7 @@ body:has(#pdf) main > div {
 
 body:has(#pdf) main > div > div:first-child a {
     display: inline-block;
-    background: linear-gradient(100deg, #93c5fd, #60a5fa 42%, #c4b5fd);
+    background: linear-gradient(100deg, #5eead4, #2dd4bf 42%, #c4b5fd);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -53,12 +53,12 @@ body:has(#pdf) .glass-card {
 }
 
 body:has(#pdf) .glass-card > div:first-child > div:first-child {
-    border-color: rgba(96, 165, 250, 0.22);
+    border-color: rgba(45, 212, 191, 0.22);
     background:
-        linear-gradient(135deg, rgba(59, 130, 246, 0.16), rgba(124, 58, 237, 0.1)),
+        linear-gradient(135deg, rgba(20, 184, 166, 0.16), rgba(16, 185, 129, 0.1)),
         rgba(30, 41, 59, 0.55);
     box-shadow:
-        0 12px 28px rgba(37, 99, 235, 0.14),
+        0 12px 28px rgba(13, 148, 136, 0.14),
         inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
@@ -81,23 +81,23 @@ body:has(#pdf) .field {
 }
 
 body:has(#pdf) .field:focus {
-    border-color: rgba(96, 165, 250, 0.72);
+    border-color: rgba(45, 212, 191, 0.72);
     box-shadow:
-        0 0 0 4px rgba(59, 130, 246, 0.1),
+        0 0 0 4px rgba(20, 184, 166, 0.1),
         0 10px 25px rgba(0, 0, 0, 0.12);
 }
 
 body:has(#pdf) .file-box {
     border-color: rgba(148, 163, 184, 0.2);
     background:
-        linear-gradient(145deg, rgba(59, 130, 246, 0.045), rgba(255, 255, 255, 0.015)),
+        linear-gradient(145deg, rgba(20, 184, 166, 0.045), rgba(255, 255, 255, 0.015)),
         rgba(7, 11, 23, 0.35);
 }
 
 body:has(#pdf) .file-box:hover {
-    border-color: rgba(96, 165, 250, 0.42);
+    border-color: rgba(45, 212, 191, 0.42);
     background:
-        linear-gradient(145deg, rgba(59, 130, 246, 0.09), rgba(124, 58, 237, 0.04)),
+        linear-gradient(145deg, rgba(20, 184, 166, 0.09), rgba(16, 185, 129, 0.04)),
         rgba(7, 11, 23, 0.42);
 }
 
@@ -112,8 +112,8 @@ body:has(#pdf) #pdf::file-selector-button {
     border-radius: 0.7rem;
     padding: 0 0.9rem;
     background:
-        linear-gradient(135deg, #2563eb, #4f46e5),
-        #2563eb;
+        linear-gradient(135deg, #0d9488, #4f46e5),
+        #0d9488;
     color: white;
     font-weight: 600;
     cursor: pointer;
@@ -126,9 +126,9 @@ body:has(#pdf) #pdf::file-selector-button:hover {
 }
 
 body:has(#pdf) .glass-card > div:nth-last-child(2) {
-    border-color: rgba(96, 165, 250, 0.14);
+    border-color: rgba(45, 212, 191, 0.14);
     background:
-        linear-gradient(145deg, rgba(59, 130, 246, 0.08), rgba(124, 58, 237, 0.035)),
+        linear-gradient(145deg, rgba(20, 184, 166, 0.08), rgba(16, 185, 129, 0.035)),
         rgba(15, 23, 42, 0.35);
 }
 
@@ -137,10 +137,10 @@ body:has(#pdf) .upload-btn {
     border: 1px solid rgba(147, 197, 253, 0.22);
     border-radius: 0.85rem;
     background:
-        linear-gradient(135deg, #2563eb, #4f46e5 55%, #7c3aed),
-        #2563eb;
+        linear-gradient(135deg, #0d9488, #4f46e5 55%, #10b981),
+        #0d9488;
     box-shadow:
-        0 16px 34px rgba(37, 99, 235, 0.24),
+        0 16px 34px rgba(13, 148, 136, 0.24),
         inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
@@ -157,7 +157,7 @@ body:has(#pdf) .glass-card a[href="/knowledge"] {
 body:has(#pdf) .glass-card a[href="/knowledge"]:focus-visible,
 body:has(#pdf) button:focus-visible,
 body:has(#pdf) input:focus-visible {
-    outline: 2px solid #93c5fd;
+    outline: 2px solid #5eead4;
     outline-offset: 3px;
 }
 

@@ -65,7 +65,7 @@ async function loadCalls() {
                 </td>
 
                 <td class="p-4">
-                    <span class="bg-blue-600 px-3 py-1 rounded-full">
+                    <span class="bg-teal-600 px-3 py-1 rounded-full">
                         ${call.status}
                     </span>
                 </td>

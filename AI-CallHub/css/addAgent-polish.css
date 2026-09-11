@@ -5,8 +5,8 @@
 
 body:has(.create-btn) {
     background:
-        radial-gradient(circle at 12% 5%, rgba(37, 99, 235, 0.16), transparent 34%),
-        radial-gradient(circle at 90% 15%, rgba(124, 58, 237, 0.15), transparent 30%),
+        radial-gradient(circle at 12% 5%, rgba(13, 148, 136, 0.16), transparent 34%),
+        radial-gradient(circle at 90% 15%, rgba(16, 185, 129, 0.15), transparent 30%),
         radial-gradient(circle at 50% 100%, rgba(6, 182, 212, 0.06), transparent 38%),
         linear-gradient(135deg, #070b17 0%, #0a1020 50%, #080b17 100%);
 }
@@ -30,11 +30,11 @@ body:has(.create-btn) .fixed.inset-0.\-z-10 > div {
 }
 
 body:has(.create-btn) .fixed.inset-0.\-z-10 > div:nth-child(1) {
-    background: radial-gradient(circle at center, rgba(37, 99, 235, 0.24), transparent 62%);
+    background: radial-gradient(circle at center, rgba(13, 148, 136, 0.24), transparent 62%);
 }
 
 body:has(.create-btn) .fixed.inset-0.\-z-10 > div:nth-child(2) {
-    background: radial-gradient(circle at center, rgba(124, 58, 237, 0.22), transparent 62%);
+    background: radial-gradient(circle at center, rgba(16, 185, 129, 0.22), transparent 62%);
 }
 
 body:has(.create-btn) h1 {
@@ -49,12 +49,12 @@ body:has(.create-btn) .glass-card {
 }
 
 body:has(.create-btn) .glass-card > div:first-child .w-10.h-10 {
-    box-shadow: 0 12px 26px rgba(37, 99, 235, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    box-shadow: 0 12px 26px rgba(13, 148, 136, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 body:has(.create-btn) .back-btn:hover {
-    border-color: rgba(96, 165, 250, 0.45);
-    box-shadow: 0 12px 28px rgba(37, 99, 235, 0.18);
+    border-color: rgba(45, 212, 191, 0.45);
+    box-shadow: 0 12px 28px rgba(13, 148, 136, 0.18);
 }
 
 body:has(.create-btn) .form-input {
@@ -67,20 +67,20 @@ body:has(.create-btn) .form-input {
 }
 
 body:has(.create-btn) .form-input:focus {
-    border-color: rgba(96, 165, 250, 0.7);
+    border-color: rgba(45, 212, 191, 0.7);
     background:
-        linear-gradient(145deg, rgba(59, 130, 246, 0.08), rgba(17, 24, 39, 0.95)),
+        linear-gradient(145deg, rgba(20, 184, 166, 0.08), rgba(17, 24, 39, 0.95)),
         rgba(17, 24, 39, 0.95);
     box-shadow:
-        0 0 0 4px rgba(59, 130, 246, 0.12),
-        0 8px 30px rgba(37, 99, 235, 0.08);
+        0 0 0 4px rgba(20, 184, 166, 0.12),
+        0 8px 30px rgba(13, 148, 136, 0.08);
 }
 
 body:has(.create-btn) .create-btn {
     position: relative;
     overflow: hidden;
     box-shadow:
-        0 18px 42px rgba(37, 99, 235, 0.3),
+        0 18px 42px rgba(13, 148, 136, 0.3),
         inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
@@ -97,7 +97,7 @@ body:has(.create-btn) .create-btn::after {
 body:has(.create-btn) .create-btn:hover {
     box-shadow:
         0 22px 48px rgba(79, 70, 229, 0.4),
-        0 0 28px rgba(124, 58, 237, 0.15),
+        0 0 28px rgba(16, 185, 129, 0.15),
         inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
@@ -119,7 +119,7 @@ body:has(.create-btn) input:focus-visible,
 body:has(.create-btn) select:focus-visible,
 body:has(.create-btn) textarea:focus-visible,
 body:has(.create-btn) a:focus-visible {
-    outline: 2px solid #93c5fd;
+    outline: 2px solid #5eead4;
     outline-offset: 3px;
 }
 

@@ -6,8 +6,8 @@
 body:has(#customerName) {
     min-height: 100vh;
     background:
-        radial-gradient(circle at 8% 0%, rgba(37, 99, 235, 0.16), transparent 30%),
-        radial-gradient(circle at 96% 18%, rgba(124, 58, 237, 0.13), transparent 28%),
+        radial-gradient(circle at 8% 0%, rgba(13, 148, 136, 0.16), transparent 30%),
+        radial-gradient(circle at 96% 18%, rgba(16, 185, 129, 0.13), transparent 28%),
         linear-gradient(135deg, #070b17 0%, #0a1020 48%, #080b17 100%);
 }
 
@@ -40,20 +40,20 @@ body:has(#customerName) h1::before {
     content: "◉";
     display: inline-flex;
     margin-right: 0.7rem;
-    color: #60a5fa;
+    color: #2dd4bf;
     font-size: 0.6em;
     vertical-align: 0.15em;
-    text-shadow: 0 0 18px rgba(96, 165, 250, 0.8);
+    text-shadow: 0 0 18px rgba(45, 212, 191, 0.8);
 }
 
 body:has(#customerName) a[href="/calls"] {
     min-height: 2.85rem;
     border: 1px solid rgba(147, 197, 253, 0.22);
     background:
-        linear-gradient(135deg, rgba(37, 99, 235, 0.95), rgba(79, 70, 229, 0.95)),
-        #2563eb;
+        linear-gradient(135deg, rgba(13, 148, 136, 0.95), rgba(79, 70, 229, 0.95)),
+        #0d9488;
     box-shadow:
-        0 14px 30px rgba(37, 99, 235, 0.22),
+        0 14px 30px rgba(13, 148, 136, 0.22),
         inset 0 1px 0 rgba(255, 255, 255, 0.16);
     transition: transform 0.2s ease, box-shadow 0.25s ease;
 }
@@ -96,9 +96,9 @@ body:has(#customerName) .glass > div:nth-child(-n + 6) {
 }
 
 body:has(#customerName) .glass > div:nth-child(-n + 6):hover {
-    border-color: rgba(96, 165, 250, 0.34);
+    border-color: rgba(45, 212, 191, 0.34);
     background:
-        linear-gradient(145deg, rgba(59, 130, 246, 0.1), rgba(124, 58, 237, 0.06)),
+        linear-gradient(145deg, rgba(20, 184, 166, 0.1), rgba(16, 185, 129, 0.06)),
         rgba(255, 255, 255, 0.025);
     transform: translateY(-2px);
 }
@@ -135,10 +135,10 @@ body:has(#customerName) #status {
     align-items: center;
     min-height: 1.75rem;
     padding: 0.25rem 0.7rem;
-    border: 1px solid rgba(96, 165, 250, 0.2);
+    border: 1px solid rgba(45, 212, 191, 0.2);
     border-radius: 999px;
-    background: rgba(59, 130, 246, 0.12);
-    color: #93c5fd;
+    background: rgba(20, 184, 166, 0.12);
+    color: #5eead4;
     font-size: 0.78rem;
     font-weight: 700;
     text-transform: capitalize;
@@ -163,7 +163,7 @@ body:has(#customerName) .glass > div:nth-child(n + 7) > div {
 }
 
 body:has(#customerName) a:focus-visible {
-    outline: 2px solid #93c5fd;
+    outline: 2px solid #5eead4;
     outline-offset: 3px;
 }
 

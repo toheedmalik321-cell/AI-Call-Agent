@@ -193,7 +193,7 @@ async function loadMessages(sessionId){
 
 <div class="flex justify-end">
 
-<div class="bg-blue-600 rounded-2xl px-5 py-3 max-w-[70%] shadow-lg">
+<div class="bg-teal-600 rounded-2xl px-5 py-3 max-w-[70%] shadow-lg">
 
 <p class="text-sm text-gray-200 mb-1">
 
@@ -221,7 +221,7 @@ ${chat.message}
 
 <div class="bg-[#111827] rounded-2xl px-5 py-3 max-w-[70%] border border-gray-700 shadow-lg">
 
-<p class="text-blue-400 text-sm mb-1">
+<p class="text-teal-300 text-sm mb-1">
 
 AI Assistant
 
@@ -288,7 +288,7 @@ async function sendMessage(e){
 
 <div class="flex justify-end">
 
-<div class="bg-blue-600 rounded-2xl px-5 py-3 max-w-[70%] shadow-lg">
+<div class="bg-teal-600 rounded-2xl px-5 py-3 max-w-[70%] shadow-lg">
 
 <p class="text-sm text-gray-200 mb-1">
 
@@ -385,7 +385,7 @@ chatLog.innerHTML += `
 
 <div class="bg-[#111827] border border-gray-700 rounded-2xl px-5 py-3 max-w-[70%] shadow-lg">
 
-<p class="text-blue-400 text-sm mb-1">
+<p class="text-teal-300 text-sm mb-1">
 
 AI Assistant
 

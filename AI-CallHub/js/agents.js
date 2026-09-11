@@ -71,7 +71,7 @@ async function loadAgents() {
 
             container.innerHTML += `
 
-<div class="glass rounded-2xl p-6 hover:border-blue-500/30 hover:scale-[1.02] transition-all duration-300">
+<div class="glass rounded-2xl p-6 hover:border-teal-500/30 hover:scale-[1.02] transition-all duration-300">
 
     <div class="flex justify-between items-start mb-4">
 

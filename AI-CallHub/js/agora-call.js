@@ -60,7 +60,7 @@ function addMessage(role, text) {
     const bubble = document.createElement("div");
     bubble.className = "max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed " +
         (isUser
-            ? "bg-blue-600/80 text-white rounded-br-sm"
+            ? "bg-teal-600/80 text-white rounded-br-sm"
             : "bg-white/8 border border-white/10 text-slate-200 rounded-bl-sm");
 
     bubble.textContent = text;

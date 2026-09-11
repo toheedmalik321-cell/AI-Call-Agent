@@ -22,8 +22,8 @@
         font-family: "Inter", sans-serif;
         letter-spacing: -0.01em;
         background:
-            radial-gradient(circle at 15% 10%, rgba(37, 99, 235, .12), transparent 28%),
-            radial-gradient(circle at 85% 85%, rgba(124, 58, 237, .10), transparent 30%),
+            radial-gradient(circle at 15% 10%, rgba(13, 148, 136, .12), transparent 28%),
+            radial-gradient(circle at 85% 85%, rgba(16, 185, 129, .10), transparent 30%),
             #070b17;
     }
 
@@ -50,22 +50,22 @@
     }
 
     .sidebar-link:hover {
-        background: rgba(59, 130, 246, .08);
-        color: #bfdbfe;
+        background: rgba(20, 184, 166, .08);
+        color: #99f6e4;
         transform: translateX(4px);
     }
 
     .sidebar-link.active {
         background: linear-gradient(
             135deg,
-            rgba(59, 130, 246, .18),
-            rgba(59, 130, 246, .06)
+            rgba(20, 184, 166, .18),
+            rgba(20, 184, 166, .06)
         );
-        color: #60a5fa;
-        border-color: rgba(59, 130, 246, .20);
+        color: #2dd4bf;
+        border-color: rgba(20, 184, 166, .20);
         box-shadow:
-            0 8px 25px rgba(37, 99, 235, .10),
-            inset 0 0 20px rgba(59, 130, 246, .04);
+            0 8px 25px rgba(13, 148, 136, .10),
+            inset 0 0 20px rgba(20, 184, 166, .04);
     }
 
     .stat-card {
@@ -88,7 +88,7 @@
 
     .stat-card:hover {
         transform: translateY(-5px);
-        border-color: rgba(96,165,250,.25);
+        border-color: rgba(45,212,191,.25);
         box-shadow: 0 20px 45px rgba(0,0,0,.22);
     }
 
@@ -113,7 +113,7 @@
 
     #startCall {
         box-shadow:
-            0 10px 30px rgba(37,99,235,.20),
+            0 10px 30px rgba(13,148,136,.20),
             inset 0 1px 0 rgba(255,255,255,.12);
     }
 
@@ -158,8 +158,8 @@
 
 
 <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-    <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl"></div>
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl"></div>
 </div>
 
 <div class="flex min-h-screen">
@@ -169,7 +169,7 @@
 
         <a href="/dashboard"
            class="text-2xl font-extrabold mb-10 tracking-tight px-2">
-            <span class="text-blue-400">AI</span> CallHub
+            <span class="text-teal-300">AI</span> CallHub
         </a>
 
         <nav class="space-y-2 flex-1">
@@ -180,7 +180,7 @@
                     <span class="text-lg">📊</span>
                     <span class="font-medium">Dashboard</span>
                 </div>
-                <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+                <span class="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
             </a>
 
             <a href="/agents"
@@ -253,8 +253,8 @@
             </div>
 
             <button id="startCall"
-                class="bg-gradient-to-r from-blue-600 to-blue-500
-                       hover:from-blue-500 hover:to-blue-400
+                class="bg-gradient-to-r from-teal-600 to-teal-500
+                       hover:from-teal-500 hover:to-teal-400
                        px-6 py-3 rounded-xl font-semibold
                        hover:scale-[1.03] active:scale-95
                        transition-all duration-300
@@ -279,7 +279,7 @@
 
             <a href="/agents"
                class="glass quick-card rounded-2xl p-5">
-                <div class="w-11 h-11 rounded-xl bg-blue-500/10
+                <div class="w-11 h-11 rounded-xl bg-teal-500/10
                             flex items-center justify-center text-2xl mb-4">
                     🤖
                 </div>
@@ -303,7 +303,7 @@
 
             <a href="/chat"
                class="glass quick-card rounded-2xl p-5">
-                <div class="w-11 h-11 rounded-xl bg-purple-500/10
+                <div class="w-11 h-11 rounded-xl bg-emerald-500/10
                             flex items-center justify-center text-2xl mb-4">
                     💬
                 </div>
@@ -315,7 +315,7 @@
 
             <a href="/calls"
                class="glass quick-card rounded-2xl p-5">
-                <div class="w-11 h-11 rounded-xl bg-cyan-500/10
+                <div class="w-11 h-11 rounded-xl bg-teal-400/10
                             flex items-center justify-center text-2xl mb-4">
                     📞
                 </div>
@@ -337,12 +337,12 @@
 
             <div class="glass stat-card rounded-2xl p-5">
                 <p class="text-slate-400 text-sm">Total Calls</p>
-                <div id="calls" class="text-3xl font-bold text-blue-400 mt-2">--</div>
+                <div id="calls" class="text-3xl font-bold text-teal-300 mt-2">--</div>
             </div>
 
             <div class="glass stat-card rounded-2xl p-5">
                 <p class="text-slate-400 text-sm">Total Chats</p>
-                <div id="chats" class="text-3xl font-bold text-purple-400 mt-2">--</div>
+                <div id="chats" class="text-3xl font-bold text-emerald-300 mt-2">--</div>
             </div>
 
             <div class="glass stat-card rounded-2xl p-5">
@@ -357,7 +357,7 @@
 
             <div class="glass stat-card rounded-2xl p-5">
                 <p class="text-slate-400 text-sm">Today's Calls</p>
-                <div id="todayCalls" class="text-3xl font-bold text-cyan-400 mt-2">--</div>
+                <div id="todayCalls" class="text-3xl font-bold text-teal-300 mt-2">--</div>
             </div>
 
             <div class="glass stat-card rounded-2xl p-5">
@@ -386,8 +386,8 @@
                         </p>
                     </div>
 
-                    <span class="text-blue-400 text-xs
-                                 bg-blue-500/10 px-3 py-1 rounded-full">
+                    <span class="text-teal-300 text-xs
+                                 bg-teal-500/10 px-3 py-1 rounded-full">
                         Live
                     </span>
                 </div>
@@ -472,7 +472,7 @@
                     </div>
 
                     <a href="/calls"
-                       class="text-sm text-blue-400 hover:text-blue-300">
+                       class="text-sm text-teal-300 hover:text-teal-200">
                         View all →
                     </a>
                 </div>
@@ -493,7 +493,7 @@
                     </div>
 
                     <a href="/chat"
-                       class="text-sm text-blue-400 hover:text-blue-300">
+                       class="text-sm text-teal-300 hover:text-teal-200">
                         View all →
                     </a>
                 </div>
@@ -514,7 +514,7 @@
                     </div>
 
                     <a href="/agents"
-                       class="text-sm text-blue-400 hover:text-blue-300">
+                       class="text-sm text-teal-300 hover:text-teal-200">
                         View all →
                     </a>
                 </div>
@@ -535,7 +535,7 @@
                     </div>
 
                     <a href="/knowledge"
-                       class="text-sm text-blue-400 hover:text-blue-300">
+                       class="text-sm text-teal-300 hover:text-teal-200">
                         View all →
                     </a>
                 </div>

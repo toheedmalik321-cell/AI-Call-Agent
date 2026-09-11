@@ -6,8 +6,8 @@
 body:has(#loginForm) {
     min-height: 100vh;
     background:
-        radial-gradient(circle at 12% 0%, rgba(37, 99, 235, 0.18), transparent 32%),
-        radial-gradient(circle at 92% 22%, rgba(124, 58, 237, 0.15), transparent 30%),
+        radial-gradient(circle at 12% 0%, rgba(13, 148, 136, 0.18), transparent 32%),
+        radial-gradient(circle at 92% 22%, rgba(16, 185, 129, 0.15), transparent 30%),
         radial-gradient(circle at 50% 100%, rgba(6, 182, 212, 0.08), transparent 40%),
         linear-gradient(135deg, #070b17 0%, #0a1020 48%, #080b17 100%);
 }
@@ -35,11 +35,11 @@ body:has(#loginForm) .glow > div:not(:first-child) {
 }
 
 body:has(#loginForm) .glow > div:nth-of-type(2) {
-    background: radial-gradient(circle at center, rgba(37, 99, 235, 0.22), transparent 62%);
+    background: radial-gradient(circle at center, rgba(13, 148, 136, 0.22), transparent 62%);
 }
 
 body:has(#loginForm) .glow > div:nth-of-type(3) {
-    background: radial-gradient(circle at center, rgba(124, 58, 237, 0.2), transparent 62%);
+    background: radial-gradient(circle at center, rgba(16, 185, 129, 0.2), transparent 62%);
 }
 
 body:has(#loginForm) a[href="/"] {
@@ -48,11 +48,11 @@ body:has(#loginForm) a[href="/"] {
 }
 
 body:has(#loginForm) a[href="/"] span {
-    background: linear-gradient(135deg, #60a5fa 0%, #818cf8 55%, #c084fc 100%);
+    background: linear-gradient(135deg, #2dd4bf 0%, #818cf8 55%, #c084fc 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 24px rgba(96, 165, 250, 0.45);
+    text-shadow: 0 0 24px rgba(45, 212, 191, 0.45);
 }
 
 body:has(#loginForm) .flex.gap-2 {
@@ -82,7 +82,7 @@ body:has(#loginForm) .login-card::before {
     left: 15%;
     right: 15%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.55), transparent);
+    background: linear-gradient(90deg, transparent, rgba(45, 212, 191, 0.55), transparent);
     pointer-events: none;
 }
 
@@ -93,11 +93,11 @@ body:has(#loginForm) .login-card > * {
 
 body:has(#loginForm) .mx-auto.w-14.h-14 {
     background:
-        linear-gradient(145deg, rgba(59, 130, 246, 0.22), rgba(124, 58, 237, 0.14)),
-        rgba(59, 130, 246, 0.08);
-    border-color: rgba(96, 165, 250, 0.28);
+        linear-gradient(145deg, rgba(20, 184, 166, 0.22), rgba(16, 185, 129, 0.14)),
+        rgba(20, 184, 166, 0.08);
+    border-color: rgba(45, 212, 191, 0.28);
     box-shadow:
-        0 14px 34px rgba(37, 99, 235, 0.25),
+        0 14px 34px rgba(13, 148, 136, 0.25),
         inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
@@ -139,34 +139,34 @@ body:has(#loginForm) #password:hover {
 body:has(#loginForm) #email:focus,
 body:has(#loginForm) #password:focus {
     background:
-        linear-gradient(145deg, rgba(59, 130, 246, 0.1), rgba(15, 23, 42, 0.4)),
+        linear-gradient(145deg, rgba(20, 184, 166, 0.1), rgba(15, 23, 42, 0.4)),
         rgba(7, 11, 23, 0.5);
-    border-color: rgba(96, 165, 250, 0.7);
+    border-color: rgba(45, 212, 191, 0.7);
     box-shadow:
-        0 0 0 4px rgba(59, 130, 246, 0.13),
+        0 0 0 4px rgba(20, 184, 166, 0.13),
         inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 body:has(#loginForm) a[href="/forgot-password"] {
-    color: #93c5fd;
+    color: #5eead4;
     font-weight: 600;
 }
 
 body:has(#loginForm) a[href="/forgot-password"]:hover {
-    color: #bfdbfe;
-    text-shadow: 0 0 14px rgba(96, 165, 250, 0.35);
+    color: #99f6e4;
+    text-shadow: 0 0 14px rgba(45, 212, 191, 0.35);
 }
 
 body:has(#loginForm) .login-btn {
     position: relative;
     overflow: hidden;
-    border: 1px solid rgba(96, 165, 250, 0.35);
+    border: 1px solid rgba(45, 212, 191, 0.35);
     border-radius: 0.8rem;
     background:
-        linear-gradient(135deg, rgba(37, 99, 235, 0.98), rgba(79, 70, 229, 0.98)),
-        #2563eb;
+        linear-gradient(135deg, rgba(13, 148, 136, 0.98), rgba(79, 70, 229, 0.98)),
+        #0d9488;
     box-shadow:
-        0 16px 36px rgba(37, 99, 235, 0.28),
+        0 16px 36px rgba(13, 148, 136, 0.28),
         inset 0 1px 0 rgba(255, 255, 255, 0.18);
     letter-spacing: 0.01em;
 }
@@ -230,7 +230,7 @@ body:has(#loginForm) .my-6 span {
 }
 
 body:has(#loginForm) p > a[href="/register"] {
-    background: linear-gradient(135deg, #60a5fa, #818cf8);
+    background: linear-gradient(135deg, #2dd4bf, #818cf8);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -238,7 +238,7 @@ body:has(#loginForm) p > a[href="/register"] {
 }
 
 body:has(#loginForm) p > a[href="/register"]:hover {
-    text-shadow: 0 0 16px rgba(96, 165, 250, 0.4);
+    text-shadow: 0 0 16px rgba(45, 212, 191, 0.4);
 }
 
 body:has(#loginForm) .mt-6 {
@@ -249,7 +249,7 @@ body:has(#loginForm) .mt-6 {
 body:has(#loginForm) a:focus-visible,
 body:has(#loginForm) button:focus-visible,
 body:has(#loginForm) input:focus-visible {
-    outline: 2px solid #93c5fd;
+    outline: 2px solid #5eead4;
     outline-offset: 3px;
 }
 

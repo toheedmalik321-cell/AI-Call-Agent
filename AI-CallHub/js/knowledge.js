@@ -79,8 +79,8 @@ async function loadKnowledge() {
                         class="inline-flex
                                items-center
                                gap-2
-                               bg-blue-600
-                               hover:bg-blue-500
+                               bg-teal-600
+                               hover:bg-teal-500
                                px-5
                                py-3
                                rounded-xl
@@ -208,11 +208,11 @@ async function loadKnowledge() {
                         class="
                             flex-1
                             text-center
-                            bg-blue-600/10
-                            hover:bg-blue-600/20
-                            text-blue-400
+                            bg-teal-500/10
+                            hover:bg-teal-600/20
+                            text-teal-300
                             border
-                            border-blue-500/20
+                            border-teal-500/20
                             px-4
                             py-2.5
                             rounded-xl

@@ -101,7 +101,7 @@ function renderPlans(plans, current) {
             <p class="text-sm text-slate-400 mb-5">${plan.description}</p>
 
             <div class="mb-6">
-                <span class="plan-price text-4xl font-extrabold text-blue-400">${plan.priceLabel}</span>
+                <span class="plan-price text-4xl font-extrabold text-teal-300">${plan.priceLabel}</span>
                 <span class="text-slate-400 text-sm">/ month</span>
             </div>
 

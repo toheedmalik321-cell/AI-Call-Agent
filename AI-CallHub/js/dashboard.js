@@ -28,7 +28,7 @@ fetch("/api/profile", {
     if (data.success) {
         document.getElementById("welcome").innerHTML = `
 Welcome Back 👋
-<span class="text-blue-400">${data.data.name}</span>
+<span class="text-teal-300">${data.data.name}</span>
 `;
     }
 
@@ -100,11 +100,11 @@ if (window.Chart && weekData.length > 0) {
                 datasets: [{
                     label: "Calls",
                     data: weekData.map(d => d.count),
-                    borderColor: "#60a5fa",
-                    backgroundColor: "rgba(96,165,250,.18)",
+                    borderColor: "#2dd4bf",
+                    backgroundColor: "rgba(45,212,191,.18)",
                     fill: true,
                     tension: 0.4,
-                    pointBackgroundColor: "#60a5fa",
+                    pointBackgroundColor: "#2dd4bf",
                     pointBorderColor: "#0b1220",
                     pointBorderWidth: 2,
                     pointRadius: 4,
@@ -160,7 +160,7 @@ if (window.Chart) {
         const colorMap = {
             completed: "#22c55e",
             calling: "#f59e0b",
-            pending: "#3b82f6",
+            pending: "#14b8a6",
             failed: "#ef4444"
         };
 
@@ -238,7 +238,7 @@ if (data.data.recentCalls.length === 0) {
 
         calls.innerHTML += `
 
-<div class="glass rounded-xl p-4 hover:border-blue-500/30 transition">
+<div class="glass rounded-xl p-4 hover:border-teal-500/30 transition">
 
     <div class="flex justify-between items-start">
 
@@ -306,7 +306,7 @@ if (data.data.recentChats.length === 0) {
 
         chats.innerHTML += `
 
-<div class="glass rounded-xl p-4 hover:border-blue-500/30 transition">
+<div class="glass rounded-xl p-4 hover:border-teal-500/30 transition">
 
     <div class="font-semibold line-clamp-2">
         ${chat.message}
@@ -318,7 +318,7 @@ if (data.data.recentChats.length === 0) {
             ${new Date(chat.createdAt).toLocaleDateString()}
         </span>
 
-        <span class="text-blue-400">
+        <span class="text-teal-300">
             AI Chat
         </span>
 
@@ -353,7 +353,7 @@ if (data.data.recentAgents.length === 0) {
 
         agents.innerHTML += `
 
-<div class="glass rounded-xl p-4 hover:border-blue-500/30 transition">
+<div class="glass rounded-xl p-4 hover:border-teal-500/30 transition">
 
     <div class="flex justify-between items-center">
 
@@ -405,7 +405,7 @@ if (data.data.recentKnowledge.length === 0) {
 
         knowledge.innerHTML += `
 
-<div class="glass rounded-xl p-4 hover:border-blue-500/30 transition">
+<div class="glass rounded-xl p-4 hover:border-teal-500/30 transition">
 
     <h3 class="font-semibold text-white">
         ${file.title}
