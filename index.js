@@ -87,6 +87,33 @@ app.get("/", (req, res) => {
     res.render("index");
 });
 
+// TEMP: SMTP connectivity diagnostic (remove after verifying)
+app.get("/_diag/smtp", async (req, res) => {
+    const net = require("net");
+    const dns = require("dns").promises;
+    const results = { dns: null, ports: {} };
+    try {
+        const addrs = await dns.lookup("smtp.gmail.com", { all: true });
+        results.dns = addrs.map(a => a.address + " (v" + a.family + ")");
+    } catch (e) {
+        results.dns = "ERR " + e.message;
+    }
+    for (const port of [465, 587, 25]) {
+        results.ports[port] = await new Promise(resolve => {
+            const tryPort = port2 => {
+                const s = new net.Socket();
+                s.setTimeout(8000);
+                s.once("connect", () => { s.destroy(); resolve("CONNECT OK"); });
+                s.once("timeout", () => { s.destroy(); resolve("TIMEOUT"); });
+                s.once("error", err => { s.destroy(); if (port2 !== 587 && port === 587 && err.code === "ENETUNREACH") { setImmediate(() => tryPort(465)); return; } resolve(err.code || err.message); });
+                s.connect(port2, "smtp.gmail.com");
+            };
+            tryPort(port);
+        });
+    }
+    res.json(results);
+});
+
 app.get("/login", (req, res) => {
     res.render("login");
 });
