@@ -1,14 +1,14 @@
-/*
- * AI CallHub — Landing Page (index) UI Polish
+﻿/*
+ * AI CallHub â€” Landing Page (index) UI Polish
  * Visual-only layer. Existing index.ejs includes, components, AOS, and JS behavior stay unchanged.
  */
 
 body:has(#nav) {
     background:
-        radial-gradient(circle at 12% 4%, rgba(37, 99, 235, 0.16), transparent 36%),
-        radial-gradient(circle at 90% 14%, rgba(124, 58, 237, 0.14), transparent 32%),
-        radial-gradient(circle at 50% 100%, rgba(34, 211, 238, 0.06), transparent 38%),
-        linear-gradient(180deg, #060912 0%, #080b17 55%, #05060f 100%);
+        radial-gradient(circle at 12% 4%, rgba(16, 185, 129, 0.14), transparent 36%),
+        radial-gradient(circle at 90% 14%, rgba(45, 212, 191, 0.12), transparent 32%),
+        radial-gradient(circle at 50% 100%, rgba(251, 191, 36, 0.05), transparent 38%),
+        linear-gradient(180deg, #05080f 0%, #04070c 55%, #04070c 100%);
 }
 
 body:has(#nav)::before {
@@ -43,12 +43,12 @@ body:has(#nav) #nav::after {
     left: 12%;
     right: 12%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(147, 197, 253, 0.5), transparent);
+    background: linear-gradient(90deg, transparent, rgba(45, 212, 191, 0.5), transparent);
     pointer-events: none;
 }
 
 body:has(#nav) #nav a:first-child > div {
-    box-shadow: 0 10px 24px rgba(91, 140, 255, 0.35);
+    box-shadow: 0 10px 24px rgba(45, 212, 191, 0.35);
 }
 
 body:has(#nav) #menuBtn {
@@ -56,8 +56,8 @@ body:has(#nav) #menuBtn {
 }
 
 body:has(#nav) #menuBtn:hover {
-    border-color: rgba(147, 197, 253, 0.35);
-    box-shadow: 0 0 18px rgba(91, 140, 255, 0.2);
+    border-color: rgba(45, 212, 191, 0.35);
+    box-shadow: 0 0 18px rgba(45, 212, 191, 0.2);
 }
 
 body:has(#nav) #mobileMenu a {
@@ -65,7 +65,7 @@ body:has(#nav) #mobileMenu a {
 }
 
 body:has(#nav) #mobileMenu a:hover {
-    background: rgba(91, 140, 255, 0.12);
+    background: rgba(45, 212, 191, 0.12);
     color: #fff;
     transform: translateX(3px);
 }
@@ -74,11 +74,11 @@ body:has(#nav) #mobileMenu a:hover {
 
 body:has(#nav) section h1,
 body:has(#nav) section h2 {
-    text-shadow: 0 6px 30px rgba(37, 99, 235, 0.14);
+    text-shadow: 0 6px 30px rgba(16, 185, 129, 0.14);
 }
 
 body:has(#nav) section:first-of-type [class*="rounded-full"].glass {
-    border-color: rgba(147, 197, 253, 0.18);
+    border-color: rgba(45, 212, 191, 0.18);
     box-shadow:
         0 10px 28px rgba(0, 0, 0, 0.2),
         inset 0 1px 0 rgba(255, 255, 255, 0.05);
@@ -92,7 +92,7 @@ body:has(#nav) section:first-of-type .rounded-full.glass {
     box-shadow:
         0 30px 80px rgba(0, 0, 0, 0.35),
         inset 0 1px 0 rgba(255, 255, 255, 0.06),
-        0 0 70px rgba(124, 58, 237, 0.16);
+        0 0 70px rgba(45, 212, 191, 0.16);
 }
 
 body:has(#nav) section:first-of-type .glass.rounded-2xl {
@@ -102,7 +102,7 @@ body:has(#nav) section:first-of-type .glass.rounded-2xl {
 
 body:has(#nav) section:first-of-type .glass.rounded-2xl:hover {
     transform: translateY(-5px);
-    border-color: rgba(147, 197, 253, 0.35);
+    border-color: rgba(45, 212, 191, 0.35);
     box-shadow:
         0 28px 55px rgba(0, 0, 0, 0.35),
         inset 0 1px 0 rgba(255, 255, 255, 0.06);
@@ -113,9 +113,9 @@ body:has(#nav) section:first-of-type .glass.rounded-2xl:hover {
 body:has(#nav) .btn-primary {
     position: relative;
     overflow: hidden;
-    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    background: linear-gradient(135deg, #10b981, #2dd4bf);
     box-shadow:
-        0 14px 36px rgba(37, 99, 235, 0.28),
+        0 14px 36px rgba(16, 185, 129, 0.28),
         inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
 
@@ -146,13 +146,13 @@ body:has(#nav) .btn-ghost {
 
 body:has(#nav) .btn-ghost:hover {
     transform: translateY(-2px);
-    border-color: rgba(147, 197, 253, 0.42);
+    border-color: rgba(45, 212, 191, 0.42);
     background: rgba(255, 255, 255, 0.07);
     box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
 }
 
 body:has(#nav) #demoBtn > span[style*="linear-gradient"] {
-    box-shadow: 0 8px 20px rgba(91, 140, 255, 0.4);
+    box-shadow: 0 8px 20px rgba(45, 212, 191, 0.4);
 }
 
 /* =========================== SECTION HEADERS =========================== */
@@ -162,7 +162,7 @@ body:has(#nav) h2 {
 }
 
 body:has(#nav) .text-center [class*="tracking-widest"] {
-    text-shadow: 0 0 20px rgba(168, 85, 247, 0.45);
+    text-shadow: 0 0 20px rgba(16, 185, 129, 0.45);
 }
 
 body:has(#nav) p.text-lg,
@@ -179,29 +179,29 @@ body:has(#nav) .glass-hover {
 }
 
 body:has(#nav) .glass-hover:hover {
-    border-color: rgba(147, 197, 253, 0.3);
-    border-top-color: rgba(147, 197, 253, 0.5);
+    border-color: rgba(45, 212, 191, 0.3);
+    border-top-color: rgba(45, 212, 191, 0.5);
     box-shadow:
-        0 24px 60px -18px rgba(91, 140, 255, 0.45),
+        0 24px 60px -18px rgba(45, 212, 191, 0.45),
         inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 body:has(#nav) .icon-wrap {
     background:
-        linear-gradient(145deg, rgba(91, 140, 255, 0.24), rgba(168, 85, 247, 0.22)),
-        rgba(91, 140, 255, 0.08);
-    border: 1px solid rgba(147, 197, 253, 0.16);
+        linear-gradient(145deg, rgba(45, 212, 191, 0.24), rgba(16, 185, 129, 0.22)),
+        rgba(45, 212, 191, 0.08);
+    border: 1px solid rgba(45, 212, 191, 0.16);
     box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.08),
-        0 10px 24px -10px rgba(91, 140, 255, 0.45);
+        0 10px 24px -10px rgba(45, 212, 191, 0.45);
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 body:has(#nav) .glass-hover:hover .icon-wrap {
     transform: translateY(-2px) scale(1.06);
-    border-color: rgba(147, 197, 253, 0.4);
+    border-color: rgba(45, 212, 191, 0.4);
     box-shadow:
-        0 16px 34px -12px rgba(124, 58, 237, 0.55),
+        0 16px 34px -12px rgba(45, 212, 191, 0.55),
         inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
@@ -227,7 +227,7 @@ body:has(#nav) #dashboard .glass.rounded-xl.p-3 {
 
 body:has(#nav) #dashboard .glass.rounded-xl.p-3:hover {
     transform: translateY(-3px);
-    border-color: rgba(147, 197, 253, 0.3);
+    border-color: rgba(45, 212, 191, 0.3);
     box-shadow: 0 16px 34px rgba(0, 0, 0, 0.35);
 }
 
@@ -256,25 +256,25 @@ body:has(#nav) #pricing .glass {
 
 body:has(#nav) #pricing .glass:not(.price-card-active):hover {
     transform: translateY(-4px);
-    border-color: rgba(147, 197, 253, 0.28);
-    box-shadow: 0 26px 60px -20px rgba(91, 140, 255, 0.4);
+    border-color: rgba(45, 212, 191, 0.28);
+    box-shadow: 0 26px 60px -20px rgba(45, 212, 191, 0.4);
 }
 
 body:has(#nav) .price-card-active {
     background:
-        linear-gradient(145deg, rgba(168, 85, 247, 0.16), rgba(91, 140, 255, 0.08)),
+        linear-gradient(145deg, rgba(16, 185, 129, 0.16), rgba(45, 212, 191, 0.08)),
         rgba(15, 23, 42, 0.55);
-    border-color: rgba(168, 85, 247, 0.5);
-    box-shadow: 0 34px 90px -30px rgba(168, 85, 247, 0.55);
+    border-color: rgba(16, 185, 129, 0.5);
+    box-shadow: 0 34px 90px -30px rgba(16, 185, 129, 0.55);
 }
 
 body:has(#nav) .price-card-active .absolute {
-    box-shadow: 0 10px 28px rgba(124, 58, 237, 0.45);
+    box-shadow: 0 10px 28px rgba(45, 212, 191, 0.45);
 }
 
 body:has(#nav) #pricing .price {
     color: #f8fafc;
-    text-shadow: 0 6px 24px rgba(147, 197, 253, 0.25);
+    text-shadow: 0 6px 24px rgba(45, 212, 191, 0.25);
 }
 
 body:has(#nav) #pricing ul li svg {
@@ -293,13 +293,13 @@ body:has(#nav) #faq details {
 }
 
 body:has(#nav) #faq details:hover {
-    border-color: rgba(147, 197, 253, 0.25);
+    border-color: rgba(45, 212, 191, 0.25);
 }
 
 body:has(#nav) #faq details[open] {
-    border-color: rgba(147, 197, 253, 0.35);
+    border-color: rgba(45, 212, 191, 0.35);
     background:
-        linear-gradient(145deg, rgba(37, 99, 235, 0.08), rgba(124, 58, 237, 0.05)),
+        linear-gradient(145deg, rgba(16, 185, 129, 0.08), rgba(45, 212, 191, 0.05)),
         rgba(7, 11, 23, 0.5);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
 }
@@ -317,7 +317,7 @@ body:has(#nav) #faq details[open] summary {
 }
 
 body:has(#nav) #faq .faq-chevron {
-    filter: drop-shadow(0 2px 8px rgba(147, 197, 253, 0.35));
+    filter: drop-shadow(0 2px 8px rgba(45, 212, 191, 0.35));
 }
 
 /* =========================== CONTACT / CTA =========================== */
@@ -351,12 +351,12 @@ body:has(#nav) #contact form textarea::placeholder {
 
 body:has(#nav) #contact form input:focus,
 body:has(#nav) #contact form textarea:focus {
-    border-color: rgba(168, 85, 247, 0.6);
+    border-color: rgba(16, 185, 129, 0.6);
     background:
-        linear-gradient(145deg, rgba(124, 58, 237, 0.08), rgba(15, 23, 42, 0.45)),
+        linear-gradient(145deg, rgba(45, 212, 191, 0.08), rgba(15, 23, 42, 0.45)),
         rgba(7, 11, 23, 0.5);
     box-shadow:
-        0 0 0 4px rgba(168, 85, 247, 0.12),
+        0 0 0 4px rgba(16, 185, 129, 0.12),
         inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
@@ -378,7 +378,7 @@ body:has(#nav) footer ul a::after {
     bottom: -3px;
     width: 0;
     height: 1px;
-    background: linear-gradient(90deg, #a855f7, #5b8cff);
+    background: linear-gradient(90deg, #10b981, #2dd4bf);
     transition: width 0.3s ease;
 }
 
@@ -403,8 +403,8 @@ body:has(#nav) #chatInput {
 }
 
 body:has(#nav) #chatInput:focus {
-    border-color: rgba(168, 85, 247, 0.55);
-    box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.12);
+    border-color: rgba(16, 185, 129, 0.55);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.12);
 }
 
 /* =========================== MISC =========================== */
@@ -414,7 +414,7 @@ body:has(#nav) button:focus-visible,
 body:has(#nav) input:focus-visible,
 body:has(#nav) textarea:focus-visible,
 body:has(#nav) summary:focus-visible {
-    outline: 2px solid #93c5fd;
+    outline: 2px solid #5eead4;
     outline-offset: 3px;
 }
 

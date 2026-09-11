@@ -162,11 +162,19 @@ app.get("/verify-pending", (req, res) => {
 // ==============================
 
 app.get("/about", (req, res) => {
-    res.send("This backend is developed by YOU");
+    res.render("about");
 });
 
 app.get("/contact", (req, res) => {
-    res.send("Contact: support@aicallagent.com");
+    res.render("contact");
+});
+
+app.get("/privacy", (req, res) => {
+    res.render("privacy");
+});
+
+app.get("/terms", (req, res) => {
+    res.render("terms");
 });
 
 app.get("/hello", (req, res) => {

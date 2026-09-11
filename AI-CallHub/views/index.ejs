@@ -18,11 +18,24 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 </head>
 
 <body class="overflow-x-hidden">
+
+    <!-- Preloader (covers Render cold-start) -->
+    <div id="preloader" class="fixed inset-0 z-[100] grid place-items-center" style="background:#04070c">
+      <div class="text-center">
+        <div class="w-16 h-16 rounded-full mx-auto flex items-center justify-center relative">
+          <div class="absolute inset-0 rounded-full" style="border:2px solid rgba(45,212,191,0.25); border-top-color:#2dd4bf; animation:preloaderSpin 1s linear infinite"></div>
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="#2dd4bf" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div class="mt-4 font-display font-bold tracking-wide text-slate-200">AI CallHub</div>
+        <div class="mt-1 text-xs text-slate-500">Warming up your call center…</div>
+      </div>
+    </div>
+    <style>@keyframes preloaderSpin{to{transform:rotate(360deg)}}#preloader{transition:opacity .5s ease, visibility .5s ease}#preloader.hidden-preloader{opacity:0;visibility:hidden;pointer-events:none}</style>
 
     <%- include("components/background") %>
 
@@ -42,8 +55,6 @@
 
     <%- include("components/pricing") %>
 
-    <%- include("components/testimonials") %>
-
     <%- include("components/faq") %>
 
     <%- include("components/contact") %>
@@ -60,6 +71,18 @@
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script>
         AOS.init();
+    </script>
+
+    <script>
+        (function () {
+            var pre = document.getElementById('preloader');
+            function hide() {
+                if (pre) { pre.classList.add('hidden-preloader'); setTimeout(function () { pre.remove(); }, 600); }
+            }
+            if (document.readyState === 'complete') { hide(); }
+            else { window.addEventListener('load', hide); }
+            setTimeout(hide, 5000);
+        })();
     </script>
 
 </body>

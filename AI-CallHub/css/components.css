@@ -1,17 +1,17 @@
-/* ===========================
+﻿/* ===========================
    AI CallHub - components.css
    =========================== */
 
 /* Buttons */
 .btn-primary{
-    background:linear-gradient(135deg,#5b8cff,#a855f7);
+    background:linear-gradient(135deg,#2dd4bf,#10b981);
     color:#fff;
     transition:.35s;
 }
 
 .btn-primary:hover{
     transform:translateY(-2px);
-    box-shadow:0 15px 40px rgba(91,140,255,.35);
+    box-shadow:0 15px 40px rgba(45,212,191,.35);
 }
 
 .btn-ghost{
@@ -42,7 +42,7 @@
     bottom:-4px;
     width:0;
     height:2px;
-    background:linear-gradient(90deg,#5b8cff,#a855f7);
+    background:linear-gradient(90deg,#2dd4bf,#10b981);
     transition:.3s;
 }
 
@@ -54,7 +54,7 @@
 
 .icon-wrap{
     background:linear-gradient(135deg,
-    rgba(91,140,255,.15),
-    rgba(168,85,247,.15));
+    rgba(45,212,191,.15),
+    rgba(16,185,129,.15));
     border:1px solid rgba(255,255,255,.08);
 }
