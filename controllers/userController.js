@@ -1,11 +1,11 @@
-const transporter = require("../services/emailService");
+﻿const transporter = require("../services/emailService");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const User = require("../models/user");
 
 // Public base URL: Render sets RENDER_EXTERNAL_URL automatically.
-// Fallbacks: ngrok tunnel (dev) → localhost.
+// Fallbacks: ngrok tunnel (dev) â†’ localhost.
 const getBaseUrl = () =>
   process.env.RENDER_EXTERNAL_URL ||
   process.env.NGROK_URL ||
@@ -39,7 +39,7 @@ const register = async (req, res) => {
 
     const verifyLink = `${getBaseUrl()}/verify-email/${verificationToken}`;
 
-    await transporter.sendMail({
+    await sendMail({
       from: process.env.EMAIL_USER,
       to: email,
       subject: "Verify Your AI CallHub Account",
@@ -199,7 +199,7 @@ const forgotPassword = async (req, res) => {
 
     const resetLink = `${getBaseUrl()}/reset-password/${resetToken}`;
 
-    await transporter.sendMail({
+    await sendMail({
       from: process.env.EMAIL_USER,
       to: user.email,
       subject: "Reset Your Password",
@@ -417,7 +417,7 @@ const resendVerificationEmail = async (req, res) => {
 
     const verifyLink = `${getBaseUrl()}/verify-email/${verificationToken}`;
 
-    await transporter.sendMail({
+    await sendMail({
       from: process.env.EMAIL_USER,
       to: user.email,
       subject: "Verify Your AI CallHub Account",
