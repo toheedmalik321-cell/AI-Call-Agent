@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — AI CallHub</title>
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/index-polish.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="overflow-x-hidden">
+    <%- include("components/background") %>
+    <%- include("components/navbar") %>
+
+    <main class="relative z-10 pt-32 pb-24 lg:pt-40 lg:pb-32">
+        <div class="mx-auto max-w-5xl px-4 lg:px-8">
+
+            <div class="text-center mb-16">
+                <div class="inline-block text-xs uppercase tracking-widest text-teal-300 mb-4">Blog</div>
+                <h1 class="font-display text-4xl lg:text-5xl font-bold mb-4">Thoughts, updates & guides</h1>
+                <p class="text-slate-400 text-lg max-w-2xl mx-auto">Honest write-ups about building AI CallHub, voice AI, and practical tips for automating phone conversations.</p>
+            </div>
+
+            <!-- Article 1 -->
+            <article class="glass rounded-2xl p-7 mb-6">
+                <div class="flex items-center gap-3 text-xs text-slate-500 mb-3">
+                    <span class="px-2.5 py-1 rounded-full bg-teal-500/15 text-teal-300">Behind the scenes</span>
+                    <span>September 2026</span>
+                </div>
+                <h2 class="font-display text-xl font-semibold mb-3">How we built an AI voice agent that actually answers the phone</h2>
+                <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                    When we started building AI CallHub, the goal was simple: create something that picks up the phone and talks naturally — not a robotic IVR menu. We combined OpenAI for understanding, ElevenLabs for voice, and Agora for real-time calling. Here's what we learned along the way, the problems we hit, and how it all came together.
+                </p>
+                <p class="text-slate-400 text-sm leading-relaxed mb-5">
+                    The biggest surprise was latency. Getting a response from the LLM fast enough that the caller doesn't notice a pause took a lot of tuning — streaming responses, pre-loading voice samples, and cutting unnecessary middleware. Voice quality was the other challenge: ElevenLabs sounds incredible, but getting interruptions ("sorry, can you repeat that?") to work naturally took iteration.
+                </p>
+                <a href="https://github.com/toheedmalik321-cell/AI-Call-Agent" target="_blank" rel="noopener" class="text-teal-300 text-sm font-semibold hover:text-teal-200 transition">View the project on GitHub →</a>
+            </article>
+
+            <!-- Article 2 -->
+            <article class="glass rounded-2xl p-7 mb-6">
+                <div class="flex items-center gap-3 text-xs text-slate-500 mb-3">
+                    <span class="px-2.5 py-1 rounded-full bg-teal-500/15 text-teal-300">Industry trends</span>
+                    <span>September 2026</span>
+                </div>
+                <h2 class="font-display text-xl font-semibold mb-3">AI phone answering in 2026: what small businesses should know</h2>
+                <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                    More and more clinics, real estate offices, and home-service businesses are experimenting with AI to answer missed calls. It's no longer science fiction — the tools are good enough that an AI can book an appointment, send a quote, and follow up with a lead, all before the human team wakes up. But what does it actually look like in practice?
+                </p>
+                <p class="text-slate-400 text-sm leading-relaxed mb-5">
+                    In this article we break down what's real today: natural voice quality, appointment booking, lead qualification, and where it still falls short (complex emotions, multi-lingual edge cases). The key takeaway: AI phone agents aren't replacing humans — they're covering the calls that nobody can answer at 2 AM on a Sunday.
+                </p>
+            </article>
+
+            <!-- Article 3 -->
+            <article class="glass rounded-2xl p-7 mb-6">
+                <div class="flex items-center gap-3 text-xs text-slate-500 mb-3">
+                    <span class="px-2.5 py-1 rounded-full bg-teal-500/15 text-teal-300">Use cases</span>
+                    <span>September 2026</span>
+                </div>
+                <h2 class="font-display text-xl font-semibold mb-3">5 ways clinics can use AI to handle patient phone calls</h2>
+                <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                    Medical clinics miss a lot of calls during busy hours — patients call, hear a busy signal, and go to the next practice. AI voice agents can answer immediately: check availability, book or reschedule appointments, answer common questions about services and insurance, and forward urgent calls to a nurse. Here are five practical workflows clinics can set up today.
+                </p>
+                <p class="text-slate-400 text-sm leading-relaxed mb-5">
+                    The biggest win isn't cost-cutting — it's not losing the patient who hangs up after three rings. Every unanswered call is a missed opportunity. AI doesn't replace front-desk staff; it catches the calls that would otherwise slip through.
+                </p>
+            </article>
+
+            <div class="text-center mt-14">
+                <p class="text-slate-400 text-sm mb-3">More articles coming soon — this blog is still young.</p>
+                <a href="/" class="inline-flex items-center gap-2 text-sm text-teal-300 hover:text-teal-200 transition">
+                    Back to home
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <%- include("components/footer") %>
+</body>
+</html>

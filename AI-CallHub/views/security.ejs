@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security — AI CallHub</title>
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/index-polish.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="overflow-x-hidden">
+    <%- include("components/background") %>
+    <%- include("components/navbar") %>
+
+    <main class="relative z-10 pt-32 pb-24 lg:pt-40 lg:pb-32">
+        <div class="mx-auto max-w-4xl px-4 lg:px-8">
+
+            <div class="inline-block text-xs uppercase tracking-widest text-teal-300 mb-4">Security</div>
+            <h1 class="font-display text-4xl lg:text-5xl font-bold mb-6">How we protect your data</h1>
+            <p class="text-slate-400 text-lg leading-relaxed mb-14 max-w-2xl">
+                We take security seriously — not just in our words, but in our architecture and practices. Here's exactly how we keep your data safe.
+            </p>
+
+            <div class="space-y-8">
+                <div class="glass rounded-2xl p-7">
+                    <h2 class="font-display text-xl font-semibold mb-4 flex items-center gap-2">
+                        <span class="w-8 h-8 rounded-lg grid place-items-center bg-teal-500/15 text-teal-400 text-sm font-bold">1</span>
+                        Encryption in transit
+                    </h2>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Every connection between your browser and our servers uses <strong class="text-white">HTTPS/TLS</strong> — the same encryption used by online banks. Data is never sent in plaintext.
+                    </p>
+                </div>
+
+                <div class="glass rounded-2xl p-7">
+                    <h2 class="font-display text-xl font-semibold mb-4 flex items-center gap-2">
+                        <span class="w-8 h-8 rounded-lg grid place-items-center bg-teal-500/15 text-teal-400 text-sm font-bold">2</span>
+                        Password hashing with bcrypt
+                    </h2>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Your password is never stored in plaintext. We hash it with <strong class="text-white">bcrypt</strong> before saving — even our team can't see your password.
+                    </p>
+                </div>
+
+                <div class="glass rounded-2xl p-7">
+                    <h2 class="font-display text-xl font-semibold mb-4 flex items-center gap-2">
+                        <span class="w-8 h-8 rounded-lg grid place-items-center bg-teal-500/15 text-teal-400 text-sm font-bold">3</span>
+                        Role-based access control
+                    </h2>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Your calls, agents, transcripts, and knowledge base are scoped to your account. Only you (and teammates you explicitly add) can access them. We use signed JWT tokens to enforce this.
+                    </p>
+                </div>
+
+                <div class="glass rounded-2xl p-7">
+                    <h2 class="font-display text-xl font-semibold mb-4 flex items-center gap-2">
+                        <span class="w-8 h-8 rounded-lg grid place-items-center bg-teal-500/15 text-teal-400 text-sm font-bold">4</span>
+                        Data storage
+                    </h2>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Your data is stored in our managed cloud database (<strong class="text-white">MongoDB</strong>), which includes automated backups and encryption at rest. You can export your data anytime from the dashboard.
+                    </p>
+                </div>
+
+                <div class="glass rounded-2xl p-7">
+                    <h2 class="font-display text-xl font-semibold mb-4 flex items-center gap-2">
+                        <span class="w-8 h-8 rounded-lg grid place-items-center bg-teal-500/15 text-teal-400 text-sm font-bold">5</span>
+                        Email security
+                    </h2>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Verification and password-reset emails are sent via <strong class="text-white">Brevo</strong>, a compliant transactional email provider. Sensitive links expire after a short time.
+                    </p>
+                </div>
+
+                <div class="glass rounded-2xl p-7">
+                    <h2 class="font-display text-xl font-semibold mb-4 flex items-center gap-2">
+                        <span class="w-8 h-8 rounded-lg grid place-items-center bg-amber-500/15 text-amber-400 text-sm font-bold">!</span>
+                        What's on our roadmap
+                    </h2>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        We're working toward <strong class="text-white">SOC 2 Type II</strong> and <strong class="text-white">GDPR compliance</strong> certifications as the product scales. These are active priorities — not marketing claims. We'll update this page with audit reports once they're available.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-14 glass rounded-2xl p-7">
+                <h2 class="font-display text-xl font-semibold mb-4">Report a security issue</h2>
+                <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                    If you believe you've found a security vulnerability, please report it privately — <strong class="text-white">never</strong> open a public GitHub issue. Email <a href="mailto:toheedmalik321@gmail.com" class="text-teal-300 underline underline-offset-2">toheedmalik321@gmail.com</a> with details.
+                </p>
+            </div>
+
+        </div>
+    </main>
+
+    <%- include("components/footer") %>
+</body>
+</html>

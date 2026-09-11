@@ -3,67 +3,74 @@
   <div class="mx-auto max-w-7xl px-4 lg:px-8 relative z-10">
     <div class="text-center mb-14" data-aos="fade-up">
       <div class="inline-block text-xs uppercase tracking-widest text-teal-300 mb-3">Integrations</div>
-      <h2 class="font-display text-4xl lg:text-5xl font-bold mb-4">Connects with your <span class="text-gradient">entire stack</span></h2>
-      <p class="text-slate-400 max-w-2xl mx-auto text-lg">Native integrations with the tools you already use. Set up in minutes — no engineering team required.</p>
+      <h2 class="font-display text-4xl lg:text-5xl font-bold mb-4">Connects with your <span class="text-gradient">existing tools</span></h2>
+      <p class="text-slate-400 max-w-2xl mx-auto text-lg">The stack that powers AI CallHub, plus the tools it plugs into. New connectors ship regularly — check the roadmap if yours is missing.</p>
     </div>
 
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-      <!-- Integration cards -->
-      <div class="glass glass-hover rounded-2xl p-5 flex flex-col items-center justify-center text-center aspect-square" data-aos="zoom-in">
-        <div class="w-14 h-14 rounded-xl grid place-items-center mb-3" style="background:linear-gradient(135deg,#10a37f,#066e56)">
-          <span class="text-2xl font-display font-bold">○</span>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <!-- OpenAI -->
+      <div class="glass glass-hover rounded-2xl p-6 flex flex-col" data-aos="zoom-in">
+        <div class="w-12 h-12 rounded-xl grid place-items-center mb-3" style="background:linear-gradient(135deg,#10a37f,#066e56)">
+          <span class="text-xl font-display font-bold">○</span>
         </div>
-        <div class="font-semibold">OpenAI</div>
-        <div class="text-xs text-slate-500 mt-1">LLM backbone</div>
+        <div class="font-semibold mb-1">OpenAI</div>
+        <div class="text-xs text-slate-500 leading-relaxed">How it connects: API key in Settings → AI. Benefits: powers agent understanding and natural responses.</div>
       </div>
-      <div class="glass glass-hover rounded-2xl p-5 flex flex-col items-center justify-center text-center aspect-square" data-aos="zoom-in" data-aos-delay="50">
-        <div class="w-14 h-14 rounded-xl grid place-items-center mb-3" style="background:linear-gradient(135deg,#f22f46,#9f1239)">
-          <svg class="w-7 h-7 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <!-- Twilio -->
+      <div class="glass glass-hover rounded-2xl p-6 flex flex-col" data-aos="zoom-in" data-aos-delay="50">
+        <div class="w-12 h-12 rounded-xl grid place-items-center mb-3" style="background:linear-gradient(135deg,#f22f46,#9f1239)">
+          <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         </div>
-        <div class="font-semibold">Twilio</div>
-        <div class="text-xs text-slate-500 mt-1">Voice infra</div>
+        <div class="font-semibold mb-1">Twilio</div>
+        <div class="text-xs text-slate-500 leading-relaxed">How it connects: add your Account SID + auth token. Benefits: real inbound/outbound telephony when calling launches.</div>
       </div>
-      <div class="glass glass-hover rounded-2xl p-5 flex flex-col items-center justify-center text-center aspect-square" data-aos="zoom-in" data-aos-delay="100">
-        <div class="w-14 h-14 rounded-xl grid place-items-center mb-3" style="background:linear-gradient(135deg,#ff4f7e,#8b2252)">
-          <span class="text-2xl font-display font-bold text-white">✱</span>
+      <!-- ElevenLabs -->
+      <div class="glass glass-hover rounded-2xl p-6 flex flex-col" data-aos="zoom-in" data-aos-delay="100">
+        <div class="w-12 h-12 rounded-xl grid place-items-center mb-3" style="background:linear-gradient(135deg,#ff4f7e,#8b2252)">
+          <span class="text-xl font-display font-bold text-white">✱</span>
         </div>
-        <div class="font-semibold">ElevenLabs</div>
-        <div class="text-xs text-slate-500 mt-1">Voice cloning</div>
+        <div class="font-semibold mb-1">ElevenLabs</div>
+        <div class="text-xs text-slate-500 leading-relaxed">How it connects: pick a voice or clone yours in Voice settings. Benefits: realistic speech with emotion and interruption handling.</div>
       </div>
-      <div class="glass glass-hover rounded-2xl p-5 flex flex-col items-center justify-center text-center aspect-square" data-aos="zoom-in" data-aos-delay="150">
-        <div class="w-14 h-14 rounded-xl grid place-items-center mb-3" style="background:linear-gradient(135deg,#4285f4,#185abc)">
-          <svg class="w-7 h-7 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      <!-- Google Calendar -->
+      <div class="glass glass-hover rounded-2xl p-6 flex flex-col" data-aos="zoom-in" data-aos-delay="150">
+        <div class="w-12 h-12 rounded-xl grid place-items-center mb-3" style="background:linear-gradient(135deg,#4285f4,#185abc)">
+          <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
         </div>
-        <div class="font-semibold">Google Calendar</div>
-        <div class="text-xs text-slate-500 mt-1">Scheduling</div>
+        <div class="font-semibold mb-1">Google Calendar</div>
+        <div class="text-xs text-slate-500 leading-relaxed">How it connects: one-click OAuth sign-in. Benefits: booking agents can check availability, book, and reschedule appointments.</div>
       </div>
-      <div class="glass glass-hover rounded-2xl p-5 flex flex-col items-center justify-center text-center aspect-square" data-aos="zoom-in" data-aos-delay="200">
-        <div class="w-14 h-14 rounded-xl grid place-items-center mb-3" style="background:linear-gradient(135deg,#635bff,#3a2fb3)">
-          <span class="text-3xl font-display font-bold text-white">S</span>
+      <!-- Stripe -->
+      <div class="glass glass-hover rounded-2xl p-6 flex flex-col" data-aos="zoom-in" data-aos-delay="200">
+        <div class="w-12 h-12 rounded-xl grid place-items-center mb-3" style="background:linear-gradient(135deg,#635bff,#3a2fb3)">
+          <span class="text-2xl font-display font-bold text-white">S</span>
         </div>
-        <div class="font-semibold">Stripe</div>
-        <div class="text-xs text-slate-500 mt-1">Payments</div>
+        <div class="font-semibold mb-1">Stripe</div>
+        <div class="text-xs text-slate-500 leading-relaxed">How it connects: API keys or webhooks. Benefits: run billing reminders and confirm payments over the phone.</div>
       </div>
-      <div class="glass glass-hover rounded-2xl p-5 flex flex-col items-center justify-center text-center aspect-square" data-aos="zoom-in" data-aos-delay="250">
-        <div class="w-14 h-14 rounded-xl grid place-items-center mb-3" style="background:linear-gradient(135deg,#2d8cff,#0b5cff)">
-          <svg class="w-7 h-7 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M15.9 7.8l-4.7-4.7c-.4-.4-1-.4-1.4 0L3.3 9.5c-.4.4-.4 1 0 1.4l4.7 4.7c.4.4 1 .4 1.4 0l6.5-6.4c.4-.4.4-1 0-1.4zM20.7 12.6l-4.7-4.7-4.7 4.7 4.7 4.7 4.7-4.7zM12.6 20.7l-4.7-4.7-4.7 4.7 4.7 4.7 4.7-4.7z" opacity="0"/><path d="M12 4l-8 8 8 8 8-8z"/></svg>
+      <!-- Zoom -->
+      <div class="glass glass-hover rounded-2xl p-6 flex flex-col" data-aos="zoom-in" data-aos-delay="250">
+        <div class="w-12 h-12 rounded-xl grid place-items-center mb-3" style="background:linear-gradient(135deg,#2d8cff,#0b5cff)">
+          <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M15.9 7.8l-4.7-4.7c-.4-.4-1-.4-1.4 0L3.3 9.5c-.4.4-.4 1 0 1.4l4.7 4.7c.4.4 1 .4 1.4 0l6.5-6.4c.4-.4.4-1 0-1.4zM20.7 12.6l-4.7-4.7-4.7 4.7 4.7 4.7 4.7-4.7zM12.6 20.7l-4.7-4.7-4.7 4.7 4.7 4.7 4.7-4.7z" opacity="0"/><path d="M12 4l-8 8 8 8 8-8z"/></svg>
         </div>
-        <div class="font-semibold">Zoom</div>
-        <div class="text-xs text-slate-500 mt-1">Meetings</div>
+        <div class="font-semibold mb-1">Zoom</div>
+        <div class="text-xs text-slate-500 leading-relaxed">How it connects: Zoom OAuth app. Benefits: agents can generate meeting links and schedule sessions inside calls.</div>
       </div>
-      <div class="glass glass-hover rounded-2xl p-5 flex flex-col items-center justify-center text-center aspect-square" data-aos="zoom-in" data-aos-delay="300">
-        <div class="w-14 h-14 rounded-xl grid place-items-center mb-3" style="background:linear-gradient(135deg,#611f69,#4a154b)">
-          <span class="text-2xl font-display font-bold text-white">#</span>
+      <!-- Slack -->
+      <div class="glass glass-hover rounded-2xl p-6 flex flex-col" data-aos="zoom-in" data-aos-delay="300">
+        <div class="w-12 h-12 rounded-xl grid place-items-center mb-3" style="background:linear-gradient(135deg,#611f69,#4a154b)">
+          <span class="text-xl font-display font-bold text-white">#</span>
         </div>
-        <div class="font-semibold">Slack</div>
-        <div class="text-xs text-slate-500 mt-1">Notifications</div>
+        <div class="font-semibold mb-1">Slack</div>
+        <div class="text-xs text-slate-500 leading-relaxed">How it connects: incoming webhook URL. Benefits: push call summaries and alerts to the right team channel automatically.</div>
       </div>
-      <div class="glass glass-hover rounded-2xl p-5 flex flex-col items-center justify-center text-center aspect-square" data-aos="zoom-in" data-aos-delay="350">
-        <div class="w-14 h-14 rounded-xl grid place-items-center mb-3" style="background:linear-gradient(135deg,#ff4a00,#cc3a00)">
-          <span class="text-2xl font-display font-bold text-white">⚡</span>
+      <!-- Zapier -->
+      <div class="glass glass-hover rounded-2xl p-6 flex flex-col" data-aos="zoom-in" data-aos-delay="350">
+        <div class="w-12 h-12 rounded-xl grid place-items-center mb-3" style="background:linear-gradient(135deg,#ff4a00,#cc3a00)">
+          <span class="text-xl font-display font-bold text-white">⚡</span>
         </div>
-        <div class="font-semibold">Zapier</div>
-        <div class="text-xs text-slate-500 mt-1">Automation</div>
+        <div class="font-semibold mb-1">Zapier</div>
+        <div class="text-xs text-slate-500 leading-relaxed">How it connects: webhooks to your Zapier account. Benefits: trigger workflows from calls — CRM, email, spreadsheets, and more.</div>
       </div>
     </div>
 

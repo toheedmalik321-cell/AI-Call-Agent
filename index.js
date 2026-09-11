@@ -24,6 +24,7 @@ const subscriptionRoutes = require("./routes/subscriptionRoutes");
 const User = require("./models/user");
 const auth = require("./middlewares/auth");
 const errorHandler = require("./middlewares/errorHandler");
+const sendMail = require("./services/emailService");
 
 const app = express();
 
@@ -185,6 +186,65 @@ app.get("/profile", (req, res) => {
 });
 app.get("/plans", (req, res) => {
     res.render("plans");
+});
+app.get("/security", (req, res) => {
+    res.render("security");
+});
+app.get("/blog", (req, res) => {
+    res.render("blog");
+});
+
+// ==============================
+// Landing page chat -> email
+// ==============================
+
+app.post("/api/landing-chat", express.json(), async (req, res) => {
+
+    try {
+
+        const { name, email, message } = req.body || {};
+
+        if (!email || !message) {
+            return res.status(400).json({
+                success: false,
+                message: "Name, email and message are required"
+            });
+        }
+
+        const displayName = (name && name.trim()) ? name.trim() : "Website visitor";
+        const replyTo = (email && typeof email === "string") ? email.trim() : "";
+
+        const html = `
+            <div style="font-family:Arial,Helvetica,sans-serif;padding:20px;max-width:600px">
+                <h2 style="color:#10b981;margin-bottom:16px">New inquiry from the website</h2>
+                <p><strong>Name:</strong> ${displayName.replace(/</g, "&lt;")}</p>
+                <p><strong>Email:</strong> ${replyTo.replace(/</g, "&lt;")}</p>
+                <p style="margin-top:16px"><strong>Message:</strong></p>
+                <p style="background:#f3f4f6;padding:12px;border-radius:8px">${message.replace(/</g, "&lt;")}</p>
+                <p style="color:#6b7280;margin-top:20px">Sent automatically from the AI CallHub website chat widget.</p>
+            </div>
+        `;
+
+        await sendMail({
+            from: process.env.BREVO_SENDER_EMAIL || "toheedmalik321@gmail.com",
+            to: "toheedmalik321@gmail.com",
+            subject: "Website chat: " + displayName.replace(/</g, "&lt;"),
+            html
+        });
+
+        return res.json({ success: true, message: "Thanks! We'll get back to you soon." });
+
+    } catch (err) {
+
+        console.error("landing-chat error:", err);
+
+        return res.status(500).json({
+            success: false,
+            message: "Could not send your message. Please try again or email us directly."
+        });
+
+    }
+
 });
 // ==============================
 // API Routes

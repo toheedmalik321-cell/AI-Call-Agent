@@ -4,59 +4,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | AI CallHub</title>
+    <title>About — AI CallHub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/index-polish.css">
     <link rel="icon" href="/assets/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <style>
-        body {
-            font-family: 'Manrope', sans-serif;
-            background:
-                radial-gradient(ellipse 70% 40% at 50% 0%, #0f2930 0%, transparent 60%),
-                #04070c;
-        }
-        .font-display { font-family: 'Sora', sans-serif; }
-    </style>
 </head>
 
-<body class="min-h-screen text-slate-200 px-6">
+<body class="overflow-x-hidden">
+    <%- include("components/background") %>
+    <%- include("components/navbar") %>
 
-    <header class="mx-auto max-w-4xl py-8 flex items-center justify-between">
-        <a href="/" class="flex items-center gap-2">
-            <div class="w-9 h-9 rounded-xl grid place-items-center" style="background:linear-gradient(135deg,#2dd4bf,#10b981)">
-                <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" class="w-5 h-5"><path d="M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Z"/><path d="M21 11h-3a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-5Z"/><path d="M3 12V9a6 6 0 0 1 12 0v3"/><path d="M10 22h4"/><path d="M12 19v3"/></svg>
+    <main class="relative z-10 pt-32 pb-24 lg:pt-40 lg:pb-32">
+        <div class="mx-auto max-w-4xl px-4 lg:px-8">
+
+            <div class="inline-block text-xs uppercase tracking-widest text-teal-300 mb-4">About us</div>
+            <h1 class="font-display text-4xl lg:text-5xl font-bold mb-6">Why AI CallHub exists</h1>
+            <p class="text-slate-400 text-lg leading-relaxed mb-16 max-w-2xl">
+                Every missed call is a missed appointment, a lost lead, or a patient who went to a competitor. We built AI CallHub to make sure that never happens.
+            </p>
+
+            <div class="space-y-14">
+                <!-- The problem -->
+                <section>
+                    <h2 class="font-display text-2xl font-bold mb-4">The problem we started with</h2>
+                    <div class="space-y-4 text-slate-400 text-base leading-relaxed">
+                        <p>
+                            Small and mid-sized businesses — clinics, real estate agencies, home-service companies — lose real money to unanswered phones. A patient calls during lunch hour, gets voicemail, and books with the next practice. A homeowner calls a plumber at 7 PM, nobody answers, and they find someone else on Google.
+                        </p>
+                        <p>
+                            The reason isn't laziness — it's that the team is genuinely busy, after-hours staffing is expensive, and traditional phone systems just weren't built for always-on availability.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- What we built -->
+                <section>
+                    <h2 class="font-display text-2xl font-bold mb-4">What we built</h2>
+                    <div class="space-y-4 text-slate-400 text-base leading-relaxed">
+                        <p>
+                            AI CallHub is an AI voice agent platform: it answers calls, understands the caller naturally, and takes action — books an appointment, captures a lead, answers a question, or sends a follow-up. When a human is genuinely needed, it hands the call off with full context.
+                        </p>
+                        <p>
+                            It runs in the browser today, and we're building out telephony and SMS channels next. The dashboard shows every call — transcription, sentiment, lead score, and action taken — so you know exactly what happened.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- How it started -->
+                <section>
+                    <h2 class="font-display text-2xl font-bold mb-4">How it started</h2>
+                    <div class="space-y-4 text-slate-400 text-base leading-relaxed">
+                        <p>
+                            AI CallHub began as a final-year university project — an exploration of how far voice AI has come and whether it's good enough to handle real phone conversations. The answer, it turned out, was yes — with enough work on latency, interruption handling, and knowledge-base grounding.
+                        </p>
+                        <p>
+                            The initial version was a proof of concept: a browser-based call demo using Agora for real-time audio, OpenAI for understanding, and ElevenLabs for voice. It worked well enough that we kept building. What started as an academic exercise became something we genuinely believe small businesses need.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Where we are now -->
+                <section>
+                    <h2 class="font-display text-2xl font-bold mb-4">Where we are now</h2>
+                    <div class="space-y-4 text-slate-400 text-base leading-relaxed">
+                        <p>
+                            AI CallHub is in early access. It's free to use during 2026 while we build out the product and learn from how people actually use it. We're not a funded startup with a 50-person team — we're a small, hands-on project with a working product and a real roadmap.
+                        </p>
+                        <p>
+                            The next priorities: dedicated phone numbers, telephony hand-off to humans, outbound calling campaigns, and formal security certifications.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Team -->
+                <section>
+                    <h2 class="font-display text-2xl font-bold mb-6">The team</h2>
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div class="glass rounded-2xl p-6">
+                            <div class="w-14 h-14 rounded-full mb-4 grid place-items-center font-display font-bold text-lg" style="background:linear-gradient(135deg,#2dd4bf,#10b981)">TM</div>
+                            <div class="font-semibold text-lg mb-1">Toheed Malik</div>
+                            <div class="text-teal-300 text-sm mb-3">Founder & Developer</div>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                Built the full-stack app, voice pipeline, and dashboard. Focused on making AI phone calls work reliably for real businesses. Final-year project turned product.
+                            </p>
+                        </div>
+                        <div class="glass rounded-2xl p-6">
+                            <div class="w-14 h-14 rounded-full mb-4 grid place-items-center font-display font-bold text-lg" style="background:linear-gradient(135deg,#10b981,#fbbf24)">?</div>
+                            <div class="font-semibold text-lg mb-1">You, perhaps?</div>
+                            <div class="text-amber-300 text-sm mb-3">Looking for collaborators</div>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                AI CallHub is growing. If you're working on voice AI, telephony, or go-to-market and want to be part of this, <a href="/contact" class="text-teal-300 underline underline-offset-2">get in touch</a>.
+                            </p>
+                        </div>
+                    </div>
+                </section>
             </div>
-            <span class="font-display font-bold text-lg">AI CallHub</span>
-        </a>
-        <a href="/" class="text-sm text-slate-400 hover:text-white transition">← Back to home</a>
-    </header>
 
-    <main class="mx-auto max-w-4xl pb-24">
-        <h1 class="font-display text-4xl font-bold mb-6">About AI CallHub</h1>
-
-        <div class="space-y-8 text-base leading-relaxed text-slate-300">
-            <p>
-                AI CallHub started with a simple observation: small and mid-sized businesses lose real money to missed calls.
-                A patient calls after clinic hours, a customer rings while your team is busy, a lead goes to voicemail and never calls back.
-            </p>
-            <p>
-                We built AI CallHub so that every incoming call gets answered — by an AI voice agent that sounds natural, knows your business,
-                and can book a visit, capture a lead, or handle a support question in seconds. When a human is genuinely needed,
-                the call transfers with full context.
-            </p>
-            <p>
-                The platform is designed to be practical: set up a voice in minutes, train it on your own documents and FAQs,
-                connect your calendar and CRM, and get a dashboard that shows exactly what happened on every call.
-            </p>
-            <p>
-                AI CallHub is an ongoing project, and we're adding new capabilities all the time. If you have feedback or a use case
-                you'd like us to support, <a href="/contact" class="text-teal-300 hover:text-teal-200">we'd love to hear it</a>.
-            </p>
         </div>
     </main>
 
+    <%- include("components/footer") %>
 </body>
 
 </html>
