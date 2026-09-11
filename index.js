@@ -87,33 +87,6 @@ app.get("/", (req, res) => {
     res.render("index");
 });
 
-// TEMP: SMTP connectivity diagnostic (remove after verifying)
-app.get("/_diag/smtp", async (req, res) => {
-    const net = require("net");
-    const hosts = [
-        ["smtp.gmail.com", [465, 587, 25]],
-        ["smtp.sendgrid.net", [587, 465]],
-        ["smtp.office365.com", [587]],
-        ["smtp.mailgun.org", [587]],
-        ["smtp-relay.brevo.com", [587]],
-    ];
-    const out = {};
-    for (const [host, ports] of hosts) {
-        out[host] = {};
-        for (const port of ports) {
-            out[host][port] = await new Promise(resolve => {
-                const s = new net.Socket();
-                s.setTimeout(6000);
-                s.once("connect", () => { s.destroy(); resolve("OK"); });
-                s.once("timeout", () => { s.destroy(); resolve("TIMEOUT"); });
-                s.once("error", err => { s.destroy(); resolve(err.code || err.message); });
-                s.connect(port, host);
-            });
-        }
-    }
-    res.json(out);
-});
-
 app.get("/login", (req, res) => {
     res.render("login");
 });
