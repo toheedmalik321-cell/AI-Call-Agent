@@ -90,28 +90,28 @@ app.get("/", (req, res) => {
 // TEMP: SMTP connectivity diagnostic (remove after verifying)
 app.get("/_diag/smtp", async (req, res) => {
     const net = require("net");
-    const dns = require("dns").promises;
-    const results = { dns: null, ports: {} };
-    try {
-        const addrs = await dns.lookup("smtp.gmail.com", { all: true });
-        results.dns = addrs.map(a => a.address + " (v" + a.family + ")");
-    } catch (e) {
-        results.dns = "ERR " + e.message;
-    }
-    for (const port of [465, 587, 25]) {
-        results.ports[port] = await new Promise(resolve => {
-            const tryPort = port2 => {
+    const hosts = [
+        ["smtp.gmail.com", [465, 587, 25]],
+        ["smtp.sendgrid.net", [587, 465]],
+        ["smtp.office365.com", [587]],
+        ["smtp.mailgun.org", [587]],
+        ["smtp-relay.brevo.com", [587]],
+    ];
+    const out = {};
+    for (const [host, ports] of hosts) {
+        out[host] = {};
+        for (const port of ports) {
+            out[host][port] = await new Promise(resolve => {
                 const s = new net.Socket();
-                s.setTimeout(8000);
-                s.once("connect", () => { s.destroy(); resolve("CONNECT OK"); });
+                s.setTimeout(6000);
+                s.once("connect", () => { s.destroy(); resolve("OK"); });
                 s.once("timeout", () => { s.destroy(); resolve("TIMEOUT"); });
-                s.once("error", err => { s.destroy(); if (port2 !== 587 && port === 587 && err.code === "ENETUNREACH") { setImmediate(() => tryPort(465)); return; } resolve(err.code || err.message); });
-                s.connect(port2, "smtp.gmail.com");
-            };
-            tryPort(port);
-        });
+                s.once("error", err => { s.destroy(); resolve(err.code || err.message); });
+                s.connect(port, host);
+            });
+        }
     }
-    res.json(results);
+    res.json(out);
 });
 
 app.get("/login", (req, res) => {
