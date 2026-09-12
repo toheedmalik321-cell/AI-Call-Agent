@@ -366,8 +366,8 @@ document.getElementById("manageBtn").addEventListener("click", async () => {
         return;
     }
 
-    if (paymentMode === "paytabs") {
-        toast("PayTabs ka billing portal nahi hai — cancel ke liye 'Cancel' button use karo.");
+    if (paymentMode === "paytabs" || paymentMode === "safepay") {
+        toast("Is gateway ka billing portal nahi hai — cancel ke liye 'Cancel' button use karo.");
         return;
     }
 

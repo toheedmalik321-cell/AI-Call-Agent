@@ -5,7 +5,7 @@ const auth = require("../middlewares/auth");
 const User = require("../models/user");
 const plans = require("../config/plans");
 const stripe = require("../config/stripe");
-const paytabs = require("../config/paytabs");
+const safepay = require("../config/safepay");
 
 const BASE = process.env.APP_URL ||
     process.env.RENDER_EXTERNAL_URL ||
@@ -58,8 +58,8 @@ router.get("/api/subscription/status", auth, async (req, res) => {
 
     try {
 
-        if (!stripe && !paytabs.configured && PAYMENT_MODE !== "mock") {
-            return res.status(503).json({ success: false, message: "Payment gateway not configured. Add STRIPE_SECRET_KEY or PayTabs keys in .env" });
+        if (!stripe && !safepay.configured && PAYMENT_MODE !== "mock") {
+            return res.status(503).json({ success: false, message: "Payment gateway not configured. Add STRIPE_SECRET_KEY or Safepay keys in .env" });
         }
 
         const user = await User.findById(req.user.id);
@@ -68,29 +68,29 @@ router.get("/api/subscription/status", auth, async (req, res) => {
             return res.status(404).json({ success: false, message: "User not found" });
         }
 
-        // PayTabs: verify a pending checkout via /payment/query
-        // (authoritative, so the plans page works even if the callback was missed)
-        if (PAYMENT_MODE === "paytabs" && user.paytabsTranRef && user.paytabsPlan &&
+        // Safepay: verify a pending checkout via the tracker
+        // (authoritative, so the plans page works even if the webhook was missed)
+        if (PAYMENT_MODE === "safepay" && user.safepayTracker && user.safepayPlan &&
             user.subscriptionStatus !== "active") {
 
             try {
 
-                const result = await paytabs.queryTransaction(user.paytabsTranRef);
+                const result = await safepay.verifyTracker(user.safepayTracker);
 
                 if (result.approved) {
 
-                    user.plan = user.paytabsPlan;
+                    user.plan = user.safepayPlan;
                     user.subscriptionStatus = "active";
                     user.currentPeriodEnd = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
-                    user.paytabsCartId = "";
-                    user.paytabsTranRef = "";
-                    user.paytabsPlan = "";
+                    user.safepayTracker = "";
+                    user.safepayPlan = "";
+                    user.safepayAmount = 0;
                     await user.save();
 
                 }
 
             } catch (e) {
-                console.log("PayTabs query error:", e.message);
+                console.log("Safepay query error:", e.message);
             }
 
         }
@@ -233,39 +233,34 @@ router.post("/api/subscribe", auth, async (req, res) => {
 
         }
 
-        // PAYTABS gateway: hosted payment page (Pakistan-friendly)
-        if (PAYMENT_MODE === "paytabs") {
+        // SAFEPAY gateway: hosted payment page (Pakistan-friendly)
+        if (PAYMENT_MODE === "safepay") {
 
-            if (!paytabs.configured) {
-                return res.status(503).json({ success: false, message: "PayTabs not configured. Add PAYTABS_PROFILE_ID and PAYTABS_SERVER_KEY in .env" });
+            if (!safepay.configured) {
+                return res.status(503).json({ success: false, message: "Safepay not configured. Add SAFEPAY_SECRET_KEY and SAFEPAY_API_KEY in .env" });
             }
 
             try {
 
-                const reference = user._id.toString() + "-" + Date.now();
-                const callbacks = {
+                const orderId = user._id.toString() + "-" + Date.now();
+                const checkout = await safepay.createCheckout({
                     plan,
-                    reference,
-                    email: user.email,
-                    name: user.name,
-                    phone: user.phone,
-                    callbackUrl: process.env.PAYTABS_CALLBACK_URL || (BASE + "/api/paytabs/callback"),
-                    returnUrl: BASE + "/plans?success=1"
-                };
+                    orderId,
+                    redirectUrl: BASE + "/plans?success=1",
+                    cancelUrl: BASE + "/plans?cancel=1"
+                });
 
-                const page = await paytabs.createPaymentPage(callbacks);
-
-                user.paytabsCartId = reference;
-                user.paytabsTranRef = page.tran_ref;
-                user.paytabsPlan = plan.code;
+                user.safepayTracker = checkout.tracker;
+                user.safepayPlan = plan.code;
+                user.safepayAmount = checkout.expected_amount;
                 await user.save();
 
-                return res.json({ success: true, data: { url: page.redirect_url } });
+                return res.json({ success: true, data: { url: checkout.checkout_url } });
 
             } catch (err) {
 
                 console.log(err);
-                return res.status(502).json({ success: false, message: "PayTabs checkout failed: " + err.message });
+                return res.status(502).json({ success: false, message: "Safepay checkout failed: " + err.message });
 
             }
 
@@ -433,7 +428,7 @@ router.post("/api/subscription/cancel", auth, async (req, res) => {
 
     try {
 
-        if (!stripe && !paytabs.configured && PAYMENT_MODE !== "mock") {
+        if (!stripe && !safepay.configured && PAYMENT_MODE !== "mock") {
             return res.status(503).json({ success: false, message: "Payment gateway not configured" });
         }
 
@@ -455,9 +450,9 @@ router.post("/api/subscription/cancel", auth, async (req, res) => {
         user.subscriptionStatus = "none";
         user.stripeSubscriptionId = "";
         user.stripeSessionId = "";
-        user.paytabsCartId = "";
-        user.paytabsTranRef = "";
-        user.paytabsPlan = "";
+        user.safepayTracker = "";
+        user.safepayPlan = "";
+        user.safepayAmount = 0;
         user.currentPeriodEnd = undefined;
         await user.save();
 
@@ -593,15 +588,15 @@ module.exports = router;
 module.exports.stripeWebhook = stripeWebhook;
 
 // ==============================
-// PayTabs Callback (raw body required for signature)
-// PayTabs posts the transaction result here — we re-verify
-// with /payment/query before trusting anything.
+// Safepay Webhook (raw body required for signature)
+// Safepay posts payment events here. We re-verify the tracker and
+// amount/currency before activating anything.
 // ==============================
 
-const paytabsCallback = async (req, res) => {
+const safepayWebhook = async (req, res) => {
 
-    if (PAYMENT_MODE !== "paytabs" || !paytabs.configured) {
-        return res.status(503).send("PayTabs not configured");
+    if (PAYMENT_MODE !== "safepay" || !safepay.configured) {
+        return res.status(503).send("Safepay not configured");
     }
 
     const raw = req.body;
@@ -610,44 +605,67 @@ const paytabsCallback = async (req, res) => {
         return res.status(400).send("Empty body");
     }
 
-    const body = JSON.parse(raw.toString("utf8"));
+    let body;
 
-    const sigOk = paytabs.verifySignature(raw, req.headers.signature);
-
-    if (sigOk === false) {
-        return res.status(400).send("Signature mismatch");
+    try {
+        body = JSON.parse(raw.toString("utf8"));
+    } catch (e) {
+        return res.status(400).send("Invalid JSON");
     }
 
-    const tranRef = body.tran_ref;
+    const sigOk = safepay.verifyWebhookSignature(raw, req.headers["x-sfpy-signature"]);
 
-    if (!tranRef) {
-        return res.status(400).send("No tran_ref");
+    if (sigOk === false) {
+        return res.status(401).send("Invalid signature");
+    }
+
+    const data = body.data || {};
+
+    // Ignore non-payment / failed / intermediate events
+    if (!data || body.type !== "payment.succeeded" || data.state !== "TRACKER_ENDED") {
+        return res.status(200).json({ received: true });
+    }
+
+    const tracker = data.tracker;
+
+    if (!tracker) {
+        return res.status(200).json({ received: true });
     }
 
     try {
 
-        const result = await paytabs.queryTransaction(tranRef);
-        const user = await User.findOne({ paytabsTranRef: tranRef });
+        const user = await User.findOne({ safepayTracker: tracker });
 
-        if (user && result.approved && user.paytabsPlan) {
-            user.plan = user.paytabsPlan;
-            user.subscriptionStatus = "active";
-            user.currentPeriodEnd = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
-            user.paytabsCartId = "";
-            user.paytabsTranRef = "";
-            user.paytabsPlan = "";
-            await user.save();
+        if (user && user.safepayPlan) {
+
+            const paid = Number(data.amount);
+            const expected = user.safepayAmount;
+
+            if (paid && expected && paid === expected && data.currency === safepay.CURRENCY) {
+
+                user.plan = user.safepayPlan;
+                user.subscriptionStatus = "active";
+                user.currentPeriodEnd = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
+                user.safepayTracker = "";
+                user.safepayPlan = "";
+                user.safepayAmount = 0;
+                await user.save();
+
+            } else {
+                console.log("Safepay amount/currency mismatch:", { tracker, paid, expected, currency: data.currency });
+            }
+
         }
 
-        res.send("OK");
+        res.status(200).json({ received: true });
 
     } catch (err) {
 
-        console.log("PayTabs callback error:", err.message);
-        res.status(500).send("Error");
+        console.log("Safepay webhook error:", err.message);
+        res.status(500).json({ success: false, message: err.message });
 
     }
 
 };
 
-module.exports.paytabsCallback = paytabsCallback;
+module.exports.safepayWebhook = safepayWebhook;

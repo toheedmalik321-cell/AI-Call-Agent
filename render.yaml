@@ -56,9 +56,11 @@ services:
         sync: false
       - key: STRIPE_PUBLISHABLE_KEY
         sync: false
-      - key: PAYTABS_PROFILE_ID
+      - key: SAFEPAY_API_KEY
         sync: false
-      - key: PAYTABS_SERVER_KEY
+      - key: SAFEPAY_SECRET_KEY
+        sync: false
+      - key: SAFEPAY_WEBHOOK_SECRET
         sync: false
 
       # --- Painless defaults (can also be overridden in dashboard) ---
@@ -66,9 +68,9 @@ services:
         value: ""
       - key: PAYMENT_MODE
         value: mock
-      - key: PAYTABS_REGION
-        value: GLOBAL
-      - key: PAYTABS_CURRENCY
+      - key: SAFEPAY_ENV
+        value: sandbox
+      - key: SAFEPAY_CURRENCY
         value: USD
       - key: PORT
         value: 10000

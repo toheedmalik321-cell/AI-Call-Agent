@@ -75,11 +75,11 @@ app.post(
     subscriptionRoutes.stripeWebhook
 );
 
-// PayTabs callback also needs the RAW body for HMAC signature check
+// Safepay webhook needs the RAW body for HMAC signature check
 app.post(
-    "/api/paytabs/callback",
+    "/api/safepay/webhook",
     express.raw({ type: "*/*" }),
-    subscriptionRoutes.paytabsCallback
+    subscriptionRoutes.safepayWebhook
 );
 
 app.use(express.json());

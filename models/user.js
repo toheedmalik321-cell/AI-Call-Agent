@@ -79,20 +79,20 @@ const userSchema = new mongoose.Schema(
     default: ""
     },
 
-    // PayTabs (Pakistan-friendly hosted payment)
-    paytabsCartId: {
+    // Safepay (Pakistan-friendly hosted payment)
+    safepayTracker: {
     type: String,
     default: ""
     },
 
-    paytabsTranRef: {
+    safepayPlan: {
     type: String,
     default: ""
     },
 
-    paytabsPlan: {
-    type: String,
-    default: ""
+    safepayAmount: {
+    type: Number,
+    default: 0
     },
 
     currentPeriodEnd: {
