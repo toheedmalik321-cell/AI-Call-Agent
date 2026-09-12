@@ -56,11 +56,19 @@ services:
         sync: false
       - key: STRIPE_PUBLISHABLE_KEY
         sync: false
+      - key: PAYTABS_PROFILE_ID
+        sync: false
+      - key: PAYTABS_SERVER_KEY
+        sync: false
 
       # --- Painless defaults (can also be overridden in dashboard) ---
       - key: NGROK_URL
         value: ""
       - key: PAYMENT_MODE
         value: mock
+      - key: PAYTABS_REGION
+        value: GLOBAL
+      - key: PAYTABS_CURRENCY
+        value: USD
       - key: PORT
         value: 10000

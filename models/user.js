@@ -79,6 +79,22 @@ const userSchema = new mongoose.Schema(
     default: ""
     },
 
+    // PayTabs (Pakistan-friendly hosted payment)
+    paytabsCartId: {
+    type: String,
+    default: ""
+    },
+
+    paytabsTranRef: {
+    type: String,
+    default: ""
+    },
+
+    paytabsPlan: {
+    type: String,
+    default: ""
+    },
+
     currentPeriodEnd: {
     type: Date
     }

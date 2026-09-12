@@ -366,6 +366,11 @@ document.getElementById("manageBtn").addEventListener("click", async () => {
         return;
     }
 
+    if (paymentMode === "paytabs") {
+        toast("PayTabs ka billing portal nahi hai — cancel ke liye 'Cancel' button use karo.");
+        return;
+    }
+
     try {
 
         const res = await fetch("/api/subscription/portal", {

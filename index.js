@@ -75,6 +75,13 @@ app.post(
     subscriptionRoutes.stripeWebhook
 );
 
+// PayTabs callback also needs the RAW body for HMAC signature check
+app.post(
+    "/api/paytabs/callback",
+    express.raw({ type: "*/*" }),
+    subscriptionRoutes.paytabsCallback
+);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
