@@ -332,6 +332,23 @@ body:has(#startCall) button:focus-visible {
     }
 }
 
+/* ============ BLACK PREMIUM BOOST ============ */
+body:has(#startCall) #startCall {
+    animation: dashPulse 2.6s ease-in-out infinite;
+    box-shadow: 0 14px 36px rgba(16,185,129,0.32);
+}
+@keyframes dashPulse {
+    0%, 100% { box-shadow: 0 14px 36px rgba(16,185,129,0.3), 0 0 0 0 rgba(45,212,191,0.35); }
+    50%      { box-shadow: 0 18px 44px rgba(16,185,129,0.42), 0 0 0 10px rgba(45,212,191,0); }
+}
+body:has(#startCall) .sidebar-link.active {
+    box-shadow: inset 4px 0 16px -6px rgba(45,212,191,0.25);
+}
+body:has(#startCall) .stat-card {
+    backdrop-filter: blur(16px) saturate(1.1);
+    -webkit-backdrop-filter: blur(16px) saturate(1.1);
+}
+
 @media (prefers-reduced-motion: reduce) {
     body:has(#startCall) *,
     body:has(#startCall) *::before,

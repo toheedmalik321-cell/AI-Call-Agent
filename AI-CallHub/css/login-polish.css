@@ -263,6 +263,30 @@ body:has(#loginForm) input:focus-visible {
     }
 }
 
+/* ============ BLACK PREMIUM BOOST ============ */
+body:has(#loginForm) .glow {
+    box-shadow: 0 0 46px rgba(45,212,191,0.25), 0 18px 50px rgba(0,0,0,0.6);
+}
+body:has(#loginForm) .input-field:focus {
+    border-color: rgba(45,212,191,0.5);
+    box-shadow: 0 0 0 3px rgba(45,212,191,0.12), 0 0 24px rgba(45,212,191,0.12);
+}
+body:has(#loginForm) .login-btn {
+    box-shadow: 0 14px 36px rgba(16,185,129,0.28);
+}
+body:has(#loginForm) .login-btn:hover {
+    filter: brightness(1.08);
+    box-shadow: 0 18px 44px rgba(16,185,129,0.42);
+}
+body:has(#loginForm) .login-card {
+    background: rgba(4,8,16,0.75) !important;
+    backdrop-filter: blur(28px) saturate(1.15);
+    -webkit-backdrop-filter: blur(28px) saturate(1.15);
+}
+body:has(#loginForm) a {
+    transition: color 0.2s ease;
+}
+
 @media (prefers-reduced-motion: reduce) {
     body:has(#loginForm) *,
     body:has(#loginForm) *::before,
