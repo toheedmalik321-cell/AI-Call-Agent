@@ -684,3 +684,139 @@ body:has(#nav) .glass-hover:hover {
   body:has(#nav) .premium-cta-glow { animation: none; }
   body:has(#nav) .premium-headline-glow { animation: none; filter: drop-shadow(0 0 20px rgba(45,212,191,0.3)); }
 }
+
+/* ==================== MEGA v4 — GLASS REFLECTIONS + GLOW + SPEED ==================== */
+
+/* 1) Glass reflections — diagonal light streak sweeps across premium surfaces */
+body:has(#nav) .premium-glass,
+body:has(#nav) .premium-spotlight-card,
+body:has(#nav) .premium-contact-frame,
+body:has(#nav) .premium-faq-item {
+  position: relative;
+  overflow: hidden;
+}
+body:has(#nav) .premium-glass::after,
+body:has(#nav) .premium-spotlight-card::after,
+body:has(#nav) .premium-contact-frame::after,
+body:has(#nav) .premium-faq-item::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0; left: -30%;
+  width: 46%;
+  border-radius: inherit;
+  background: linear-gradient(115deg,
+    transparent 0%,
+    rgba(255,255,255,0.045) 42%,
+    rgba(255,255,255,0.10) 50%,
+    rgba(255,255,255,0.045) 58%,
+    transparent 100%);
+  transform: translateX(-170%) skewX(-12deg);
+  transition: transform 1.15s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  z-index: 1;
+}
+body:has(#nav) .premium-glass:hover::after,
+body:has(#nav) .premium-spotlight-card:hover::after,
+body:has(#nav) .premium-contact-frame:hover::after,
+body:has(#nav) .premium-faq-item:hover::after {
+  transform: translateX(430%) skewX(-12deg);
+}
+
+/* 2) MORE GLOW */
+
+/* Aurora burns hotter on pure black */
+body:has(#nav) .premium-aurora__blob--1 { background: radial-gradient(circle, rgba(45,212,191,0.50), transparent 70%); }
+body:has(#nav) .premium-aurora__blob--2 { background: radial-gradient(circle, rgba(16,185,129,0.38), transparent 70%); }
+body:has(#nav) .premium-aurora__blob--3 { background: radial-gradient(circle, rgba(56,189,248,0.34), transparent 70%); }
+body:has(#nav) .premium-aurora__blob--4 { background: radial-gradient(circle, rgba(45,212,191,0.32), transparent 70%); }
+
+/* Spotlight sweep wider + stronger */
+body:has(#nav) .premium-spotlight {
+  width: 900px; height: 900px;
+  opacity: 0.75;
+}
+
+/* Section headings glow harder */
+body:has(#nav) h2 { text-shadow: 0 0 34px rgba(16,185,129,0.28), 0 2px 4px rgba(0,0,0,0.4); }
+
+/* Dashboard: ambient glow under frame + stat number glow */
+body:has(#nav) .premium-dashboard-frame::after {
+  bottom: -20px; height: 60px;
+  background: radial-gradient(ellipse at center, rgba(45,212,191,0.24), transparent 70%);
+}
+body:has(#nav) #dashboard .glass .font-display {
+  text-shadow: 0 0 16px rgba(45,212,191,0.30);
+}
+
+/* Pricing: active card + price glow + popular badge hotter */
+body:has(#nav) .premium-price-active::before { opacity: 0.85; }
+body:has(#nav) #pricing .price { text-shadow: 0 0 30px rgba(45,212,191,0.4); }
+body:has(#nav) .premium-popular-badge {
+  box-shadow: 0 10px 40px rgba(45,212,191,0.55);
+}
+
+/* Primary CTA hover: full bloom */
+body:has(#nav) .premium-cta-glow:hover {
+  filter: brightness(1.1) saturate(1.12);
+}
+
+/* Icon wraps radiate */
+body:has(#nav) .icon-wrap {
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.10),
+    0 12px 30px -10px rgba(45,212,191,0.6),
+    0 0 22px rgba(45,212,191,0.12);
+}
+
+/* Contact CTA card outer bloom */
+body:has(#nav) #contact .premium-contact-frame {
+  box-shadow:
+    0 50px 110px -30px rgba(0,0,0,0.65),
+    0 0 90px rgba(45,212,191,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+/* 3) FASTER ANIMATIONS — tighter snappier motion everywhere */
+
+/* Hero load-in zips up */
+body:has(#nav) .premium-reveal { animation-duration: 0.65s; }
+@keyframes premiumUp {
+  from { opacity: 0; transform: translateY(18px); filter: blur(6px); }
+  to   { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+/* Aurora orbits quicker */
+body:has(#nav) .premium-aurora__blob--1 { animation-duration: 18s; }
+body:has(#nav) .premium-aurora__blob--2 { animation-duration: 23s; }
+body:has(#nav) .premium-aurora__blob--3 { animation-duration: 20s; }
+body:has(#nav) .premium-aurora__blob--4 { animation-duration: 26s; }
+
+/* Spotlight + headline + orb + orbit all faster */
+body:has(#nav) .premium-spotlight { animation-duration: 24s; }
+body:has(#nav) .premium-headline-glow {
+  animation-duration: 4s, 7s;
+}
+body:has(#nav) .premium-orb__glow { animation-duration: 3s; }
+body:has(#nav) .premium-orbit { animation-duration: 5.5s; }
+body:has(#nav) .premium-ai-badge__dot { animation-duration: 1.4s; }
+body:has(#nav) .premium-cta-glow { animation-duration: 2.4s; }
+body:has(#nav) .premium-popular-badge { animation-duration: 1.8s; }
+body:has(#nav) .premium-price-active::before { animation-duration: 2.8s; }
+body:has(#nav) .call-dot { animation-duration: 1.3s; }
+
+/* Trust marquee zips along */
+body:has(#nav) .marquee-track { animation-duration: 18s; }
+
+/* Reduced motion — covers every v4 layer too */
+@media (prefers-reduced-motion: reduce) {
+  body:has(#nav) .premium-glass::after,
+  body:has(#nav) .premium-spotlight-card::after,
+  body:has(#nav) .premium-contact-frame::after,
+  body:has(#nav) .premium-faq-item::after {
+    display: none;
+  }
+  body:has(#nav) .premium-reveal {
+    animation: none;
+    opacity: 1;
+  }
+}
