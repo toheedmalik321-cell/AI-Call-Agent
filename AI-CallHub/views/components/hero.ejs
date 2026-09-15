@@ -1,5 +1,8 @@
 ﻿<!-- HERO -->
 <section class="relative pt-16 pb-24 lg:pt-24 lg:pb-32">
+  <!-- Spotlight sweep behind hero -->
+  <div class="premium-spotlight" aria-hidden="true"></div>
+
   <div class="mx-auto max-w-7xl px-4 lg:px-8 relative z-10">
     <div class="grid lg:grid-cols-12 gap-12 items-center">
       <div class="lg:col-span-7" data-aos="fade-right">
@@ -10,19 +13,27 @@
         </div>
 
         <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.05] mb-6">
-          Your <span class="text-gradient">AI Call Center</span><br class="hidden sm:block"/>
+          Your <span class="premium-headline-glow">AI Call Center</span><br class="hidden sm:block"/>
           That Never Sleeps
         </h1>
+
+        <div class="mb-6">
+          <span class="premium-ai-badge">
+            <span class="premium-ai-badge__dot"></span>
+            AI-Powered
+          </span>
+        </div>
+
         <p class="text-slate-300/90 text-lg max-w-xl mb-8 leading-relaxed">
           Never miss a call again. Answer support questions, book appointments, qualify leads, and follow up automatically with human-like AI voice agents — available around the clock, even after hours and on weekends.
         </p>
 
         <div class="flex flex-wrap items-center gap-3 mb-10">
-          <a href="/register" class="btn-primary px-6 py-3.5 rounded-xl font-semibold text-white flex items-center gap-2">
+          <a href="/register" class="btn-primary premium-magnetic px-6 py-3.5 rounded-xl font-semibold text-white flex items-center gap-2">
             Start Free Trial
             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
-          <a href="/agora-call" class="btn-ghost px-6 py-3.5 rounded-xl font-semibold flex items-center gap-2">
+          <a href="/agora-call" class="btn-ghost premium-magnetic px-6 py-3.5 rounded-xl font-semibold flex items-center gap-2">
             <span class="w-8 h-8 rounded-full grid place-items-center" style="background:linear-gradient(135deg,#2dd4bf,#10b981)">
               <svg class="w-3.5 h-3.5 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             </span>
@@ -44,38 +55,45 @@
       </div>
  <!-- HERO VISUAL -->
       <div class="lg:col-span-5 relative" data-aos="fade-left" data-aos-delay="200">
-        <div class="relative aspect-square max-w-lg mx-auto">
+        <div class="relative aspect-square max-w-lg mx-auto premium-tilt" id="heroOrbTilt">
           <!-- Rings -->
           <div class="ring" style="width:100%;height:100%;top:0;left:0"></div>
           <div class="ring" style="width:100%;height:100%;top:0;left:0;animation-delay:1s"></div>
           <div class="ring" style="width:100%;height:100%;top:0;left:0;animation-delay:2s"></div>
 
-          <!-- Central orb -->
-          <div class="absolute inset-[18%] rounded-full glass grid place-items-center overflow-hidden cursor-pointer">
-            <div class="absolute inset-0" style="background:radial-gradient(circle at 30% 30%, rgba(16,185,129,0.4), transparent 60%)"></div>
-            <div class="relative text-center z-10">
-              <div class="wave mx-auto mb-3">
-                <span style="animation-delay:0s"></span>
-                <span style="animation-delay:.1s"></span>
-                <span style="animation-delay:.2s"></span>
-                <span style="animation-delay:.3s"></span>
-                <span style="animation-delay:.4s"></span>
-                <span style="animation-delay:.5s"></span>
-                <span style="animation-delay:.6s"></span>
-                <span style="animation-delay:.5s"></span>
-                <span style="animation-delay:.4s"></span>
-                <span style="animation-delay:.3s"></span>
-                <span style="animation-delay:.2s"></span>
-                <span style="animation-delay:.1s"></span>
-                <span style="animation-delay:0s"></span>
+          <!-- Central orb with glow + orbit -->
+          <div class="premium-orb">
+            <div class="premium-orb__glow"></div>
+            <div class="absolute inset-0 rounded-full glass grid place-items-center overflow-hidden cursor-pointer">
+              <div class="absolute inset-0" style="background:radial-gradient(circle at 30% 30%, rgba(16,185,129,0.4), transparent 60%)"></div>
+              <div class="relative text-center z-10">
+                <div class="wave mx-auto mb-3">
+                  <span style="animation-delay:0s"></span>
+                  <span style="animation-delay:.1s"></span>
+                  <span style="animation-delay:.2s"></span>
+                  <span style="animation-delay:.3s"></span>
+                  <span style="animation-delay:.4s"></span>
+                  <span style="animation-delay:.5s"></span>
+                  <span style="animation-delay:.6s"></span>
+                  <span style="animation-delay:.5s"></span>
+                  <span style="animation-delay:.4s"></span>
+                  <span style="animation-delay:.3s"></span>
+                  <span style="animation-delay:.2s"></span>
+                  <span style="animation-delay:.1s"></span>
+                  <span style="animation-delay:0s"></span>
+                </div>
+                <div class="text-xs text-slate-300">AI Agent</div>
+                <div class="text-2xl font-display font-bold">"Hi, how can I help?"</div>
               </div>
-              <div class="text-xs text-slate-300">AI Agent</div>
-              <div class="text-2xl font-display font-bold">"Hi, how can I help?"</div>
             </div>
+          </div>
+          <!-- Orbiting dot -->
+          <div class="premium-orbit">
+            <div class="premium-orbit__dot"></div>
           </div>
 
           <!-- Floating call cards -->
-          <div class="absolute top-2 -left-4 sm:left-0 glass rounded-2xl px-4 py-3 flex items-center gap-3 shadow-2xl cursor-pointer">
+          <div class="absolute top-2 -left-4 sm:left-0 glass rounded-2xl px-4 py-3 flex items-center gap-3 shadow-2xl cursor-pointer premium-float-card">
             <div class="w-9 h-9 rounded-full grid place-items-center" style="background:linear-gradient(135deg,#fbbf24,#2dd4bf)">
               <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
             </div>
@@ -85,7 +103,7 @@
             </div>
           </div>
 
-          <div class="absolute top-1/2 -right-4 sm:right-0 glass rounded-2xl px-4 py-3 flex items-center gap-3 shadow-2xl cursor-pointer">
+          <div class="absolute top-1/2 -right-4 sm:right-0 glass rounded-2xl px-4 py-3 flex items-center gap-3 shadow-2xl cursor-pointer premium-float-card">
             <div class="w-9 h-9 rounded-full grid place-items-center" style="background:linear-gradient(135deg,#10b981,#fbbf24)">
               <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2v20M2 12h20"/></svg>
             </div>
@@ -95,7 +113,7 @@
             </div>
           </div>
 
-          <div class="absolute bottom-4 left-6 glass rounded-2xl px-4 py-3 flex items-center gap-3 shadow-2xl cursor-pointer">
+          <div class="absolute bottom-4 left-6 glass rounded-2xl px-4 py-3 flex items-center gap-3 shadow-2xl cursor-pointer premium-float-card">
             <div class="w-9 h-9 rounded-full grid place-items-center" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">
               <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
             </div>
@@ -105,7 +123,7 @@
             </div>
           </div>
 
-          <div class="absolute bottom-20 right-10 glass rounded-2xl px-4 py-3 hidden sm:flex items-center gap-3 shadow-2xl cursor-pointer">
+          <div class="absolute bottom-20 right-10 glass rounded-2xl px-4 py-3 hidden sm:flex items-center gap-3 shadow-2xl cursor-pointer premium-float-card">
             <div class="flex items-center gap-1">
               <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 call-dot"></span>
               <span class="text-xs text-slate-300">Live · 247 calls</span>
