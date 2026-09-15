@@ -5,10 +5,10 @@
 
 body:has(#nav) {
     background:
-        radial-gradient(circle at 12% 4%, rgba(16, 185, 129, 0.14), transparent 36%),
-        radial-gradient(circle at 90% 14%, rgba(45, 212, 191, 0.12), transparent 32%),
-        radial-gradient(circle at 50% 100%, rgba(251, 191, 36, 0.05), transparent 38%),
-        linear-gradient(180deg, #05080f 0%, #04070c 55%, #04070c 100%);
+        radial-gradient(circle at 12% 4%, rgba(16, 185, 129, 0.15), transparent 36%),
+        radial-gradient(circle at 90% 14%, rgba(45, 212, 191, 0.14), transparent 32%),
+        radial-gradient(circle at 50% 100%, rgba(56, 189, 248, 0.05), transparent 38%),
+        linear-gradient(180deg, #04070c 0%, #020409 55%, #00020a 100%);
 }
 
 body:has(#nav)::before {
@@ -17,7 +17,7 @@ body:has(#nav)::before {
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    background: radial-gradient(ellipse 90% 70% at 50% 0%, transparent 55%, rgba(5, 6, 15, 0.6) 100%);
+    background: radial-gradient(ellipse 90% 70% at 50% 0%, transparent 45%, rgba(0, 1, 8, 0.85) 100%);
 }
 
 body:has(#nav) .glow-blur {

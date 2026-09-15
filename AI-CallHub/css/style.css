@@ -5,7 +5,7 @@
     --bg-2:#081018;
     --primary:#2dd4bf;
     --accent:#10b981;
-    --accent-2:#fbbf24;
+    --accent-2:#38bdf8;
     --text:#e6e8ef;
     --muted:#8b8fa7;
     --border:rgba(255,255,255,0.08);
@@ -43,7 +43,7 @@
 
   /* Gradient text */
   .text-gradient{
-    background: linear-gradient(90deg,#2dd4bf 0%,#34d399 45%,#fbbf24 100%);
+    background: linear-gradient(90deg,#2dd4bf 0%,#34d399 40%,#38bdf8 100%);
     -webkit-background-clip:text; background-clip:text; color:transparent;
     background-size: 200% 100%;
     animation: shine 6s linear infinite;
@@ -108,7 +108,7 @@
 
   /* Pricing */
   .price-card-active{
-    background: linear-gradient(180deg, rgba(16,185,129,0.12), rgba(251,191,36,0.06));
+    background: linear-gradient(180deg, rgba(16,185,129,0.14), rgba(56,189,248,0.06));
     border-color: rgba(45,212,191,0.55);
     box-shadow: 0 30px 80px -30px rgba(16,185,129,0.45);
   }

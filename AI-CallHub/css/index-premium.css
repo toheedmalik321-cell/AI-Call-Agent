@@ -37,7 +37,7 @@ body:has(#nav) .premium-aurora__blob--2 {
 body:has(#nav) .premium-aurora__blob--3 {
   width: 650px; height: 650px;
   bottom: -18%; left: 28%;
-  background: radial-gradient(circle, rgba(251,191,36,0.14), transparent 70%);
+  background: radial-gradient(circle, rgba(56,189,248,0.16), transparent 70%);
   animation-delay: -16s;
   animation-duration: 32s;
 }
@@ -80,7 +80,7 @@ body:has(#nav) .premium-spotlight {
     transparent 80deg,
     rgba(16,185,129,0.04) 160deg,
     transparent 200deg,
-    rgba(251,191,36,0.03) 280deg,
+    rgba(56,189,248,0.05) 280deg,
     transparent 360deg
   );
   border-radius: 50%;
@@ -153,7 +153,7 @@ body:has(#nav) .premium-nav-link:focus::after {
 
 /* Animated gradient headline */
 body:has(#nav) .premium-headline-glow {
-  background: linear-gradient(90deg, #2dd4bf 0%, #34d399 30%, #fbbf24 60%, #2dd4bf 100%);
+  background: linear-gradient(90deg, #2dd4bf 0%, #34d399 35%, #38bdf8 70%, #2dd4bf 100%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -354,7 +354,7 @@ body:has(#nav) .premium-dashboard-frame .gradient-border::before {
   position: absolute;
   inset: -1px;
   border-radius: inherit;
-  background: linear-gradient(135deg, rgba(45,212,191,0.3), rgba(16,185,129,0.1), rgba(251,191,36,0.08));
+  background: linear-gradient(135deg, rgba(45,212,191,0.3), rgba(16,185,129,0.1), rgba(56,189,248,0.1));
   z-index: -1;
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -373,7 +373,7 @@ body:has(#nav) .premium-price-active::before {
   position: absolute;
   inset: -2px;
   border-radius: inherit;
-  background: linear-gradient(135deg, #2dd4bf, #10b981, #fbbf24, #2dd4bf);
+  background: linear-gradient(135deg, #2dd4bf, #38bdf8, #10b981, #2dd4bf);
   background-size: 300% 300%;
   animation: priceBorderGlow 4s ease infinite;
   z-index: -1;
@@ -432,7 +432,7 @@ body:has(#nav) .premium-footer-hairline::before {
   position: absolute;
   top: 0; left: 5%; right: 5%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(45,212,191,0.25), rgba(251,191,36,0.1), transparent);
+  background: linear-gradient(90deg, transparent, rgba(45,212,191,0.25), rgba(56,189,248,0.12), transparent);
   pointer-events: none;
 }
 body:has(#nav) footer {
@@ -473,4 +473,123 @@ body:has(#nav) footer::after {
   body:has(#nav) .premium-tilt { transform: none !important; }
   body:has(#nav) .premium-magnetic { transform: none !important; }
   body:has(#nav) .premium-float-card:hover { transform: none; }
+}
+
+/* ==================== BLACK PREMIUM OVERLAY + 8D EFFECTS ==================== */
+
+/* Scroll progress beam */
+body:has(#nav) .premium-scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  z-index: 200;
+  background: linear-gradient(90deg, #2dd4bf, #38bdf8, #2dd4bf);
+  box-shadow: 0 0 14px rgba(45, 212, 191, 0.65);
+  width: 0%;
+  pointer-events: none;
+}
+
+/* Cursor aura glow ("8D" depth) */
+body:has(#nav) .premium-cursor-glow {
+  position: fixed;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(45,212,191,0.10), rgba(56,189,248,0.05) 45%, transparent 70%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 120;
+  transform: translate3d(-50%, -50%, 0) scale(0);
+  transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.3s ease;
+  opacity: 0;
+}
+body:has(#nav) .premium-cursor-glow.is-active {
+  transform: translate3d(-50%, -50%, 0) scale(1);
+  opacity: 1;
+}
+
+/* Landing-only deeper, richer glass */
+body:has(#nav) .glass {
+  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.014));
+  border-color: rgba(255,255,255,0.10);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+/* Hero load-in reveal */
+body:has(#nav) .premium-reveal {
+  opacity: 0;
+  animation: premiumUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes premiumUp {
+  from { opacity: 0; transform: translateY(26px); filter: blur(8px); }
+  to   { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+/* Neon glow for key words */
+body:has(#nav) .premium-neon {
+  text-shadow:
+    0 0 12px rgba(45,212,191,0.55),
+    0 0 42px rgba(56,189,248,0.30);
+}
+
+/* Luxury hover on feature cards */
+body:has(#nav) .glass-hover:hover {
+  box-shadow:
+    0 30px 70px -24px rgba(16,185,129,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.10),
+    0 0 34px rgba(56,189,248,0.10);
+}
+
+/* Active nav link (set by premium.js) */
+body:has(#nav) .premium-nav-link.active {
+  color: #fff;
+}
+body:has(#nav) .premium-nav-link.active::after {
+  width: 100%;
+  background: linear-gradient(90deg, #2dd4bf, #38bdf8);
+}
+
+/* Brighter aurora so it reads on pure black */
+body:has(#nav) .premium-aurora__blob--1 { background: radial-gradient(circle, rgba(45,212,191,0.34), transparent 70%); }
+body:has(#nav) .premium-aurora__blob--2 { background: radial-gradient(circle, rgba(16,185,129,0.26), transparent 70%); }
+body:has(#nav) .premium-aurora__blob--3 { background: radial-gradient(circle, rgba(56,189,248,0.22), transparent 70%); }
+body:has(#nav) .premium-aurora__blob--4 {
+  width: 520px; height: 520px;
+  top: 45%; right: -6%;
+  background: radial-gradient(circle, rgba(45,212,191,0.20), transparent 70%);
+}
+
+/* Parallax anchor */
+body:has(#nav) .premium-parallax {
+  will-change: transform;
+}
+
+/* Overline — fresh cyan */
+body:has(#nav) .premium-overline {
+  color: #7dd3fc;
+}
+body:has(#nav) .premium-overline__dot {
+  background: #38bdf8;
+  box-shadow: 0 0 10px rgba(56,189,248,0.8);
+}
+
+/* Section heading subtle glow */
+body:has(#nav) h2 {
+  text-shadow: 0 0 26px rgba(16,185,129,0.18);
+}
+
+/* Reduced motion — includes new layers */
+@media (prefers-reduced-motion: reduce) {
+  body:has(#nav) .premium-reveal {
+    animation: none;
+    opacity: 1;
+  }
+  body:has(#nav) .premium-aurora__blob--4 {
+    animation: none !important;
+  }
+}
+
+@media (hover: none) {
+  body:has(#nav) .premium-cursor-glow {
+    display: none;
+  }
 }
