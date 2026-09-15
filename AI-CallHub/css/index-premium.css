@@ -442,8 +442,8 @@ body:has(#nav) footer::after {
   content: '';
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  height: 200px;
-  background: linear-gradient(to top, rgba(4,7,12,0.8), transparent);
+  height: 260px;
+  background: linear-gradient(to top, rgba(0,0,0,0.88), transparent);
   pointer-events: none;
   z-index: 0;
 }
@@ -492,9 +492,9 @@ body:has(#nav) .premium-scroll-progress {
 /* Cursor aura glow ("8D" depth) */
 body:has(#nav) .premium-cursor-glow {
   position: fixed;
-  width: 320px; height: 320px;
+  width: 420px; height: 420px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(45,212,191,0.10), rgba(56,189,248,0.05) 45%, transparent 70%);
+  background: radial-gradient(circle, rgba(45,212,191,0.12), rgba(56,189,248,0.06) 45%, transparent 70%);
   mix-blend-mode: screen;
   pointer-events: none;
   z-index: 120;
@@ -507,11 +507,12 @@ body:has(#nav) .premium-cursor-glow.is-active {
   opacity: 1;
 }
 
-/* Landing-only deeper, richer glass */
+/* Landing-only deeper, richer glass — pure black base */
 body:has(#nav) .glass {
-  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.014));
-  border-color: rgba(255,255,255,0.10);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+  background: linear-gradient(180deg, rgba(255,255,255,0.042), rgba(255,255,255,0.012) 60%, rgba(255,255,255,0.02));
+  background-color: rgba(3, 5, 12, 0.62);
+  border-color: rgba(255,255,255,0.08);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
 }
 
 /* Hero load-in reveal */
@@ -592,4 +593,94 @@ body:has(#nav) h2 {
   body:has(#nav) .premium-cursor-glow {
     display: none;
   }
+}
+
+/* ==================== BLACK PREMIUM v3 — BOLDER ENHANCEMENTS ==================== */
+
+/* Hero primary CTA — breathing halo */
+body:has(#nav) .premium-cta-glow {
+  animation: ctaBreathe 3.2s ease-in-out infinite;
+  border-radius: 0.9rem;
+}
+@keyframes ctaBreathe {
+  0%, 100% { box-shadow: 0 14px 34px rgba(16,185,129,0.22), 0 0 0 0 rgba(45,212,191,0.35); }
+  50%      { box-shadow: 0 18px 44px rgba(16,185,129,0.32), 0 0 0 9px rgba(45,212,191,0.0); }
+}
+
+/* Ambient backlight hugging the hero scene */
+body:has(#nav) section:first-of-type {
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,0.02);
+}
+
+/* Aurora: unique drift per blob so layers never move in sync */
+body:has(#nav) .premium-aurora__blob--3 {
+  animation-name: auroraDrift3;
+}
+@keyframes auroraDrift3 {
+  0%   { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(-80px, 40px) scale(1.12); }
+  66%  { transform: translate(40px, -50px) scale(0.94); }
+  100% { transform: translate(-30px, 30px) scale(1.04); }
+}
+body:has(#nav) .premium-aurora__blob--4 {
+  animation-name: auroraDrift4;
+}
+@keyframes auroraDrift4 {
+  0%   { transform: translate(0, 0) scale(1); }
+  25%  { transform: translate(-50px, -60px) scale(1.1); }
+  50%  { transform: translate(30px, -100px) scale(1.16); }
+  75%  { transform: translate(60px, -40px) scale(1.05); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+body:has(#nav) .premium-aurora__blob--4 {
+  animation-duration: 38s;
+}
+
+/* Aurora base reads harder against pure black */
+body:has(#nav) .premium-aurora__blob--1 { background: radial-gradient(circle, rgba(45,212,191,0.40), transparent 70%); }
+body:has(#nav) .premium-aurora__blob--2 { background: radial-gradient(circle, rgba(16,185,129,0.30), transparent 70%); }
+body:has(#nav) .premium-aurora__blob--3 { background: radial-gradient(circle, rgba(56,189,248,0.26), transparent 70%); }
+body:has(#nav) .premium-aurora__blob--4 { background: radial-gradient(circle, rgba(45,212,191,0.24), transparent 70%); }
+@keyframes auroraDrift {
+  0%   { opacity: 0.55; transform: translate(0, 0) scale(1); }
+  25%  { opacity: 0.65; transform: translate(40px, -30px) scale(1.08); }
+  50%  { opacity: 0.5;  transform: translate(-20px, 25px) scale(0.95); }
+  75%  { opacity: 0.62; transform: translate(30px, 15px) scale(1.05); }
+  100% { opacity: 0.55; transform: translate(-10px, -20px) scale(1); }
+}
+
+/* Scroll beam — thicker + brighter */
+body:has(#nav) .premium-scroll-progress {
+  height: 4px;
+  box-shadow: 0 0 18px rgba(45,212,191,0.85), 0 0 34px rgba(56,189,248,0.4);
+}
+
+/* Headline: slow hue drift on top of shimmer */
+body:has(#nav) .premium-headline-glow {
+  animation: headlineShimmer 6s ease-in-out infinite, headlineHue 10s linear infinite;
+}
+@keyframes headlineHue {
+  0%, 100% { filter: drop-shadow(0 0 20px rgba(45,212,191,0.3)) hue-rotate(0deg); }
+  50%      { filter: drop-shadow(0 0 26px rgba(56,189,248,0.35)) hue-rotate(18deg); }
+}
+
+/* Dashboard frame — floats deeper in the void */
+body:has(#nav) .premium-dashboard-frame::after {
+  background: radial-gradient(ellipse at center, rgba(45,212,191,0.16), transparent 70%);
+  filter: blur(18px);
+}
+
+/* Glass hover: lift + teal edge blooms harder */
+body:has(#nav) .glass-hover:hover {
+  box-shadow:
+    0 34px 80px -26px rgba(16,185,129,0.55),
+    inset 0 1px 0 rgba(255,255,255,0.10),
+    0 0 40px rgba(56,189,248,0.12);
+  border-color: rgba(45,212,191,0.38);
+}
+
+/* Reduced motion covers new v3 layers */
+@media (prefers-reduced-motion: reduce) {
+  body:has(#nav) .premium-cta-glow { animation: none; }
+  body:has(#nav) .premium-headline-glow { animation: none; filter: drop-shadow(0 0 20px rgba(45,212,191,0.3)); }
 }

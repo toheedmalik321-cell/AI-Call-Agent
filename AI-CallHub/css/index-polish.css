@@ -1,14 +1,16 @@
 ﻿/*
- * AI CallHub â€” Landing Page (index) UI Polish
+ * AI CallHub — Landing Page (index) UI Polish
  * Visual-only layer. Existing index.ejs includes, components, AOS, and JS behavior stay unchanged.
  */
 
+html { scroll-behavior: smooth; }
+
 body:has(#nav) {
     background:
-        radial-gradient(circle at 12% 4%, rgba(16, 185, 129, 0.15), transparent 36%),
-        radial-gradient(circle at 90% 14%, rgba(45, 212, 191, 0.14), transparent 32%),
-        radial-gradient(circle at 50% 100%, rgba(56, 189, 248, 0.05), transparent 38%),
-        linear-gradient(180deg, #04070c 0%, #020409 55%, #00020a 100%);
+        radial-gradient(circle at 12% 4%, rgba(16, 185, 129, 0.11), transparent 36%),
+        radial-gradient(circle at 90% 14%, rgba(45, 212, 191, 0.09), transparent 32%),
+        radial-gradient(circle at 50% 100%, rgba(56, 189, 248, 0.03), transparent 38%),
+        linear-gradient(180deg, #020408 0%, #010306 55%, #000000 100%);
 }
 
 body:has(#nav)::before {
@@ -17,23 +19,23 @@ body:has(#nav)::before {
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    background: radial-gradient(ellipse 90% 70% at 50% 0%, transparent 45%, rgba(0, 1, 8, 0.85) 100%);
+    background: radial-gradient(ellipse 90% 70% at 50% 0%, transparent 42%, rgba(0, 1, 5, 0.92) 100%);
 }
 
 body:has(#nav) .glow-blur {
-    opacity: 0.55;
+    opacity: 0.36;
 }
 
 /* =========================== NAVBAR =========================== */
 
 body:has(#nav) #nav {
     background:
-        linear-gradient(145deg, rgba(30, 41, 59, 0.55), rgba(15, 23, 42, 0.45)),
-        rgba(15, 23, 42, 0.6);
-    border: 1px solid rgba(148, 163, 184, 0.14);
+        linear-gradient(145deg, rgba(14, 22, 38, 0.7), rgba(8, 14, 28, 0.75)),
+        rgba(6, 10, 20, 0.8);
+    border: 1px solid rgba(148, 163, 184, 0.09);
     box-shadow:
-        0 18px 45px rgba(0, 0, 0, 0.25),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        0 18px 50px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 body:has(#nav) #nav::after {
@@ -86,13 +88,13 @@ body:has(#nav) section:first-of-type [class*="rounded-full"].glass {
 
 body:has(#nav) section:first-of-type .rounded-full.glass {
     background:
-        linear-gradient(145deg, rgba(30, 41, 59, 0.72), rgba(15, 23, 42, 0.58)),
-        rgba(15, 23, 42, 0.6);
-    border-color: rgba(148, 163, 184, 0.18);
+        linear-gradient(145deg, rgba(14, 22, 40, 0.75), rgba(6, 10, 22, 0.8)),
+        rgba(4, 8, 18, 0.82);
+    border-color: rgba(148, 163, 184, 0.10);
     box-shadow:
-        0 30px 80px rgba(0, 0, 0, 0.35),
-        inset 0 1px 0 rgba(255, 255, 255, 0.06),
-        0 0 70px rgba(45, 212, 191, 0.16);
+        0 30px 80px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04),
+        0 0 70px rgba(45, 212, 191, 0.12);
 }
 
 body:has(#nav) section:first-of-type .glass.rounded-2xl {
@@ -115,7 +117,7 @@ body:has(#nav) .btn-primary {
     overflow: hidden;
     background: linear-gradient(135deg, #10b981, #2dd4bf);
     box-shadow:
-        0 14px 36px rgba(16, 185, 129, 0.28),
+        0 14px 36px rgba(16, 185, 129, 0.20),
         inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
 
@@ -174,8 +176,8 @@ body:has(#nav) .text-slate-400 {
 
 body:has(#nav) .glass-hover {
     background:
-        linear-gradient(145deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015)),
-        rgba(7, 11, 23, 0.35);
+        linear-gradient(145deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)),
+        rgba(4, 7, 15, 0.55);
 }
 
 body:has(#nav) .glass-hover:hover {
@@ -213,12 +215,12 @@ body:has(#nav) #dashboard .absolute[class*="-inset-"] {
 
 body:has(#nav) #dashboard .glass.rounded-2xl.overflow-hidden {
     background:
-        linear-gradient(145deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.5)),
-        rgba(7, 11, 23, 0.5);
-    border-color: rgba(148, 163, 184, 0.16);
+        linear-gradient(145deg, rgba(12, 20, 36, 0.72), rgba(6, 10, 20, 0.78)),
+        rgba(4, 8, 16, 0.8);
+    border-color: rgba(148, 163, 184, 0.10);
     box-shadow:
-        0 40px 90px rgba(0, 0, 0, 0.45),
-        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+        0 40px 90px rgba(0, 0, 0, 0.55),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 body:has(#nav) #dashboard .glass.rounded-xl.p-3 {
@@ -238,19 +240,19 @@ body:has(#nav) #dashboard .glass.rounded-xl p {
 /* =========================== PRICING =========================== */
 
 body:has(#nav) #billingToggle {
-    border: 1px solid rgba(148, 163, 184, 0.16);
+    border: 1px solid rgba(148, 163, 184, 0.10);
     background:
-        linear-gradient(145deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.5)),
-        rgba(15, 23, 42, 0.6);
+        linear-gradient(145deg, rgba(14, 22, 38, 0.7), rgba(8, 14, 28, 0.75)),
+        rgba(6, 10, 20, 0.8);
     box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.05),
-        0 12px 34px rgba(0, 0, 0, 0.28);
+        inset 0 1px 0 rgba(255, 255, 255, 0.04),
+        0 12px 34px rgba(0, 0, 0, 0.35);
 }
 
 body:has(#nav) #pricing .glass {
     background:
-        linear-gradient(145deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015)),
-        rgba(7, 11, 23, 0.4);
+        linear-gradient(145deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.008)),
+        rgba(4, 7, 15, 0.5);
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
@@ -262,10 +264,10 @@ body:has(#nav) #pricing .glass:not(.price-card-active):hover {
 
 body:has(#nav) .price-card-active {
     background:
-        linear-gradient(145deg, rgba(16, 185, 129, 0.16), rgba(45, 212, 191, 0.08)),
-        rgba(15, 23, 42, 0.55);
+        linear-gradient(145deg, rgba(16, 185, 129, 0.16), rgba(45, 212, 191, 0.09)),
+        rgba(6, 10, 20, 0.75);
     border-color: rgba(16, 185, 129, 0.5);
-    box-shadow: 0 34px 90px -30px rgba(16, 185, 129, 0.55);
+    box-shadow: 0 34px 90px -30px rgba(16, 185, 129, 0.5);
 }
 
 body:has(#nav) .price-card-active .absolute {
@@ -284,10 +286,10 @@ body:has(#nav) #pricing ul li svg {
 /* =========================== FAQ =========================== */
 
 body:has(#nav) #faq details {
-    border: 1px solid rgba(148, 163, 184, 0.14);
+    border: 1px solid rgba(148, 163, 184, 0.10);
     background:
-        linear-gradient(145deg, rgba(30, 41, 59, 0.4), rgba(15, 23, 42, 0.32)),
-        rgba(7, 11, 23, 0.45);
+        linear-gradient(145deg, rgba(13, 20, 36, 0.6), rgba(6, 10, 20, 0.65)),
+        rgba(4, 7, 15, 0.6);
     border-radius: 1rem;
     transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
@@ -324,21 +326,21 @@ body:has(#nav) #faq .faq-chevron {
 
 body:has(#nav) #contact .glass.rounded-3xl {
     background:
-        linear-gradient(145deg, rgba(30, 41, 59, 0.62), rgba(15, 23, 42, 0.5)),
-        rgba(7, 11, 23, 0.55);
-    border-color: rgba(148, 163, 184, 0.16);
+        linear-gradient(145deg, rgba(13, 20, 36, 0.72), rgba(6, 10, 20, 0.78)),
+        rgba(4, 8, 16, 0.8);
+    border-color: rgba(148, 163, 184, 0.10);
     box-shadow:
-        0 40px 90px rgba(0, 0, 0, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+        0 40px 90px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 body:has(#nav) #contact form input,
 body:has(#nav) #contact form textarea {
     border-radius: 0.8rem;
-    border: 1px solid rgba(148, 163, 184, 0.16);
+    border: 1px solid rgba(148, 163, 184, 0.12);
     background:
-        linear-gradient(145deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015)),
-        rgba(7, 11, 23, 0.55);
+        linear-gradient(145deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.008)),
+        rgba(4, 8, 16, 0.65);
     color: #f8fafc;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
     transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
@@ -390,9 +392,9 @@ body:has(#nav) footer ul a:hover::after {
 
 body:has(#nav) #chatPanel {
     background:
-        linear-gradient(145deg, rgba(30, 41, 59, 0.68), rgba(15, 23, 42, 0.55)),
-        rgba(7, 11, 23, 0.6);
-    border-color: rgba(148, 163, 184, 0.16);
+        linear-gradient(145deg, rgba(13, 20, 36, 0.7), rgba(6, 10, 20, 0.75)),
+        rgba(4, 8, 16, 0.8);
+    border-color: rgba(148, 163, 184, 0.10);
 }
 
 body:has(#nav) #chatInput {
