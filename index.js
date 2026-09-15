@@ -5,6 +5,7 @@ const express = require("express");
 const path = require("path");
 const fs = require("fs");
 const morgan = require("morgan");
+const compression = require("compression");
 
 const connectDB = require("./config/db");
 
@@ -47,6 +48,13 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "AI-CallHub", "views"));
 
 // ==============================
+// Perf / Security Basics
+// ==============================
+
+app.disable("x-powered-by");
+app.set("trust proxy", 1); // Render/LB proxied HTTPS
+
+// ==============================
 // Ensure uploads directory exists (Render/cloud has no persistent filesystem)
 // ==============================
 
@@ -56,13 +64,15 @@ if (!fs.existsSync(UPLOADS_DIR)) {
 }
 
 // ==============================
-// Static Files
+// Static Files (cached + etag'd)
 // ==============================
 
-app.use("/css", express.static(path.join(__dirname, "AI-CallHub/css")));
-app.use("/js", express.static(path.join(__dirname, "AI-CallHub/js")));
-app.use("/assets", express.static(path.join(__dirname, "AI-CallHub/assets")));
-app.use("/libs", express.static(path.join(__dirname, "AI-CallHub/libs")));
+const ONE_MIN = 60 * 1000;
+
+app.use("/css", express.static(path.join(__dirname, "AI-CallHub/css"), { maxAge: 15 * ONE_MIN, etag: true }));
+app.use("/js", express.static(path.join(__dirname, "AI-CallHub/js"), { maxAge: 15 * ONE_MIN, etag: true }));
+app.use("/assets", express.static(path.join(__dirname, "AI-CallHub/assets"), { maxAge: 7 * 24 * 3600 * 1000, etag: true }));
+app.use("/libs", express.static(path.join(__dirname, "AI-CallHub/libs"), { maxAge: 15 * ONE_MIN, etag: true }));
 
 // ==============================
 // Middleware
@@ -85,7 +95,23 @@ app.post(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// gzip every text response (HTML/CSS/JS/JSON/XML)
+app.use(compression());
+
 app.use(morgan("dev"));
+
+// ==============================
+// Security Headers
+// ==============================
+
+app.use((req, res, next) => {
+    res.setHeader("X-Content-Type-Options", "nosniff");
+    res.setHeader("X-Frame-Options", "SAMEORIGIN");
+    res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+    res.setHeader("Permissions-Policy", "camera=(), microphone=(self), geolocation=()");
+    res.setHeader("X-XSS-Protection", "0");
+    next();
+});
 
 // ==============================
 // EJS Pages
@@ -199,6 +225,38 @@ app.get("/security", (req, res) => {
 });
 app.get("/blog", (req, res) => {
     res.render("blog");
+});
+
+// ==============================
+// SEO: robots + sitemap
+// ==============================
+
+app.get("/robots.txt", (req, res) => {
+    res.type("text/plain").send(
+        "User-agent: *\n" +
+        "Allow: /$\n" +
+        "Disallow: /api/\n" +
+        "Disallow: /login\n" +
+        "Disallow: /register\n" +
+        "Disallow: /dashboard\n" +
+        "Disallow: /agents\n" +
+        "Disallow: /chat\n" +
+        "Disallow: /calls\n" +
+        "Sitemap: https://ai-call-agent-qlee.onrender.com/sitemap.xml\n"
+    );
+});
+
+app.get("/sitemap.xml", (req, res) => {
+    const base = "https://ai-call-agent-qlee.onrender.com";
+    const pages = ["/", "/about", "/contact", "/plans", "/security", "/blog", "/privacy", "/terms", "/login", "/register"];
+    const urls = pages
+        .map((p) =>
+            `  <url>\n    <loc>${base}${p}</loc>\n    <changefreq>${p === "/" ? "weekly" : "monthly"}</changefreq>\n    <priority>${p === "/" ? "1.0" : "0.7"}</priority>\n  </url>`
+        )
+        .join("\n");
+    res.type("application/xml").send(
+        `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`
+    );
 });
 
 // ==============================
