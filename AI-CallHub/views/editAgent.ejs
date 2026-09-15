@@ -13,7 +13,8 @@
 
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/editAgent-polish.css">
-    <link rel="icon" href="/assets/favicon.png">
+    
+<link rel="stylesheet" href="/css/app-premium.css"><link rel="icon" href="/assets/favicon.png">
 
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
@@ -95,6 +96,16 @@
 </head>
 
 <body class="bg-[#070B17] text-white min-h-screen overflow-x-hidden">
+
+<div class="app-aurora" aria-hidden="true">
+    <div class="app-aurora__blob app-aurora__blob--1"></div>
+    <div class="app-aurora__blob app-aurora__blob--2"></div>
+</div>
+<svg class="app-grain" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+    <filter id="appGrain"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter>
+    <rect width="100%" height="100%" filter="url(#appGrain)"/>
+</svg>
+
 
     <!-- Background -->
     <div class="fixed inset-0 -z-10 overflow-hidden">
@@ -396,6 +407,8 @@
 
     </main>
 
+
+<script src="/js/app-premium.js"></script>
 </body>
 
 </html>

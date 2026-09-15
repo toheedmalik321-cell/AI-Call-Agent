@@ -11,9 +11,20 @@
 
     <link rel="stylesheet" href="/css/voice-polish.css">
 
-</head>
+
+<link rel="stylesheet" href="/css/app-premium.css"></head>
 
 <body class="bg-slate-900 text-white flex items-center justify-center h-screen">
+
+<div class="app-aurora" aria-hidden="true">
+    <div class="app-aurora__blob app-aurora__blob--1"></div>
+    <div class="app-aurora__blob app-aurora__blob--2"></div>
+</div>
+<svg class="app-grain" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+    <filter id="appGrain"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter>
+    <rect width="100%" height="100%" filter="url(#appGrain)"/>
+</svg>
+
 
     <div class="text-center">
 
@@ -42,5 +53,7 @@
         <script src="/js/toast.js"></script>
 <script src="/js/voice.js"></script>
 
+
+<script src="/js/app-premium.js"></script>
 </body>
 </html>
