@@ -8,6 +8,11 @@
   var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var isTouch = window.matchMedia('(hover: none)').matches || 'ontouchstart' in window;
 
+  // Page-load entrance stagger
+  setTimeout(function () {
+    document.body.classList.add('app-ready');
+  }, 60);
+
   // Scroll progress
   var bar = document.createElement('div');
   bar.className = 'app-scroll-progress';

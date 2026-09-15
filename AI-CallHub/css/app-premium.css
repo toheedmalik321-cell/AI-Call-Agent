@@ -409,3 +409,88 @@ h1 { text-shadow: 0 0 24px rgba(45,212,191,0.14); }
     0 0 60px rgba(45,212,191,0.07),
     inset 0 1px 0 rgba(255,255,255,0.05) !important;
 }
+
+/* ==================== FINAL APP COAT — entrance stagger + live glow ==================== */
+
+/* Cards rise in softly once the page is ready */
+body:not(.app-ready) .stat-card,
+body:not(.app-ready) .agent-card,
+body:not(.app-ready) .section-card,
+body:not(.app-ready) .quick-card,
+body:not(.app-ready) .glass-card {
+  opacity: 0;
+  transform: translateY(14px);
+}
+body.app-ready .stat-card,
+body.app-ready .agent-card,
+body.app-ready .section-card,
+body.app-ready .quick-card,
+body.app-ready .glass-card {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.55s cubic-bezier(0.22,1,0.36,1), transform 0.55s cubic-bezier(0.22,1,0.36,1);
+}
+
+/* Toast slides in with a teal halo */
+.toast,
+#toast {
+  animation: appToastIn 0.4s cubic-bezier(0.22,1,0.36,1);
+  border: 1px solid rgba(45,212,191,0.15);
+  box-shadow: 0 18px 60px rgba(0,0,0,0.6), 0 0 36px rgba(45,212,191,0.14);
+}
+@keyframes appToastIn {
+  from { opacity: 0; transform: translateY(16px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Sidebar brand icon radiates */
+aside a:first-child {
+  filter: drop-shadow(0 0 12px rgba(45,212,191,0.4));
+}
+
+/* Status dots pulse on app pages */
+.status-dot {
+  animation: appDotPulse 1.6s ease-in-out infinite;
+}
+@keyframes appDotPulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50%      { opacity: 1; transform: scale(1.35); }
+}
+
+/* Quick cards lift */
+.quick-card {
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.quick-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(45,212,191,0.3);
+  box-shadow: 0 18px 50px -18px rgba(45,212,191,0.25);
+}
+
+/* Chat send + new-chat buttons glow */
+.send-btn,
+.new-chat-btn {
+  box-shadow: 0 10px 28px rgba(16,185,129,0.28);
+  transition: filter 0.2s ease, box-shadow 0.2s ease;
+}
+.send-btn:hover,
+.new-chat-btn:hover {
+  filter: brightness(1.08);
+  box-shadow: 0 14px 36px rgba(16,185,129,0.42);
+}
+
+/* Table headers get a faint teal hairline */
+th {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+  letter-spacing: 0.04em;
+}
+
+/* Headings breathe */
+h1 { text-shadow: 0 0 34px rgba(45,212,191,0.22); }
+h2 { text-shadow: 0 0 22px rgba(45,212,191,0.14); }
+
+/* Any data-count readouts (app-side counters) */
+[data-count] {
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 16px rgba(45,212,191,0.3);
+}

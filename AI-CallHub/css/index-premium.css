@@ -820,3 +820,81 @@ body:has(#nav) .marquee-track { animation-duration: 18s; }
     opacity: 1;
   }
 }
+
+/* ==================== FINAL GAUNTLET — V5 ==================== */
+
+/* Vertical light shafts behind every landing section */
+body:has(#nav) section::before {
+  content: '';
+  position: absolute;
+  left: 50%; top: -8%;
+  width: 1px; height: 116%;
+  background: linear-gradient(180deg, transparent 2%, rgba(45,212,191,0.16) 50%, transparent 98%);
+  box-shadow: 0 0 44px 8px rgba(45,212,191,0.08);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.55;
+}
+
+/* Count-up numbers glow like cockpit readouts */
+body:has(#nav) [data-count] {
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 18px rgba(45,212,191,0.35);
+  transition: text-shadow 0.4s ease;
+}
+
+/* Marquee edges melt into the void */
+body:has(#nav) .marquee {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+body:has(#nav) .marquee-track {
+  filter: drop-shadow(0 0 14px rgba(255,255,255,0.12));
+}
+
+/* Feature icons glow ring on card hover (already via .icon-wrap) */
+body:has(#nav) .premium-spotlight-card:hover .icon-wrap {
+  box-shadow:
+    0 0 0 1px rgba(45,212,191,0.25),
+    0 14px 36px -10px rgba(45,212,191,0.55),
+    0 0 26px rgba(45,212,191,0.18);
+}
+
+/* Orb center pulses with dual tone */
+body:has(#nav) .premium-orb__glow {
+  background: radial-gradient(circle, rgba(45,212,191,0.28), rgba(16,185,129,0.10) 45%, rgba(56,189,248,0.05) 62%, transparent 75%);
+}
+
+/* Floating cards: richer hover lift */
+body:has(#nav) .premium-float-card {
+  will-change: transform;
+}
+body:has(#nav) .premium-float-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(45,212,191,0.5);
+  box-shadow:
+    0 30px 70px -16px rgba(0,0,0,0.6),
+    0 0 42px rgba(45,212,191,0.2);
+}
+
+/* AI badge glows harder */
+body:has(#nav) .premium-ai-badge {
+  box-shadow: 0 6px 22px rgba(45,212,191,0.22), inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+/* Grain slightly stronger for cinematic depth */
+body:has(#nav) .premium-grain {
+  opacity: 0.045;
+}
+
+/* Section headings shimmer on hover */
+body:has(#nav) section h2:hover {
+  text-shadow: 0 0 44px rgba(45,212,191,0.42);
+  transition: text-shadow 0.4s ease;
+}
+
+/* Reduced-motion safety for v5 */
+@media (prefers-reduced-motion: reduce) {
+  body:has(#nav) section::before { opacity: 0.15; }
+  body:has(#nav) [data-count] { transition: none; }
+}

@@ -59,6 +59,46 @@
     } catch (err) { /* older browsers: ignore */ }
   }
 
+  /* ======================== COUNT-UP NUMBERS (dashboard mock) ======================== */
+
+  var counters = document.querySelectorAll('[data-count]');
+  if (counters.length) {
+    function formatNum(v) {
+      return Number(v).toLocaleString('en-US');
+    }
+    function runCounter(el) {
+      var target = parseInt(el.getAttribute('data-count') || '0', 10) || 0;
+      var prefix = el.getAttribute('data-prefix') || '';
+      var suffix = el.getAttribute('data-suffix') || '';
+      if (prefersReduced) {
+        el.textContent = prefix + formatNum(target) + suffix;
+        return;
+      }
+      var dur = 1400;
+      var start = null;
+      function step(ts) {
+        if (!start) start = ts;
+        var p = Math.min((ts - start) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = prefix + formatNum(Math.round(target * eased)) + suffix;
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    try {
+      var countIO = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (!en.isIntersecting) return;
+          countIO.unobserve(en.target);
+          runCounter(en.target);
+        });
+      }, { threshold: 0.4 });
+      counters.forEach(function (el) { countIO.observe(el); });
+    } catch (err) {
+      counters.forEach(runCounter);
+    }
+  }
+
   /* ======================== TOUCH / REDUCED-MOTION GUARD ======================== */
 
   if (prefersReduced || isTouch) return;
