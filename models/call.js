@@ -63,6 +63,25 @@ const callSchema = new mongoose.Schema(
         default: ""
     },
 
+    // ==========================
+    // Call Provider / Telnyx
+    // ==========================
+
+    provider: {
+        type: String,
+        default: "twilio" // "twilio" | "telnyx" | "agora"
+    },
+
+    telnyxCallControlId: {
+        type: String,
+        default: ""
+    },
+
+    telnyxCallSessionId: {
+        type: String,
+        default: ""
+    },
+
     status: {
         type: String,
         enum: [

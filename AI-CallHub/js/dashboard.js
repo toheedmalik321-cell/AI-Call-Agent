@@ -441,6 +441,43 @@ if (startCallBtn) {
 
     startCallBtn.addEventListener("click", async () => {
 
+        // 1) Try a real phone call via Telnyx
+        try {
+
+            const token = localStorage.getItem("token");
+
+            const res = await fetch("/telnyx/start-call", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + token
+                },
+
+                body: JSON.stringify({})
+
+            });
+
+            const data = await res.json();
+
+            if (data && data.success) {
+
+                showToast("📞 Calling your phone via Telnyx...", "success");
+
+                if (window.setStatus) setStatus("Outbound call initiated...", "live");
+
+                return;
+
+            }
+
+        } catch (err) {
+
+            console.log(err);
+
+        }
+
+        // 2) Telnyx not configured -> browser voice lab
         window.location.href = "/agora-call";
 
     });

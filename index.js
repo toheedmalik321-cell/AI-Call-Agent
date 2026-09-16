@@ -21,6 +21,7 @@ const chatRoutes = require("./routes/chatRoutes");
 const realtimeRoutes = require("./routes/realtimeRoutes");
 const profileRoutes = require("./routes/profileRoutes");
 const subscriptionRoutes = require("./routes/subscriptionRoutes");
+const telnyxWebRoutes = require("./routes/telnyxRoutes");
 
 const User = require("./models/user");
 const auth = require("./middlewares/auth");
@@ -327,6 +328,7 @@ app.use("/", chatRoutes);
 app.use("/", realtimeRoutes);
 app.use("/", profileRoutes);
 app.use("/", subscriptionRoutes);
+app.use("/", telnyxWebRoutes.router);
 // ==============================
 // 404 - Not Found
 // ==============================
@@ -359,8 +361,11 @@ app.use(errorHandler);
 // ==============================
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, "0.0.0.0", () => {
+const server = app.listen(PORT, "0.0.0.0", () => {
 
     console.log(`🚀 Server running at http://localhost:${PORT}`);
 
 });
+
+// Attach the Telnyx media-stream WebSocket (noServer mode, same HTTP port)
+telnyxWebRoutes.attachWebSocket(server);
