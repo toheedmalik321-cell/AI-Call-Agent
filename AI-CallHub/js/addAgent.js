@@ -29,7 +29,9 @@ form.addEventListener("submit", async (e) => {
 
     voice: document.getElementById("voice").value,
 
-    instructions: document.getElementById("instructions").value.trim()
+    instructions: document.getElementById("instructions").value.trim(),
+
+    starterKnowledge: document.getElementById("starterKnowledge") ? document.getElementById("starterKnowledge").checked : false
 
 })
 

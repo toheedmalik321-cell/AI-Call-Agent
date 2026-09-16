@@ -375,16 +375,48 @@
             </div>
 
 
+            <div class="flex flex-wrap gap-2 mb-3">
+
+                <button
+                    type="button"
+                    data-agent-template="sales"
+                    class="preset-chip px-3 py-1.5 rounded-full text-xs font-semibold
+                    border border-teal-400/40 bg-teal-400/10 text-teal-300
+                    hover:bg-teal-400/20 transition-colors preset-active">
+
+                    🛒 Sales
+
+                </button>
+
+                <button
+                    type="button"
+                    data-agent-template="receptionist"
+                    class="preset-chip px-3 py-1.5 rounded-full text-xs font-semibold
+                    border border-white/10 bg-white/5 text-slate-300
+                    hover:bg-white/10 transition-colors">
+
+                    📞 Receptionist
+
+                </button>
+
+                <button
+                    type="button"
+                    data-agent-template="support"
+                    class="preset-chip px-3 py-1.5 rounded-full text-xs font-semibold
+                    border border-white/10 bg-white/5 text-slate-300
+                    hover:bg-white/10 transition-colors">
+
+                    🛠️ Support
+
+                </button>
+
+            </div>
+
+
             <textarea
                 id="instructions"
                 rows="9"
-                placeholder="Example:
-
-• Welcome customers politely.
-• Answer frequently asked questions.
-• Book appointments.
-• Transfer important calls.
-• Speak professionally."
+                placeholder="Describe exactly how the AI should communicate and handle customer requests."
                 class="form-input w-full px-5 py-4
                 rounded-2xl
                 bg-[#111827]/80
@@ -396,8 +428,26 @@
                 leading-7"></textarea>
 
             <p class="text-xs text-slate-500 mt-2">
-                Describe exactly how the AI should communicate and handle customer requests.
+                Preset templates pre-fill behavior. You can edit freely — this field is saved exactly as written.
             </p>
+
+            <label class="flex items-center gap-3 mt-4 p-4 rounded-2xl border border-white/10 bg-white/5 cursor-pointer hover:bg-white/10 transition-colors">
+
+                <input
+                    type="checkbox"
+                    id="starterKnowledge"
+                    class="w-5 h-5 accent-teal-500">
+
+                <div>
+                    <div class="text-sm font-semibold text-teal-300">
+                        📚 Create starter knowledge base
+                    </div>
+                    <div class="text-xs text-slate-500 mt-0.5">
+                        Auto-creates "TechLite Laptop Store — Products & Policies" so the agent answers prices, installments, delivery and warranty correctly.
+                    </div>
+                </div>
+
+            </label>
 
         </div>
 
@@ -466,6 +516,7 @@
 
 
     <script src="/js/toast.js"></script>
+<script src="/js/agent-templates.js"></script>
 <script src="/js/addAgent.js"></script>
 
 
