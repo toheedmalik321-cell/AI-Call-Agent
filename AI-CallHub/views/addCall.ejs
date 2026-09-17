@@ -68,6 +68,12 @@
     <rect width="100%" height="100%" filter="url(#appGrain)"/>
 </svg>
 
+<div class="flex min-h-screen">
+
+<%- include("components/app-sidebar", { active: "calls" }) %>
+
+<div class="flex-1 min-w-0">
+
 <div class="max-w-3xl mx-auto px-5 py-10">
 
 
@@ -283,6 +289,12 @@
 
 </div>
 
+
+</div>
+
+</div>
+
+<script src="/js/auth.js"></script>
 
 <script src="/js/toast.js"></script>
 <script src="/js/addCall.js"></script>

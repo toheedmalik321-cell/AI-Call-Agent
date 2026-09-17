@@ -138,6 +138,12 @@
 </div>
 
 
+<div class="flex min-h-screen">
+
+<%- include("components/app-sidebar", { active: "agents" }) %>
+
+<div class="flex-1 min-w-0">
+
 <div class="max-w-4xl mx-auto px-5 sm:px-6 py-10 md:py-14">
 
     <!-- Header -->
@@ -149,10 +155,6 @@
             <div class="flex items-center gap-2 mb-3">
 
                 <span class="w-2 h-2 rounded-full bg-teal-400 shadow-lg shadow-teal-400/50"></span>
-
-                <span class="text-teal-300 font-semibold uppercase tracking-[0.2em] text-xs">
-                    AI CallHub
-                </span>
 
             </div>
 
@@ -514,6 +516,12 @@
 
 </div>
 
+
+</div>
+
+</div>
+
+<script src="/js/auth.js"></script>
 
     <script src="/js/toast.js"></script>
 <script src="/js/agent-templates.js"></script>

@@ -1,0 +1,121 @@
+<%
+const appNav = [
+    { key: "dashboard", href: "/dashboard", icon: "📊", label: "Dashboard" },
+    { key: "agents", href: "/agents", icon: "🤖", label: "AI Agents" },
+    { key: "knowledge", href: "/knowledge", icon: "📚", label: "Knowledge Base" },
+    { key: "chat", href: "/chat", icon: "💬", label: "AI Chat" },
+    { key: "calls", href: "/calls", icon: "📞", label: "Calls" },
+    { key: "plans", href: "/plans", icon: "💳", label: "Plans" },
+    { key: "profile", href: "/profile", icon: "👤", label: "Profile" }
+];
+%>
+
+<style>
+    .app-sidebar {
+        flex-shrink: 0;
+        width: 16rem;
+        background: rgba(11, 18, 32, 0.8);
+        border-right: 1px solid rgba(255, 255, 255, 0.10);
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+
+    .app-sidebar-link {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem 1rem;
+        border-radius: 0.75rem;
+        color: #94a3b8;
+        border: 1px solid transparent;
+        transition: all .25s ease;
+        font-size: 0.95rem;
+    }
+
+    .app-sidebar-link:hover {
+        background: rgba(20, 184, 166, 0.08);
+        color: #99f6e4;
+        transform: translateX(4px);
+    }
+
+    .app-sidebar-link--active {
+        background: rgba(20, 184, 166, 0.12);
+        color: #5eead4;
+        border-color: rgba(20, 184, 166, 0.25);
+    }
+
+    .app-sidebar-dot {
+        opacity: 0;
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 9999px;
+        background: #2dd4bf;
+        margin-left: auto;
+        box-shadow: 0 0 8px rgba(45, 212, 191, 0.8);
+        animation: app-sidebar-pulse 1.6s ease-in-out infinite;
+    }
+
+    .app-sidebar-link--active .app-sidebar-dot {
+        opacity: 1;
+    }
+
+    @keyframes app-sidebar-pulse {
+        0%, 100% { opacity: .45; }
+        50% { opacity: 1; }
+    }
+
+    .app-sidebar-logout {
+        width: 100%;
+        margin-top: 1.5rem;
+        background: rgba(239, 68, 68, 0.10);
+        color: #f87171;
+        border: 1px solid rgba(239, 68, 68, 0.20);
+        padding: 0.75rem 1.25rem;
+        border-radius: 0.75rem;
+        font-weight: 500;
+        transition: all .25s ease;
+        cursor: pointer;
+    }
+
+    .app-sidebar-logout:hover {
+        background: rgba(239, 68, 68, 0.18);
+    }
+
+    @media (max-width: 768px) {
+        .app-sidebar {
+            width: 100%;
+            min-height: auto;
+        }
+    }
+</style>
+
+<aside class="app-sidebar">
+
+    <a href="/dashboard" class="text-2xl font-extrabold mb-10 px-2 tracking-tight block">
+        <span class="text-teal-300">AI</span> CallHub
+    </a>
+
+    <nav class="space-y-2 flex-1">
+
+        <% for (const item of appNav) { %>
+
+            <a
+                href="<%= item.href %>"
+                class="app-sidebar-link <%= active === item.key ? 'app-sidebar-link--active' : '' %>">
+
+                <span><%= item.icon %></span>
+                <span class="<%= active === item.key ? 'font-medium' : '' %>"><%= item.label %></span>
+                <span class="app-sidebar-dot"></span>
+
+            </a>
+
+        <% } %>
+
+    </nav>
+
+    <button id="logoutBtn" class="app-sidebar-logout">🚪 Logout</button>
+
+</aside>

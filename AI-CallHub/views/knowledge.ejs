@@ -115,6 +115,13 @@
 
     </div>
 
+    <!-- Sidebar -->
+    <div class="flex min-h-screen">
+
+        <%- include("components/app-sidebar", { active: "knowledge" }) %>
+
+        <div class="flex-1 min-w-0">
+
     <!-- Main -->
     <main class="max-w-6xl mx-auto px-5 sm:px-6 py-10 sm:py-12">
 
@@ -125,20 +132,6 @@
                     gap-5 mb-10">
 
             <div>
-
-                <div class="flex items-center gap-2 mb-3">
-
-                    <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-
-                    <span class="text-teal-300
-                                 text-xs
-                                 font-semibold
-                                 uppercase
-                                 tracking-[0.2em]">
-                        AI CallHub
-                    </span>
-
-                </div>
 
                 <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
                     📚 Knowledge Base
@@ -221,7 +214,13 @@
 
         </div>
 
-    </main>
+</main>
+
+    </div>
+
+    </div>
+
+<script src="/js/auth.js"></script>
     <script src="/js/toast.js"></script>
 <script src="/js/knowledge.js"></script>
 

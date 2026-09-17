@@ -33,6 +33,12 @@
 </svg>
 
 
+<div class="flex min-h-screen">
+
+<%- include("components/app-sidebar", { active: "plans" }) %>
+
+<div class="flex-1 min-w-0">
+
 <div id="plansPage" class="max-w-7xl mx-auto py-10">
 
     <div id="noticeBar" class="hidden mb-6 glass rounded-2xl px-5 py-4 border border-white/10"></div>
@@ -180,6 +186,11 @@
 
 </div>
 
+</div>
+
+</div>
+
+<script src="/js/auth.js"></script>
     <script src="/js/toast.js"></script>
 <script src="/js/plans.js"></script>
 
