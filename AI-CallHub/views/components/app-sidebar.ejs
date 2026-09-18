@@ -87,7 +87,45 @@ const appNav = [
     @media (max-width: 768px) {
         .app-sidebar {
             width: 100%;
-            min-height: auto;
+            padding: 0.9rem 1rem;
+            gap: 0.5rem;
+        }
+
+        .app-sidebar > a[href="/dashboard"] {
+            margin-bottom: 0.5rem;
+            font-size: 1.15rem;
+        }
+
+        .app-sidebar nav {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            flex: none;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .app-sidebar-link {
+            padding: 0.5rem 0.8rem;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .app-sidebar-link:hover {
+            transform: none;
+        }
+
+        .app-sidebar-dot {
+            display: none;
+        }
+
+        .app-sidebar-logout {
+            width: fit-content;
+            margin-top: 0.25rem;
+            padding: 0.5rem 1.1rem;
+            font-size: 0.85rem;
         }
     }
 </style>

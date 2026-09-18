@@ -145,77 +145,10 @@
                 bg-emerald-500/10 rounded-full blur-3xl"></div>
 </div>
 
-<div class="flex min-h-screen">
+<div class="flex flex-col lg:flex-row min-h-screen">
 
     <!-- SIDEBAR -->
-    <aside class="w-64 shrink-0 bg-[#0b1220]/80
-                  border-r border-white/10 p-5
-                  flex flex-col backdrop-blur-xl">
-
-        <a href="/dashboard"
-           class="text-2xl font-extrabold mb-10 px-2 tracking-tight">
-            <span class="text-teal-300">AI</span> CallHub
-        </a>
-
-        <nav class="space-y-2 flex-1">
-
-            <a href="/dashboard"
-               class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl">
-                <span>📊</span>
-                <span>Dashboard</span>
-            </a>
-
-            <a href="/agents"
-               class="sidebar-link active flex items-center justify-between px-4 py-3 rounded-xl">
-                <div class="flex items-center gap-3">
-                    <span>🤖</span>
-                    <span class="font-medium">AI Agents</span>
-                </div>
-
-                <span class="w-2 h-2 bg-teal-400 rounded-full animate-pulse"></span>
-            </a>
-
-            <a href="/knowledge"
-               class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl">
-                <span>📚</span>
-                <span>Knowledge Base</span>
-            </a>
-
-            <a href="/chat"
-               class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl">
-                <span>💬</span>
-                <span>AI Chat</span>
-            </a>
-
-            <a href="/calls"
-               class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl">
-                <span>📞</span>
-                <span>Calls</span>
-            </a>
-
-            <a href="/plans"
-               class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl">
-                <span>💳</span>
-                <span>Plans</span>
-            </a>
-
-            <a href="/profile"
-               class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl">
-                <span>👤</span>
-                <span>Profile</span>
-            </a>
-
-        </nav>
-
-        <button id="logoutBtn"
-                class="mt-6 w-full bg-red-500/10
-                       hover:bg-red-500/20
-                       text-red-400 border border-red-500/20
-                       px-5 py-3 rounded-xl font-medium transition">
-            🚪 Logout
-        </button>
-
-    </aside>
+    <%- include("components/app-sidebar", { active: "agents" }) %>
 
     <!-- MAIN -->
     <main class="flex-1 p-6 md:p-8 overflow-y-auto">
