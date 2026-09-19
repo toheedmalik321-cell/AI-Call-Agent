@@ -11,6 +11,11 @@ const client = twilio(
     process.env.TWILIO_AUTH_TOKEN
 );
 
+const getWebhookBase = () =>
+    process.env.NGROK_URL ||
+    process.env.TWILIO_WEBHOOK_URL ||
+    "https://ai-call-agent-qlee.onrender.com";
+
 
 // ==========================================
 // Start Call
@@ -28,6 +33,13 @@ const startCall = async (req, res) => {
         console.log("From:", process.env.TWILIO_PHONE_NUMBER);
         console.log("=================================");
 
+        if (!process.env.TWILIO_ACCOUNT_SID || !process.env.TWILIO_PHONE_NUMBER) {
+            return res.status(404).json({
+                success: false,
+                code: "NO_TWILIO",
+                message: "Twilio not configured yet"
+            });
+        }
 
         const call = await client.calls.create({
 
@@ -36,7 +48,7 @@ const startCall = async (req, res) => {
             from: process.env.TWILIO_PHONE_NUMBER,
 
             url:
-                process.env.NGROK_URL +
+                getWebhookBase() +
                 "/voice?userId=" +
                 req.user.id,
 
@@ -44,7 +56,7 @@ const startCall = async (req, res) => {
             record: true,
 
             recordingStatusCallback:
-                process.env.NGROK_URL +
+                getWebhookBase() +
                 "/api/calls/recording-callback",
 
             recordingStatusCallbackEvent:

@@ -477,7 +477,43 @@ if (startCallBtn) {
 
         }
 
-        // 2) Telnyx not configured -> browser voice lab
+        // 2) Telnyx not configured -> try Twilio
+        try {
+
+            const token = localStorage.getItem("token");
+
+            const res = await fetch("/start-call", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + token
+                },
+
+                body: JSON.stringify({})
+
+            });
+
+            const data = await res.json();
+
+            if (data && data.success) {
+
+                showToast("📞 Calling your phone via Twilio...", "success");
+
+                if (window.setStatus) setStatus("Outbound call initiated...", "live");
+
+                return;
+
+            }
+
+        } catch (err) {
+
+            console.log(err);
+
+        }
+
+        // 3) Telnyx & Twilio not configured -> browser voice lab
         window.location.href = "/agora-call";
 
     });
