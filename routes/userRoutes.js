@@ -6,6 +6,7 @@ const auth = require("../middlewares/auth");
 const {
   validateRegister,
   validateLogin,
+  validateResetToken,
 } = require("../validators/authValidator");
 
 const {
@@ -24,11 +25,13 @@ const {
 
 // Public Routes
 
-router.post("/register", validateRegister, register);
-router.post("/login", validateLogin, login);
-router.post("/forgot-password", forgotPassword);
-router.post("/reset-password/:token", resetPassword);
-router.post("/resend-verification", resendVerificationEmail);
+const { authLimiter, emailLimiter } = require("../middlewares/rateLimiter");
+
+router.post("/register", authLimiter, validateRegister, register);
+router.post("/login", authLimiter, validateLogin, login);
+router.post("/forgot-password", emailLimiter, forgotPassword);
+router.post("/reset-password/:token", authLimiter, validateResetToken, resetPassword);
+router.post("/resend-verification", emailLimiter, resendVerificationEmail);
 // Protected Routes
 router.get("/forgot-password", (req, res) => {
     res.render("forgot-password");

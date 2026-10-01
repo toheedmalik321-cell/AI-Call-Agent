@@ -102,6 +102,15 @@ app.use(compression());
 app.use(morgan("dev"));
 
 // ==============================
+// Rate Limiting (brute-force / abuse protection)
+// ==============================
+
+const { apiLimiter } = require("./middlewares/rateLimiter");
+app.use("/api", apiLimiter);
+app.use("/agent", apiLimiter);
+app.use("/telnyx", apiLimiter);
+
+// ==============================
 // Security Headers
 // ==============================
 
@@ -113,6 +122,17 @@ app.use((req, res, next) => {
     res.setHeader("X-XSS-Protection", "0");
     next();
 });
+
+// ==============================
+// HSTS (only in production - breaks plain-http local dev)
+// ==============================
+
+if (process.env.NODE_ENV === "production") {
+    app.use((req, res, next) => {
+        res.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+        next();
+    });
+}
 
 // ==============================
 // EJS Pages
