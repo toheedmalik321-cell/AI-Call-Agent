@@ -93,8 +93,13 @@ app.post(
     subscriptionRoutes.safepayWebhook
 );
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// Body size limits (block oversized-payload DoS)
+app.use(express.json({ limit: "1mb" }));
+app.use(express.urlencoded({ extended: true, limit: "1mb" }));
+
+// NoSQL-injection guard (strips $-operators / dotted keys from body/query/params)
+const sanitize = require("./middlewares/sanitize");
+app.use(sanitize);
 
 // gzip every text response (HTML/CSS/JS/JSON/XML)
 app.use(compression());
